@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Proposed System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Interactions with Other Systems" href="interactions-other-systems.html" />
+    <link rel="prev" title="Current System" href="current-system.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="proposed-system">
+<h1>Proposed System<a class="headerlink" href="#proposed-system" title="Permalink to this headline">¶</a></h1>
+<p>This project creates a Rust library that application developers can use to create
+Tic Tac Toe games. The library contains common Tic Tac Toe functionality such as
+game state management and single player artificial intelligence. The library
+exposes this functionality through a well defined and documented public API.
+The library is open source and is available in Rust’s package repository
+<a class="reference external" href="https://crates.io/">https://crates.io/</a>.</p>
+<p>By using this library application developers can focus on making flashy graphics
+or other unique Tic Tac Toe experience without worrying about the underlying game
+logic and management.</p>
+<div class="section" id="game-state-and-board-management">
+<h2>Game State and Board Management<a class="headerlink" href="#game-state-and-board-management" title="Permalink to this headline">¶</a></h2>
+<p>A common task of Tic Tac Toe games is managing the state of the game. This
+includes knowing which player’s turn it is, ensuring players cannot mark a
+previously marked square, and checking for victory or draw conditions.</p>
+</div>
+<div class="section" id="ai-players">
+<h2>AI Players<a class="headerlink" href="#ai-players" title="Permalink to this headline">¶</a></h2>
+<p>The library allows single player Tic Tac Toe games to be created by providing
+AI players. These players use artificial intelligence algorithms that pick a
+square to place the AI player’s mark. The application developer has control over
+how difficult to win over the AI player.</p>
+</div>
+<div class="section" id="available-on-crates-io">
+<h2>Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
+<p>The library is available on <a class="reference external" href="https://crates.io/">https://crates.io/</a> and the source code released
+under a permissive open source license.</p>
+<p>The crate’s name is: <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code>. <a class="footnote-reference brackets" href="#a" id="id1">1</a> Future projects built around
+<code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> may use <code class="docutils literal notranslate"><span class="pre">open_ttt</span></code> as part of their crate name.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The naming conventions for crates is described in the
+<a class="reference external" href="https://doc.rust-lang.org/1.0.0/style/style/naming/README.html">Rust Style Guidelines</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="objectives.html">Objectives of the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="current-system.html">Current System</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Proposed System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactions-other-systems.html">Interactions with Other Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users.html">User Roles and Responsibilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Overview</a><ul>
+      <li>Previous: <a href="current-system.html" title="previous chapter">Current System</a></li>
+      <li>Next: <a href="interactions-other-systems.html" title="next chapter">Interactions with Other Systems</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, James Richey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/overview/proposed-system.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

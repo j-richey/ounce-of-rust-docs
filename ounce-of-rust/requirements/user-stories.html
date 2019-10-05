@@ -1,0 +1,346 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>User Stories &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Design" href="../design/index.html" />
+    <link rel="prev" title="Rules of Tic Tac Toe" href="ttt-rules.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="user-stories">
+<h1>User Stories<a class="headerlink" href="#user-stories" title="Permalink to this headline">¶</a></h1>
+<p>User stories are informal descriptions of the software system features. These
+stories are written from the perspective of the users roles described in
+<a class="reference internal" href="../overview/users.html"><span class="doc">User Roles and Responsibilities</span></a>. The general format is:</p>
+<blockquote>
+<div><p>As a &lt;user&gt; I want &lt;goal/desire&gt; so that &lt;benefit&gt;.</p>
+</div></blockquote>
+<p>This section contains the user stories identified for this project.</p>
+<div class="section" id="game-state-management">
+<h2>Game State Management<a class="headerlink" href="#game-state-management" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to contain functionality for managing the state of the game,</div>
+<div class="line">so I can focus on creating engaging user experiences.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library exposes APIs for getting the current state and updating the state
+of the game. This includes functionality for checking the victory condition
+and determining the winner of the game, if any.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The design details of the APIs are outside the scope of this requirements chapter.</p>
+</div>
+<div class="section" id="know-cells-that-contributed-to-player-s-victory">
+<h2>Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want to know what cells contributed to the player’s victory,</div>
+<div class="line">so I can draw a line through them or mark them in a special color.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>When a player has won the game there is a way to obtain the board’s cells that
+contributed to the victory.</p></li>
+</ul>
+</div>
+<div class="section" id="stable-library-api">
+<h2>Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to have a stable API,</div>
+<div class="line">so that my application does not unexpectedly break if I use a different version of the library.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library uses semantic versioning to clearly communicate when there are API
+changes.</p></li>
+<li><p>There are integration tests that help library developers detect if the
+library’s API changes.</p></li>
+</ul>
+</div>
+<div class="section" id="ai-player">
+<h2>AI Player<a class="headerlink" href="#ai-player" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want to play against the computer,</div>
+<div class="line">as I do not always have a friend to play with.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library provides an AI player that Rust application developers can
+incorporate into their applications.</p></li>
+</ul>
+</div>
+<div class="section" id="ai-difficulty-settings">
+<h2>AI Difficulty Settings<a class="headerlink" href="#ai-difficulty-settings" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want different AI difficulty settings,</div>
+<div class="line">so I can play a challenging yet winnable game of Tic Tac Toe.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The difficulty for AI players can be configured by the Rust application developer.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The difficulty can be thought of as a probability of how likely the AI will make
+a mistake.</p>
+</div>
+<div class="section" id="players-take-turns-having-the-first-move">
+<h2>Players Take Turns Having the First Move<a class="headerlink" href="#players-take-turns-having-the-first-move" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want to have the first move on the next game if I did not have the first move this game,</div>
+<div class="line">so I have a better chance of winning the next game.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The game logic ensures the starting player alternates between games.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The player who takes the first move has more wining possibilities than the
+second player. <a class="footnote-reference brackets" href="#winingmoves" id="id1">1</a></p>
+</div>
+<div class="section" id="maximum-ai-update-time">
+<h2>Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the AI to block for less than one frame when picking its next move,</div>
+<div class="line">so it does not block my rendering thread making my animations choppy.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>There is a benchmark that measures the worst case time the AI blocks while
+picking the next move.</p></li>
+<li><p>How to run the benchmark is documented so developers can quickly evaluate this
+library to see if it meets their needs.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>Frame times can vary greatly depending on platform and application. For example,
+an update time of one second might be just fine for a casual Tic Tac Toe game.
+However, a Tick Tac Toe mini-game in a modern FPS is expected to take just a
+fraction of the 1/144 second frame time. Therefore, providing the tools to allow
+the Rust application developer to see if this library meets their needs is
+sufficient to fulfill this requirement.</p>
+</div>
+<div class="section" id="getting-started-example">
+<h2>Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want an example of getting started with the library,</div>
+<div class="line">so I can quickly start integrating the library into my application.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>There is a runnable example of using the library.</p></li>
+<li><p>The example is in a prominent location such as library’s documentation.</p></li>
+</ul>
+</div>
+<div class="section" id="detailed-library-documentation">
+<h2>Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want detailed and thorough library documentation,</div>
+<div class="line">so I can determine how to use the library from my specific needs.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>All public modules and their members are documented using Rust’s documentation
+comments.</p></li>
+<li><p>The documentation contains the typical sections such as <strong>Panics</strong> and <strong>Errors</strong>.</p></li>
+<li><p>The documentation is accessible from the internet, such as being hosted on
+<a class="reference external" href="https://docs.rs">Docs.rs</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="idiomatic-rust-apis">
+<h2>Idiomatic Rust APIs<a class="headerlink" href="#idiomatic-rust-apis" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to provide idiomatic Rust APIs,</div>
+<div class="line">so the library works in natural and familiar way.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id2">2</a></p></li>
+<li><p>An experienced Rust programmer code reviews and signs off on the library’s API.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>This can be a subjective subject subject. However, providing an idiomatic Rust
+API is important to fulfilling the <a class="reference internal" href="../overview/objectives.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective.</p>
+</div>
+<div class="section" id="cross-platform-support">
+<h2>Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to work on a variety of platforms,</div>
+<div class="line">so I can make Tic Tac Toe games for a wider use base.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library is tested and verified on two different platforms such as
+Windows 10 and Linux.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The use of platform specific code is minimized, however, the number of platforms
+the library is tested on may be limited due to resource constraints.</p>
+</div>
+<div class="section" id="available-on-crates-io">
+<h2>Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to be on <a class="reference external" href="https://crates.io/">crates.io</a>,</div>
+<div class="line">so that I can easily incorporate it into my Rust based application with Cargo.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library can be downloaded from crates.io.</p></li>
+<li><p>The library can be obtained by simply specifying it as a dependency in Cargo.toml.</p></li>
+</ul>
+</div>
+<div class="section" id="source-available-on-github">
+<h2>Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library’s source code to be available on <a class="reference external" href="https://github.com/">GitHub</a></div>
+<div class="line">so I can view the source code to get a better understanding of how the library works.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library’s source code is hosted on a public GitHub repository.</p></li>
+<li><p>The library’s tags match the releases on crates.io.</p></li>
+</ul>
+</div>
+<div class="section" id="permissive-license">
+<h2>Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h2>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to be licensed under a permissive open source license,</div>
+<div class="line">so that I can incorporate the library into my application without worrying about legal issues.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library is released under a permissive open source license. The MIT license
+fulfills this requirement.</p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The player with the first move has about double the number of
+winning possibilities. For details see
+<a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Wikipedia’s Tic-tac-toe page</a>.</p>
+</dd>
+<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>See the <a class="reference internal" href="../references.html#rust-api-guidelines" id="id3"><span>[Rust-API-Guidelines]</span></a> for details.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Requirements</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ttt-rules.html">Rules of Tic Tac Toe</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">User Stories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Requirements</a><ul>
+      <li>Previous: <a href="ttt-rules.html" title="previous chapter">Rules of Tic Tac Toe</a></li>
+      <li>Next: <a href="../design/index.html" title="next chapter">Design</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, James Richey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/requirements/user-stories.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

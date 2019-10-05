@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rules of Tic Tac Toe &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="User Stories" href="user-stories.html" />
+    <link rel="prev" title="Requirements" href="index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="rules-of-tic-tac-toe">
+<h1>Rules of Tic Tac Toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h1>
+<p>The rules for Tic Tac Toe are as follows:</p>
+<ol class="arabic">
+<li><p>Play occurs on 3 x 3 grid. The grid starts empty with no marks.</p></li>
+<li><p>The first player places their mark in one of the grid’s squares. Traditionally,
+the mark is the letter <em>X</em>.</p></li>
+<li><p>The second player places their mark in one of the grid’s empty squares. A square
+that already contains a mark cannot be updated or altered. Traditionally, the
+second player uses the letter <em>O</em> as their mark.</p></li>
+<li><p>Turns alternate between the players until the game is over.</p></li>
+<li><p>The game ends in a win when one of the players gets three of their marks in
+a line. That is: they have three marks in a row, column, or diagonally.
+Examples of winning games are shown in <a class="reference internal" href="#fig-example-wining-games"><span class="std std-numref">Fig. 4</span></a>.</p>
+<blockquote>
+<div><div class="figure align-default" id="id1">
+<span id="fig-example-wining-games"></span><img alt="Examples of winning Tic Tac Toe games." src="../_images/example-wining-games.svg" /><p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Examples of winning Tic Tac Toe games showing player X winning by getting
+three marks a row, diagonal, and column. The red line shows the squares
+that contributed to the win.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>The game ends in a draw if no more empty squares remain.
+Examples of games ending in a draw are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Fig. 5</span></a>.</p>
+<blockquote>
+<div><div class="figure align-default" id="id2">
+<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="../_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a draw. No player managed to get
+three marks in a line.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Requirements</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Rules of Tic Tac Toe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user-stories.html">User Stories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Requirements</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Requirements</a></li>
+      <li>Next: <a href="user-stories.html" title="next chapter">User Stories</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, James Richey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/requirements/ttt-rules.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

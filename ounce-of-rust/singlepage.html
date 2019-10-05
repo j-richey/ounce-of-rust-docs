@@ -1,0 +1,611 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="ounce-of-rust-project-design-document">
+<h1>Ounce of Rust Project Design Document<a class="headerlink" href="#ounce-of-rust-project-design-document" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<span id="document-introduction"></span><div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="purpose-of-this-document">
+<h3>Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h3>
+<p>This is the design document for the Ounce of Rust project. This document
+describes describes in detail the objectives requirements, and design
+considerations of the project. This is invaluable for planning the project’s
+tasks and milestones. Anyone wishing to understand the project and resulting
+deliverables is encouraged to read this document.</p>
+</div>
+<div class="section" id="scope-of-the-project">
+<h3>Scope of the Project<a class="headerlink" href="#scope-of-the-project" title="Permalink to this headline">¶</a></h3>
+<p>The main deliverable of the Ounce of Rust project is a Rust crate that provides
+common Tic Tac Toe logic that can be used by other Rust applications. While there
+are existing crates that provide similar functionality, this project provides
+an opportunity to gain experience with Rust, its ecosystem, and general software
+development practices.</p>
+</div>
+<div class="section" id="overview-of-this-document">
+<h3>Overview of this Document<a class="headerlink" href="#overview-of-this-document" title="Permalink to this headline">¶</a></h3>
+<p>There are three main parts to this document. <a class="footnote-reference brackets" href="#a" id="id1">1</a> The <a class="reference internal" href="singlepage.html#document-overview/index"><span class="doc">Overview</span></a>
+chapter provides a general overview of the problems this project is intended to
+address and how the project addresses these problems. The <a class="reference internal" href="singlepage.html#document-requirements/index"><span class="doc">Requirements</span></a>
+chapter specifies the requirements of the project. The <a class="reference internal" href="singlepage.html#document-design/index"><span class="doc">Design</span></a>
+describes how the project’s deliverables are designed to fulfill the requirements.</p>
+<p>Additionally, the <a class="reference internal" href="singlepage.html#document-glossary"><span class="doc">Glossary</span></a> defines terms that are used throughout this
+document.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The structure of this document is influenced by <a class="reference internal" href="singlepage.html#berezin-1999" id="id2"><span>[Berezin-1999]</span></a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<span id="document-overview/index"></span><div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<span id="document-overview/objectives"></span><div class="section" id="objectives-of-the-project">
+<h3>Objectives of the Project<a class="headerlink" href="#objectives-of-the-project" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the objectives of the Ounce of Rust project.</p>
+<div class="section" id="create-reusable-library-to-speed-development-of-tic-tac-toe-games">
+<h4>Create Reusable Library to Speed Development of Tic Tac Toe Games<a class="headerlink" href="#create-reusable-library-to-speed-development-of-tic-tac-toe-games" title="Permalink to this headline">¶</a></h4>
+<p>The result of this project is a reusable library that provides a core set of
+functionality that speeds development of future Tic Tac Toe games. Core
+functionality includes game state management and artificial intelligence
+algorithms. The user interface for Tic Tac Toe games is outside the objectives
+of this project.</p>
+</div>
+<div class="section" id="make-the-library-open-source-and-widely-available">
+<h4>Make the Library Open Source and Widely Available<a class="headerlink" href="#make-the-library-open-source-and-widely-available" title="Permalink to this headline">¶</a></h4>
+<p>The resulting library is released under a permissive open source license and
+made widely available. This includes placing the code on a public repository
+such as <a class="reference external" href="https://github.com/">https://github.com/</a> and in Rust’s crate registry,
+<a class="reference external" href="https://crates.io/">https://crates.io/</a>.</p>
+</div>
+<div class="section" id="learn-about-rust">
+<span id="ref-learn-about-rust-objective"></span><h4>Learn About Rust<a class="headerlink" href="#learn-about-rust" title="Permalink to this headline">¶</a></h4>
+<p>Rust is a modern statically typed systems programming language that has a focus
+on safety. Its mix of high level concepts, ability to avoid entire categories
+of bugs, and focus on correctness has made Rust an increasingly popular language.</p>
+<p>Even though Rust is unlikely to replace C and C++ any time soon, Rust’s
+concepts, such as traits, error handling, and memory management systems are
+worth learning to help expand ones general programming knowledge.</p>
+</div>
+</div>
+<span id="document-overview/current-system"></span><div class="section" id="current-system">
+<h3>Current System<a class="headerlink" href="#current-system" title="Permalink to this headline">¶</a></h3>
+<p>Tic Tac Toe is a game where two players, X and O, take turns placing their mark
+in a gird. The first player to get three marks in a row, column, or diagonal
+wins the game. The game can also end in a draw, known as a “cat’s game”.
+An example of a Tic Tac Toe game is shown in <a class="reference internal" href="#fig-tic-tac-toe-example-game"><span class="std std-numref">Fig. 1</span></a>.</p>
+<div class="figure align-default" id="id1">
+<span id="fig-tic-tac-toe-example-game"></span><img alt="An example Tic Tac Toe game" src="_images/tic-tac-toe-example-game.svg" /><p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">An example game of Tic Tac Toe where player X is victorious.
+Image from <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Tic-tac-toe-game-1.svg">wikimedia.org</a>
+by user Stannered released under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<div class="section" id="pencil-and-paper">
+<h4>Pencil and Paper<a class="headerlink" href="#pencil-and-paper" title="Permalink to this headline">¶</a></h4>
+<p>Traditionally Tic Tac Toe is played by two players using pencil and paper.
+This is a quick and convenient way to play with a friend. However, this does not
+allow for single player games. For people stuck on an airplane this can lead to
+extreme boredom!</p>
+</div>
+<div class="section" id="computer-games">
+<h4>Computer Games<a class="headerlink" href="#computer-games" title="Permalink to this headline">¶</a></h4>
+<p>Tic Tac Toe computer games allow for single player versions of the game. There
+are many versions of the game created over the years.
+<a class="reference internal" href="#fig-ttt-screen-shot"><span class="std std-numref">Fig. 2</span></a> shows a screen shot from one of the classic
+Tic Tac Toe games.</p>
+<div class="figure align-default" id="id2">
+<span id="fig-ttt-screen-shot"></span><img alt="Screen shot of a Tic Tac Toe computer game." src="_images/ttt-screen-shot.png" />
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screen shot of <a class="reference external" href="https://www.imaginaryphase.com/ttt.html">Tic Tac Toe</a>
+developed by James Richey.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>These games can be developed as stand alone applications or can be created with
+the help of supporting libraries.</p>
+</div>
+<div class="section" id="supporting-libraries">
+<h4>Supporting Libraries<a class="headerlink" href="#supporting-libraries" title="Permalink to this headline">¶</a></h4>
+<p>To support the creation of Tic Tac Toe games many libraries have been developed
+to provide common functionality. Searching Rust’s package repository,
+<a class="reference external" href="https://crates.io/">https://crates.io/</a>, reveals several such libraries including <code class="docutils literal notranslate"><span class="pre">ultimate-ttt</span></code>,
+<code class="docutils literal notranslate"><span class="pre">zero_sum</span></code>, and <code class="docutils literal notranslate"><span class="pre">minimax</span></code>.</p>
+<p>With the wide verity of libraries available, for both Rust and other languages,
+there is likely one that meets the needs of Tic Tac Toe application developer.
+However, one of this projects objectives is <a class="reference internal" href="singlepage.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a>.
+Thus it is worth going through the effort to create another Tic Tac Toe library.</p>
+</div>
+</div>
+<span id="document-overview/proposed-system"></span><div class="section" id="proposed-system">
+<h3>Proposed System<a class="headerlink" href="#proposed-system" title="Permalink to this headline">¶</a></h3>
+<p>This project creates a Rust library that application developers can use to create
+Tic Tac Toe games. The library contains common Tic Tac Toe functionality such as
+game state management and single player artificial intelligence. The library
+exposes this functionality through a well defined and documented public API.
+The library is open source and is available in Rust’s package repository
+<a class="reference external" href="https://crates.io/">https://crates.io/</a>.</p>
+<p>By using this library application developers can focus on making flashy graphics
+or other unique Tic Tac Toe experience without worrying about the underlying game
+logic and management.</p>
+<div class="section" id="game-state-and-board-management">
+<h4>Game State and Board Management<a class="headerlink" href="#game-state-and-board-management" title="Permalink to this headline">¶</a></h4>
+<p>A common task of Tic Tac Toe games is managing the state of the game. This
+includes knowing which player’s turn it is, ensuring players cannot mark a
+previously marked square, and checking for victory or draw conditions.</p>
+</div>
+<div class="section" id="ai-players">
+<h4>AI Players<a class="headerlink" href="#ai-players" title="Permalink to this headline">¶</a></h4>
+<p>The library allows single player Tic Tac Toe games to be created by providing
+AI players. These players use artificial intelligence algorithms that pick a
+square to place the AI player’s mark. The application developer has control over
+how difficult to win over the AI player.</p>
+</div>
+<div class="section" id="available-on-crates-io">
+<h4>Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h4>
+<p>The library is available on <a class="reference external" href="https://crates.io/">https://crates.io/</a> and the source code released
+under a permissive open source license.</p>
+<p>The crate’s name is: <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code>. <a class="footnote-reference brackets" href="#a" id="id1">1</a> Future projects built around
+<code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> may use <code class="docutils literal notranslate"><span class="pre">open_ttt</span></code> as part of their crate name.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The naming conventions for crates is described in the
+<a class="reference external" href="https://doc.rust-lang.org/1.0.0/style/style/naming/README.html">Rust Style Guidelines</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<span id="document-overview/interactions-other-systems"></span><div class="section" id="interactions-with-other-systems">
+<h3>Interactions with Other Systems<a class="headerlink" href="#interactions-with-other-systems" title="Permalink to this headline">¶</a></h3>
+<p>The Tic Tac Toe library is intended to be used in other user facing applications.
+This includes, but is not limited to, stand alone graphical applications, command
+line applications, or even as a mini-game in a larger video game. The diagram in
+<a class="reference internal" href="#uml-interaction-diagram"><span class="std std-numref">Fig. 3</span></a> shows how the library is used by other systems.</p>
+<div class="figure align-default" id="id1">
+<span id="uml-interaction-diagram"></span><p class="plantuml">
+<img src="_images/plantuml-878cef824c7daa6b80eadf97bb4f0c0ade1bb633.svg" alt="[TTT GUI] --&gt; [open_ttt_lib]
+[TTT CLI] --&gt; [open_ttt_lib]
+[TTT Mini Game] --&gt; [open_ttt_lib]"/></p>
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Diagram showing how the library is used by other applications.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>The other applications link directly to <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code>. The library does not
+provide any ways of remote access, e.g. via a network interface and it does not
+save any state the computer’s persistent storage.</p>
+</div>
+<span id="document-overview/users"></span><div class="section" id="user-roles-and-responsibilities">
+<h3>User Roles and Responsibilities<a class="headerlink" href="#user-roles-and-responsibilities" title="Permalink to this headline">¶</a></h3>
+<p>This section describes the users of the Tic Tac Toe library.</p>
+<div class="section" id="rust-application-developer">
+<h4>Rust Application Developer<a class="headerlink" href="#rust-application-developer" title="Permalink to this headline">¶</a></h4>
+<p>The Rust application developer uses the library to create awesome Tic Tac Toe
+games.</p>
+<p class="rubric">Responsibilities</p>
+<ul class="simple">
+<li><p>Connect the library to a Tic Tac Toe user interface.</p></li>
+<li><p>Read the library’s documentation to determine how to use the library.</p></li>
+<li><p>Debug the application when it does not run as expected.</p></li>
+</ul>
+</div>
+<div class="section" id="tic-tac-toe-player">
+<h4>Tic Tac Toe Player<a class="headerlink" href="#tic-tac-toe-player" title="Permalink to this headline">¶</a></h4>
+<p>The Tic Tac Toe player is an indirect user of the library. They use the
+application created by the application developer to play an exciting game of
+Tic Tac Toe.</p>
+<p class="rubric">Responsibilities</p>
+<ul class="simple">
+<li><p>Challenge a friend to a game of Tic Tac Toe.</p></li>
+<li><p>Attempt to win against the computer.</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<span id="document-requirements/index"></span><div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>This chapter describes the detailed requirements of the Tic Tac Toe library.
+This includes the rules for playing Tic Tac Toe and user stories describing how
+the library is used.</p>
+<div class="toctree-wrapper compound">
+<span id="document-requirements/ttt-rules"></span><div class="section" id="rules-of-tic-tac-toe">
+<h3>Rules of Tic Tac Toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h3>
+<p>The rules for Tic Tac Toe are as follows:</p>
+<ol class="arabic">
+<li><p>Play occurs on 3 x 3 grid. The grid starts empty with no marks.</p></li>
+<li><p>The first player places their mark in one of the grid’s squares. Traditionally,
+the mark is the letter <em>X</em>.</p></li>
+<li><p>The second player places their mark in one of the grid’s empty squares. A square
+that already contains a mark cannot be updated or altered. Traditionally, the
+second player uses the letter <em>O</em> as their mark.</p></li>
+<li><p>Turns alternate between the players until the game is over.</p></li>
+<li><p>The game ends in a win when one of the players gets three of their marks in
+a line. That is: they have three marks in a row, column, or diagonally.
+Examples of winning games are shown in <a class="reference internal" href="#fig-example-wining-games"><span class="std std-numref">Fig. 4</span></a>.</p>
+<blockquote>
+<div><div class="figure align-default" id="id1">
+<span id="fig-example-wining-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-wining-games.svg" /><p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Examples of winning Tic Tac Toe games showing player X winning by getting
+three marks a row, diagonal, and column. The red line shows the squares
+that contributed to the win.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+<li><p>The game ends in a draw if no more empty squares remain.
+Examples of games ending in a draw are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Fig. 5</span></a>.</p>
+<blockquote>
+<div><div class="figure align-default" id="id2">
+<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a draw. No player managed to get
+three marks in a line.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div></blockquote>
+</li>
+</ol>
+</div>
+<span id="document-requirements/user-stories"></span><div class="section" id="user-stories">
+<h3>User Stories<a class="headerlink" href="#user-stories" title="Permalink to this headline">¶</a></h3>
+<p>User stories are informal descriptions of the software system features. These
+stories are written from the perspective of the users roles described in
+<a class="reference internal" href="singlepage.html#document-overview/users"><span class="doc">User Roles and Responsibilities</span></a>. The general format is:</p>
+<blockquote>
+<div><p>As a &lt;user&gt; I want &lt;goal/desire&gt; so that &lt;benefit&gt;.</p>
+</div></blockquote>
+<p>This section contains the user stories identified for this project.</p>
+<div class="section" id="game-state-management">
+<h4>Game State Management<a class="headerlink" href="#game-state-management" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to contain functionality for managing the state of the game,</div>
+<div class="line">so I can focus on creating engaging user experiences.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library exposes APIs for getting the current state and updating the state
+of the game. This includes functionality for checking the victory condition
+and determining the winner of the game, if any.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The design details of the APIs are outside the scope of this requirements chapter.</p>
+</div>
+<div class="section" id="know-cells-that-contributed-to-player-s-victory">
+<h4>Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want to know what cells contributed to the player’s victory,</div>
+<div class="line">so I can draw a line through them or mark them in a special color.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>When a player has won the game there is a way to obtain the board’s cells that
+contributed to the victory.</p></li>
+</ul>
+</div>
+<div class="section" id="stable-library-api">
+<h4>Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to have a stable API,</div>
+<div class="line">so that my application does not unexpectedly break if I use a different version of the library.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library uses semantic versioning to clearly communicate when there are API
+changes.</p></li>
+<li><p>There are integration tests that help library developers detect if the
+library’s API changes.</p></li>
+</ul>
+</div>
+<div class="section" id="ai-player">
+<h4>AI Player<a class="headerlink" href="#ai-player" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want to play against the computer,</div>
+<div class="line">as I do not always have a friend to play with.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library provides an AI player that Rust application developers can
+incorporate into their applications.</p></li>
+</ul>
+</div>
+<div class="section" id="ai-difficulty-settings">
+<h4>AI Difficulty Settings<a class="headerlink" href="#ai-difficulty-settings" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want different AI difficulty settings,</div>
+<div class="line">so I can play a challenging yet winnable game of Tic Tac Toe.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The difficulty for AI players can be configured by the Rust application developer.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The difficulty can be thought of as a probability of how likely the AI will make
+a mistake.</p>
+</div>
+<div class="section" id="players-take-turns-having-the-first-move">
+<h4>Players Take Turns Having the First Move<a class="headerlink" href="#players-take-turns-having-the-first-move" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Tic Tac Toe player,</div>
+<div class="line">I want to have the first move on the next game if I did not have the first move this game,</div>
+<div class="line">so I have a better chance of winning the next game.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The game logic ensures the starting player alternates between games.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The player who takes the first move has more wining possibilities than the
+second player. <a class="footnote-reference brackets" href="#winingmoves" id="id1">1</a></p>
+</div>
+<div class="section" id="maximum-ai-update-time">
+<h4>Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the AI to block for less than one frame when picking its next move,</div>
+<div class="line">so it does not block my rendering thread making my animations choppy.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>There is a benchmark that measures the worst case time the AI blocks while
+picking the next move.</p></li>
+<li><p>How to run the benchmark is documented so developers can quickly evaluate this
+library to see if it meets their needs.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>Frame times can vary greatly depending on platform and application. For example,
+an update time of one second might be just fine for a casual Tic Tac Toe game.
+However, a Tick Tac Toe mini-game in a modern FPS is expected to take just a
+fraction of the 1/144 second frame time. Therefore, providing the tools to allow
+the Rust application developer to see if this library meets their needs is
+sufficient to fulfill this requirement.</p>
+</div>
+<div class="section" id="getting-started-example">
+<h4>Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want an example of getting started with the library,</div>
+<div class="line">so I can quickly start integrating the library into my application.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>There is a runnable example of using the library.</p></li>
+<li><p>The example is in a prominent location such as library’s documentation.</p></li>
+</ul>
+</div>
+<div class="section" id="detailed-library-documentation">
+<h4>Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want detailed and thorough library documentation,</div>
+<div class="line">so I can determine how to use the library from my specific needs.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>All public modules and their members are documented using Rust’s documentation
+comments.</p></li>
+<li><p>The documentation contains the typical sections such as <strong>Panics</strong> and <strong>Errors</strong>.</p></li>
+<li><p>The documentation is accessible from the internet, such as being hosted on
+<a class="reference external" href="https://docs.rs">Docs.rs</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="idiomatic-rust-apis">
+<h4>Idiomatic Rust APIs<a class="headerlink" href="#idiomatic-rust-apis" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to provide idiomatic Rust APIs,</div>
+<div class="line">so the library works in natural and familiar way.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id2">2</a></p></li>
+<li><p>An experienced Rust programmer code reviews and signs off on the library’s API.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>This can be a subjective subject subject. However, providing an idiomatic Rust
+API is important to fulfilling the <a class="reference internal" href="singlepage.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective.</p>
+</div>
+<div class="section" id="cross-platform-support">
+<h4>Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to work on a variety of platforms,</div>
+<div class="line">so I can make Tic Tac Toe games for a wider use base.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library is tested and verified on two different platforms such as
+Windows 10 and Linux.</p></li>
+</ul>
+<p class="rubric">Notes</p>
+<p>The use of platform specific code is minimized, however, the number of platforms
+the library is tested on may be limited due to resource constraints.</p>
+</div>
+<div class="section" id="available-on-crates-io">
+<h4>Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to be on <a class="reference external" href="https://crates.io/">crates.io</a>,</div>
+<div class="line">so that I can easily incorporate it into my Rust based application with Cargo.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library can be downloaded from crates.io.</p></li>
+<li><p>The library can be obtained by simply specifying it as a dependency in Cargo.toml.</p></li>
+</ul>
+</div>
+<div class="section" id="source-available-on-github">
+<h4>Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library’s source code to be available on <a class="reference external" href="https://github.com/">GitHub</a></div>
+<div class="line">so I can view the source code to get a better understanding of how the library works.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library’s source code is hosted on a public GitHub repository.</p></li>
+<li><p>The library’s tags match the releases on crates.io.</p></li>
+</ul>
+</div>
+<div class="section" id="permissive-license">
+<h4>Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h4>
+<div class="line-block">
+<div class="line">As a Rust application developer,</div>
+<div class="line">I want the library to be licensed under a permissive open source license,</div>
+<div class="line">so that I can incorporate the library into my application without worrying about legal issues.</div>
+</div>
+<p class="rubric">Acceptance Criteria</p>
+<ul class="simple">
+<li><p>The library is released under a permissive open source license. The MIT license
+fulfills this requirement.</p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The player with the first move has about double the number of
+winning possibilities. For details see
+<a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Wikipedia’s Tic-tac-toe page</a>.</p>
+</dd>
+<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>See the <a class="reference internal" href="singlepage.html#rust-api-guidelines" id="id3"><span>[Rust-API-Guidelines]</span></a> for details.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</div>
+<span id="document-design/index"></span><div class="section" id="design">
+<h2>Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<span id="document-design/public-api"></span><div class="section" id="public-api">
+<h3>Public API<a class="headerlink" href="#public-api" title="Permalink to this headline">¶</a></h3>
+</div>
+<span id="document-design/ai-algorithms"></span><div class="section" id="artificial-intelligence-algorithms">
+<h3>Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+<span id="document-glossary"></span><div class="section" id="glossary">
+<h2>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">¶</a></h2>
+<dl class="glossary simple">
+<dt id="term-cargo">Cargo</dt><dd><p>Cargo is <a class="reference internal" href="#term-rust-programming-language"><span class="xref std std-term">Rust’s</span></a> build system and
+package manager.</p>
+</dd>
+<dt id="term-cargo-toml">Cargo.toml</dt><dd><p>The configuration file for <a class="reference internal" href="#term-cargo"><span class="xref std std-term">Cargo</span></a>. This allows developers to
+specify their projects metadata and dependencies.</p>
+</dd>
+<dt id="term-cat-s-game">cat’s game</dt><dd><p>Term used when a game of Tic Tac Toe ends in a draw where there is no winner.</p>
+</dd>
+<dt id="term-idiomatic-coding">idiomatic coding</dt><dd><p>Idiomatic coding is using familiar conventions, techniques, and practices
+of a particular programming language.</p>
+</dd>
+<dt id="term-rust-programming-language">Rust programming language</dt><dd><p>Rust is a systems programming language with a focus on safety and speed.
+Website: <a class="reference external" href="https://www.rust-lang.org/">https://www.rust-lang.org/</a></p>
+</dd>
+<dt id="term-semantic-versioning">semantic versioning</dt><dd><p>A set of rules governing how API version numbers are managed and updated
+with the goal of clearly communicating when incompatible changes,
+new features, and bug fixes made. For details see <a class="reference external" href="https://semver.org/">https://semver.org/</a>.</p>
+</dd>
+</dl>
+</div>
+<span id="document-references"></span><div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+</div>
+<dl class="citation">
+<dt class="label" id="berezin-1999"><span class="brackets">Berezin-1999</span></dt>
+<dd><p>Tanya Berezin (1999) <em>Writing a Software Requirements Document</em>.
+Retrieved from <a class="reference external" href="https://eecs.ceas.uc.edu/~cpurdy/sefall10/ReqsDoc.pdf">https://eecs.ceas.uc.edu/~cpurdy/sefall10/ReqsDoc.pdf</a>
+(<a class="reference external" href="https://web.archive.org/web/20190922201012/https://eecs.ceas.uc.edu/~cpurdy/sefall10/ReqsDoc.pdf">archived on archive.org</a>)</p>
+</dd>
+<dt class="label" id="rust-api-guidelines"><span class="brackets">Rust-API-Guidelines</span></dt>
+<dd><p><em>Rust API Guidelines</em> retrieved from <a class="reference external" href="https://rust-lang-nursery.github.io/api-guidelines/">https://rust-lang-nursery.github.io/api-guidelines/</a>
+(<a class="reference external" href="https://github.com/rust-lang-nursery/api-guidelines">source on GitHub</a>)</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="singlepage.html#document-index">Ounce of Rust Project Design Document</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-introduction">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-overview/index">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-requirements/index">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-design/index">Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-glossary">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-references">References</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="singlepage.html#document-index">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, James Richey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
