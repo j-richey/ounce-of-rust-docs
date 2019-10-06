@@ -34,6 +34,201 @@
             
   <div class="section" id="public-api">
 <h1>Public API<a class="headerlink" href="#public-api" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the public API of the library. The provided types and
+functions are used by other applications to create Tic Tac Toe games. The legend
+shown in <a class="reference internal" href="#uml-public-api-diagram-legend"><span class="std std-numref">Fig. 6</span></a> is used for the type diagrams
+in this section.</p>
+<div class="figure align-default" id="id1">
+<span id="uml-public-api-diagram-legend"></span><p class="plantuml">
+<img src="../_images/plantuml-00bc1a3458499a6140367b06be9ec5cb0a3af016.svg" alt="hide members
+
+package Module {
+
+}
+interface Trait
+class Struct {
+    +field
+    +method()
+}
+
+enum Enum {
+    EnumVariant
+}
+
+show Struct members
+show Enum fields"/></p>
+<p class="caption"><span class="caption-number">Fig. 6 </span><span class="caption-text">Legend used for the type diagrams in this section.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>An overview of the public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Fig. 7</span></a>.</p>
+<div class="figure align-default" id="id2">
+<span id="uml-public-api-overview"></span><p class="plantuml">
+<img src="../_images/plantuml-65213eb9b7a140a66cfc41720dc11cb6aa19f206.svg" alt="hide members
+
+package tic_tac_toe {
+    class Game
+    enum GameState
+    class Board
+    class Square
+    enum SquareOwner
+    class AIMove
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 7 </span><span class="caption-text">Public modules, structures, and other types.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The library contains a single public module that holds the public types.</p>
+<div class="section" id="struct-game">
+<h2>Struct Game<a class="headerlink" href="#struct-game" title="Permalink to this headline">¶</a></h2>
+<p>The Game structure is one of the central types provided by the crate. It contains
+the state machine logic and the underlying game board. <a class="reference internal" href="#uml-struct-game"><span class="std std-numref">Fig. 8</span></a>
+show the Game structure.</p>
+<div class="figure align-default" id="id3">
+<span id="uml-struct-game"></span><p class="plantuml">
+<img src="../_images/plantuml-c100aa1a63bebe4afbefcffb21765b7b3aee6d36.svg" alt="hide empty fields
+
+class Game {
+    +new()
+    +board() -&gt; Board
+    +state() -&gt; GameState
+    +can_move(position) -&gt; bool
+    +do_move(position)
+    +start_next_game()
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 8 </span><span class="caption-text">The Game structure.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The Game structure uses a state machine to determine which player has the next
+move or when the game is over. The state diagram is shown in
+<a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Fig. 9</span></a>.</p>
+<div class="figure align-default" id="id4">
+<span id="uml-game-state-diagram"></span><p class="plantuml">
+<img src="../_images/plantuml-54833c3598e19d85d75d20dd988336c5557b179e.svg" alt="hide empty description
+
+[*] --&gt; PlayerXMove
+[*] --&gt; PlayerOMove
+
+PlayerXMove --&gt; PlayerOMove
+PlayerXMove --&gt; PlayerXWin
+PlayerXMove --&gt; CatsGame
+
+PlayerOMove --&gt; PlayerXMove
+PlayerOMove --&gt; PlayerOWin
+PlayerOMove --&gt; CatsGame"/></p>
+<p class="caption"><span class="caption-number">Fig. 9 </span><span class="caption-text">State diagram of a Tic Tac Toe game.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>When a new Game starts either player X or player O takes the first turn.
+The players alternate making their moves until one of the end game conditions is
+encountered. The player that did not have the first turn last game takes the
+first turn next game.</p>
+<p class="rubric">Member Details</p>
+<dl class="simple">
+<dt>new</dt><dd><p>Creates a new Tic Tac Toe game.</p>
+</dd>
+<dt>board</dt><dd><p>Gets the board associated with the game.</p>
+</dd>
+<dt>state</dt><dd><p>Gets the current state of the game.</p>
+</dd>
+<dt>can_move</dt><dd><p>Indicates if the square at the indicated position can be marked as owned.
+That is, if <code class="docutils literal notranslate"><span class="pre">can_move()</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> then <code class="docutils literal notranslate"><span class="pre">do_move()</span></code> is guaranteed
+to not panic.</p>
+</dd>
+<dt>do_move</dt><dd><p>Marks the indicated square as being owned by the current player. The state
+of the game is updated as a side effect of <code class="docutils literal notranslate"><span class="pre">do_move()</span></code>.
+Panics if the indicated position is already owned if the game is over.</p>
+</dd>
+<dt>start_next_game</dt><dd><p>Starts</p>
+</dd>
+</dl>
+<p class="rubric">Trait Implementations</p>
+<ul class="simple">
+<li><p>Debug</p></li>
+<li><p>Clone (or Copy?)</p></li>
+</ul>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/ttt-rules.html"><span class="doc">Rules of Tic Tac Toe</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-game-state-management-story"><span class="std std-ref">Game State Management</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-players-take-turns-having-first-move-story"><span class="std std-ref">Players Take Turns Having the First Move</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="enum-game-sate">
+<h2>Enum Game Sate<a class="headerlink" href="#enum-game-sate" title="Permalink to this headline">¶</a></h2>
+<p>The game state enumeration</p>
+<div class="figure align-default" id="id5">
+<span id="uml-enum-game-sate"></span><p class="plantuml">
+<img src="../_images/plantuml-993456216d83c4d710467be7ca85a7ddf4170d7b.svg" alt="hide empty methods
+
+enum GameState {
+    PlayerXMove
+    PlayerOMove
+    PlayerXWin
+    PlayerOWin
+    CatsGame
+
+    +is_game_over() -&gt; bool
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">GameState enum</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="struct-board">
+<h2>Struct Board<a class="headerlink" href="#struct-board" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id6">
+<span id="uml-struct-board"></span><p class="plantuml">
+<img src="../_images/plantuml-64bdfbd821e8d76dd482d4d2cf7b2fb9356f5eeb.svg" alt="hide empty fields
+
+class Board {
+    +new(num_rows, num_columns)
+    +get(row, column) -&gt; Square
+    +get_mut(row, column) -&gt; Square
+    +num_rows() -&gt; i32
+    +num_columns() -&gt; i32
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">The Board structure.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="struct-square">
+<h2>Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id7">
+<span id="uml-struct-square"></span><p class="plantuml">
+<img src="../_images/plantuml-818ac4f16cde77c229a941d6f06edcdf3e688c8a.svg" alt="hide empty fields
+
+class Square {
+    +owner() -&gt; SquareOwner
+    +set_owner(owner: SquareOwner)
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">The Square structure.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="enum-square-owner">
+<h2>Enum Square Owner<a class="headerlink" href="#enum-square-owner" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-default" id="id8">
+<p class="plantuml">
+<img src="../_images/plantuml-2ad4beddc5b4415df13ce6de3d25204dfce27b2a.svg" alt="hide empty methods
+
+enum SquareOwner {
+    PlayerX
+    PlayerO
+    None
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Enumeration for indicating a square’s owner.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="struct-ai-move">
+<h2>Struct AI Move<a class="headerlink" href="#struct-ai-move" title="Permalink to this headline">¶</a></h2>
+<p>See <a class="reference internal" href="ai-algorithms.html"><span class="doc">Artificial Intelligence Algorithms</span></a> for details on the algorithms.</p>
+<div class="figure align-default" id="id9">
+<p class="plantuml">
+<img src="../_images/plantuml-526e3cb69bf2deac8490a0a4d86ba02ea8fa26bb.svg" alt="hide empty fields
+
+class AIMove {
+    +new(game, mistake_probability)
+    +position() -&gt; tuple
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">AIMove structure.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-ai-player-story"><span class="std std-ref">AI Player</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-ai-difficulty-settings-story"><span class="std std-ref">AI Difficulty Settings</span></a></p></li>
+</ul>
+</div>
 </div>
 
 
@@ -67,6 +262,17 @@
 <li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
 </ul>
 
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
+    
+    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
+    
+</ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
