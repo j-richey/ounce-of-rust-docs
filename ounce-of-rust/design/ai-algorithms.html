@@ -34,6 +34,59 @@
             
   <div class="section" id="artificial-intelligence-algorithms">
 <h1>Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>The AI algorithms are responsible for picking a position to place the AI player’s mark. <a class="footnote-reference brackets" href="#ainame" id="id1">1</a>
+It does this by doing a depth first search for all possible game outcomes based
+on the current state of the game board. An example is shown in
+<a class="reference internal" href="#fig-ai-depth-first-search-example"><span class="std std-numref">Fig. 16</span></a>.</p>
+<div class="figure align-default" id="id3">
+<span id="fig-ai-depth-first-search-example"></span><img alt="AI search tree example." src="../_images/ai-depth-first-search-example.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Example dept first search algorithm looking for possible Tic Tac Toe game
+outcomes. The AI player is playing as X and the opponent is playing as O.
+The possible outcomes of selecting a particular square are marked with W for
+win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The algorithm selects a free position then traverses the tree looking one of the
+end game conditions: win, loss, or cat’s game. Once the end of the game is found,
+the result is propagated up the tree. The algorithm assumes the opponent will
+play a perfect game. That is, if a specific position leads for both a win for the
+opponent (a loss for the AI player) and a cat’s game, the algorithm marks that
+position as a loss.</p>
+<p>Once all possibilities have been searched, the algorithm picks the position that
+lead to the best outcome. Winning positions are picked over cat’s games, and
+cat’s games are picked over losses. Additionally, if there are multiple positions
+with the same outcome, one is picked at random to ensure the game appears more
+natural to human players. <a class="footnote-reference brackets" href="#funai" id="id2">2</a></p>
+<p>The dept search algorithm can see to the end of the game, thus it cannot be beat.
+The best possible outcome is a cat’s game. Therefore, to give human players a
+chance to win, the algorithm sometimes fails to consider one of the outcomes.
+The probability of making a mistake is configurable.</p>
+<div class="section" id="example-code">
+<h2>Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+        <span class="n">square</span><span class="o">.</span><span class="n">set_owner</span><span class="p">(</span><span class="n">player_turn</span><span class="p">)</span>
+        <span class="c1"># TODO: switch who&#39;s turn it is</span>
+        <span class="c1"># TODO: clone the game or the board.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">)</span>
+        <span class="n">square</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="ainame"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The name of the AI player is Robbert, or Bob for short.</p>
+</dd>
+<dt class="label" id="funai"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>One of the challenges of creating AI for video games is the AI needs
+to be fun. An AI that picked the same square every time would not be fun!</p>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -71,11 +124,11 @@
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
     
-    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

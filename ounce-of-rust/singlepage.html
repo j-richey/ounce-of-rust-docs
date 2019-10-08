@@ -38,10 +38,11 @@
 <div class="section" id="purpose-of-this-document">
 <h3>Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h3>
 <p>This is the design document for the Ounce of Rust project. This document
-describes in detail the objectives requirements, and design
-considerations of the project. This is invaluable for planning the project’s
-tasks and milestones. Anyone wishing to understand the project and resulting
-deliverables is encouraged to read this document.</p>
+describes in detail the objectives requirements, and design considerations of
+the project providing a central location for this information. This is
+invaluable for planning the project’s tasks and milestones. Anyone wishing to
+understand the project and resulting deliverables is encouraged to read this
+document.</p>
 </div>
 <div class="section" id="scope-of-the-project">
 <h3>Scope of the Project<a class="headerlink" href="#scope-of-the-project" title="Permalink to this headline">¶</a></h3>
@@ -106,9 +107,7 @@ in a gird. The first player to get three marks in a row, column, or diagonal
 wins the game. The game can also end in a draw, known as a “cat’s game”.
 An example of a Tic Tac Toe game is shown in <a class="reference internal" href="#fig-tic-tac-toe-example-game"><span class="std std-numref">Fig. 1</span></a>.</p>
 <div class="figure align-default" id="id1">
-<span id="fig-tic-tac-toe-example-game"></span><img alt="An example Tic Tac Toe game" src="_images/tic-tac-toe-example-game.svg" /><p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">An example game of Tic Tac Toe where player X is victorious.
-Image from <a class="reference external" href="https://commons.wikimedia.org/wiki/File:Tic-tac-toe-game-1.svg">wikimedia.org</a>
-by user Stannered released under <a class="reference external" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC BY-SA 3.0</a>.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<span id="fig-tic-tac-toe-example-game"></span><img alt="An example Tic Tac Toe game" src="_images/tic-tac-toe-example-game.svg" /><p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">An example game of Tic Tac Toe where player X is victorious.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="pencil-and-paper">
 <h4>Pencil and Paper<a class="headerlink" href="#pencil-and-paper" title="Permalink to this headline">¶</a></h4>
@@ -261,22 +260,20 @@ second player uses the letter <em>O</em> as their mark.</p></li>
 <li><p>The game ends in a win when one of the players gets three of their marks in
 a line. That is: they have three marks in a row, column, or diagonally.
 Examples of winning games are shown in <a class="reference internal" href="#fig-example-wining-games"><span class="std std-numref">Fig. 4</span></a>.</p>
-<blockquote>
-<div><div class="figure align-default" id="id1">
+<div class="figure align-default" id="id1">
 <span id="fig-example-wining-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-wining-games.svg" /><p class="caption"><span class="caption-number">Fig. 4 </span><span class="caption-text">Examples of winning Tic Tac Toe games showing player X winning by getting
 three marks a row, diagonal, and column. The red line shows the squares
-that contributed to the win.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+that contributed to the win. Notice that it is possible to get multiple
+sets of three marks in a row.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
-</div></blockquote>
 </li>
-<li><p>The game ends in a draw if no more empty squares remain.
-Examples of games ending in a draw are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Fig. 5</span></a>.</p>
-<blockquote>
-<div><div class="figure align-default" id="id2">
-<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a draw. No player managed to get
-three marks in a line.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<li><p>The game ends in a draw, known as a cat’s game, if no more empty squares
+remain and a player has failed to get three marks in a row. Examples of cat’s
+games are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Fig. 5</span></a>.</p>
+<div class="figure align-default" id="id2">
+<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Fig. 5 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a cats game. No player managed
+to get three marks in a line.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
-</div></blockquote>
 </li>
 </ol>
 </div>
@@ -545,13 +542,14 @@ show Enum fields"/></p>
 <p>An overview of the public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Fig. 7</span></a>.</p>
 <div class="figure align-default" id="id2">
 <span id="uml-public-api-overview"></span><p class="plantuml">
-<img src="_images/plantuml-65213eb9b7a140a66cfc41720dc11cb6aa19f206.svg" alt="hide members
+<img src="_images/plantuml-d8fbc1d7b187e7a4840aa5317aed591c4378bec7.svg" alt="hide members
 
 package tic_tac_toe {
     class Game
     enum GameState
     class Board
     class Square
+    class Position
     enum SquareOwner
     class AIMove
 }"/></p>
@@ -602,21 +600,22 @@ encountered. The player that did not have the first turn last game takes the
 first turn next game.</p>
 <p class="rubric">Member Details</p>
 <dl class="simple">
-<dt>new</dt><dd><p>Creates a new Tic Tac Toe game.</p>
+<dt>new()</dt><dd><p>Creates a new Tic Tac Toe game.</p>
 </dd>
-<dt>board</dt><dd><p>Gets the board associated with the game.</p>
+<dt>board()</dt><dd><p>Gets the board associated with the game.</p>
 </dd>
-<dt>state</dt><dd><p>Gets the current state of the game.</p>
+<dt>state()</dt><dd><p>Gets the current state of the game.</p>
 </dd>
-<dt>can_move</dt><dd><p>Indicates if the square at the indicated position can be marked as owned.
+<dt>can_move()</dt><dd><p>Indicates if the square at the indicated position can be marked as owned.
 That is, if <code class="docutils literal notranslate"><span class="pre">can_move()</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> then <code class="docutils literal notranslate"><span class="pre">do_move()</span></code> is guaranteed
 to not panic.</p>
 </dd>
-<dt>do_move</dt><dd><p>Marks the indicated square as being owned by the current player. The state
+<dt>do_move()</dt><dd><p>Marks the indicated square as being owned by the current player. The state
 of the game is updated as a side effect of <code class="docutils literal notranslate"><span class="pre">do_move()</span></code>.
 Panics if the indicated position is already owned if the game is over.</p>
 </dd>
-<dt>start_next_game</dt><dd><p>Starts</p>
+<dt>start_next_game()</dt><dd><p>Starts the next game by resetting the state machine ensuring the player who
+went second last game goes first next game.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
@@ -633,7 +632,9 @@ Panics if the indicated position is already owned if the game is over.</p>
 </div>
 <div class="section" id="enum-game-sate">
 <h4>Enum Game Sate<a class="headerlink" href="#enum-game-sate" title="Permalink to this headline">¶</a></h4>
-<p>The game state enumeration</p>
+<p>The game state enumeration contains a variant for each possible game state
+described in <a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Fig. 9</span></a>. The <a class="reference internal" href="#uml-enum-game-sate"><span class="std std-numref">Fig. 10</span></a>
+shows the game state enumeration.</p>
 <div class="figure align-default" id="id5">
 <span id="uml-enum-game-sate"></span><p class="plantuml">
 <img src="_images/plantuml-993456216d83c4d710467be7ca85a7ddf4170d7b.svg" alt="hide empty methods
@@ -647,37 +648,81 @@ enum GameState {
 
     +is_game_over() -&gt; bool
 }"/></p>
-<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">GameState enum</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 10 </span><span class="caption-text">Game State enum</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
+<p class="rubric">Member Details</p>
+<dl class="simple">
+<dt>is_game_over()</dt><dd><p>Indicates if the state represents one of the game over states. That is,
+if either player has won or it is a cat’s game true is returned; otherwise,
+false is returned.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="struct-board">
 <h4>Struct Board<a class="headerlink" href="#struct-board" title="Permalink to this headline">¶</a></h4>
+<p>The board structure models a Tic Tac Toe game board. The structure members are
+shown in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Fig. 11</span></a>.</p>
 <div class="figure align-default" id="id6">
 <span id="uml-struct-board"></span><p class="plantuml">
-<img src="_images/plantuml-64bdfbd821e8d76dd482d4d2cf7b2fb9356f5eeb.svg" alt="hide empty fields
+<img src="_images/plantuml-8e9c8a184c105fb13fa9e280a4888887a08d024b.svg" alt="hide empty fields
 
 class Board {
-    +new(num_rows, num_columns)
+    +new(size)
+    +size() -&gt; i32
     +get(row, column) -&gt; Square
     +get_mut(row, column) -&gt; Square
-    +num_rows() -&gt; i32
-    +num_columns() -&gt; i32
 }"/></p>
 <p class="caption"><span class="caption-number">Fig. 11 </span><span class="caption-text">The Board structure.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
+<p class="rubric">Member Details</p>
+<dl class="simple">
+<dt>new()</dt><dd><p>Constructs a new board of the given size. Boards are always square, the size
+indicates the number of rows and columns the board has.</p>
+</dd>
+<dt>size()</dt><dd><p>Gets the size of board, that is the number of rows and columns.</p>
+</dd>
+<dt>get()</dt><dd><p>Gets the square at the indicated row and column. Panics if requested row or
+column is outside the size of the board.</p>
+</dd>
+<dt>get_mut()</dt><dd><p>Gets a mutable square at the indicated row and column. Panics under the same
+situations as get().</p>
+</dd>
+</dl>
+<p class="rubric">Trait Implementations</p>
+<ul class="simple">
+<li><p>Display</p></li>
+<li><p>Clone (or Copy?)</p></li>
+</ul>
 </div>
 <div class="section" id="struct-square">
 <h4>Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h4>
+<p>Represents an individual square of the game board. The members are shown in
+<a class="reference internal" href="#uml-struct-square"><span class="std std-numref">Fig. 12</span></a>.</p>
 <div class="figure align-default" id="id7">
 <span id="uml-struct-square"></span><p class="plantuml">
-<img src="_images/plantuml-818ac4f16cde77c229a941d6f06edcdf3e688c8a.svg" alt="hide empty fields
+<img src="_images/plantuml-05589b614c884e4483c07903cda6b2a27b5d7437.svg" alt="hide empty fields
 
 class Square {
+    +new()
     +owner() -&gt; SquareOwner
     +set_owner(owner: SquareOwner)
 }"/></p>
 <p class="caption"><span class="caption-number">Fig. 12 </span><span class="caption-text">The Square structure.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
+<p class="rubric">Member Details</p>
+<dl class="simple">
+<dt>new()</dt><dd><p>Maybe?</p>
+</dd>
+<dt>owner()</dt><dd><p>Gets the owner of the square.</p>
+</dd>
+<dt>set_owner()</dt><dd><p>Sets the owner of the square.</p>
+</dd>
+</dl>
+<p class="rubric">Trait Implementations</p>
+<ul class="simple">
+<li><p>Debug</p></li>
+<li><p>Clone (or Copy?)</p></li>
+</ul>
 </div>
 <div class="section" id="enum-square-owner">
 <h4>Enum Square Owner<a class="headerlink" href="#enum-square-owner" title="Permalink to this headline">¶</a></h4>
@@ -693,19 +738,45 @@ enum SquareOwner {
 <p class="caption"><span class="caption-number">Fig. 13 </span><span class="caption-text">Enumeration for indicating a square’s owner.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 </div>
+<div class="section" id="struct-position">
+<h4>Struct Position<a class="headerlink" href="#struct-position" title="Permalink to this headline">¶</a></h4>
+<p>The position structure represents a specific board position denoted by row and
+column. <a class="reference internal" href="#uml-struct-position"><span class="std std-numref">Fig. 14</span></a> shows this structure.</p>
+<div class="figure align-default" id="id9">
+<span id="uml-struct-position"></span><p class="plantuml">
+<img src="_images/plantuml-d8b7306f3439416ec1961bada4351ce1aa532fa7.svg" alt="hide empty methods
+
+class Position {
+    +row
+    +column
+}"/></p>
+<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">The Position structure.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+</div>
 <div class="section" id="struct-ai-move">
 <h4>Struct AI Move<a class="headerlink" href="#struct-ai-move" title="Permalink to this headline">¶</a></h4>
-<p>See <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> for details on the algorithms.</p>
-<div class="figure align-default" id="id9">
-<p class="plantuml">
-<img src="_images/plantuml-526e3cb69bf2deac8490a0a4d86ba02ea8fa26bb.svg" alt="hide empty fields
+<p>The AI move structure represents a move by an AI player. The AI move structure is
+shown in <a class="reference internal" href="#uml-struct-ai-move"><span class="std std-numref">Fig. 15</span></a>.</p>
+<div class="figure align-default" id="id10">
+<span id="uml-struct-ai-move"></span><p class="plantuml">
+<img src="_images/plantuml-589eb37676a3e003d515cbbd37579a04195ff6ff.svg" alt="hide empty fields
 
 class AIMove {
     +new(game, mistake_probability)
-    +position() -&gt; tuple
+    +position() -&gt; Position
 }"/></p>
-<p class="caption"><span class="caption-number">Fig. 14 </span><span class="caption-text">AIMove structure.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Fig. 15 </span><span class="caption-text">AI Move structure.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
+<p>See <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> for details on how the AI selects a position.</p>
+<p class="rubric">Member Details</p>
+<dl class="simple">
+<dt>new()</dt><dd><p>Constructs a new AI move using the provided game and a given probability of
+making a mistake. Panics if the game is over.</p>
+</dd>
+<dt>position()</dt><dd><p>Gets the position selected by the AI player based on the previously provided
+game.</p>
+</dd>
+</dl>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="singlepage.html#ref-ai-player-story"><span class="std std-ref">AI Player</span></a></p></li>
@@ -715,6 +786,59 @@ class AIMove {
 </div>
 <span id="document-design/ai-algorithms"></span><div class="section" id="artificial-intelligence-algorithms">
 <h3>Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>The AI algorithms are responsible for picking a position to place the AI player’s mark. <a class="footnote-reference brackets" href="#ainame" id="id1">1</a>
+It does this by doing a depth first search for all possible game outcomes based
+on the current state of the game board. An example is shown in
+<a class="reference internal" href="#fig-ai-depth-first-search-example"><span class="std std-numref">Fig. 16</span></a>.</p>
+<div class="figure align-default" id="id3">
+<span id="fig-ai-depth-first-search-example"></span><img alt="AI search tree example." src="_images/ai-depth-first-search-example.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Example dept first search algorithm looking for possible Tic Tac Toe game
+outcomes. The AI player is playing as X and the opponent is playing as O.
+The possible outcomes of selecting a particular square are marked with W for
+win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>The algorithm selects a free position then traverses the tree looking one of the
+end game conditions: win, loss, or cat’s game. Once the end of the game is found,
+the result is propagated up the tree. The algorithm assumes the opponent will
+play a perfect game. That is, if a specific position leads for both a win for the
+opponent (a loss for the AI player) and a cat’s game, the algorithm marks that
+position as a loss.</p>
+<p>Once all possibilities have been searched, the algorithm picks the position that
+lead to the best outcome. Winning positions are picked over cat’s games, and
+cat’s games are picked over losses. Additionally, if there are multiple positions
+with the same outcome, one is picked at random to ensure the game appears more
+natural to human players. <a class="footnote-reference brackets" href="#funai" id="id2">2</a></p>
+<p>The dept search algorithm can see to the end of the game, thus it cannot be beat.
+The best possible outcome is a cat’s game. Therefore, to give human players a
+chance to win, the algorithm sometimes fails to consider one of the outcomes.
+The probability of making a mistake is configurable.</p>
+<div class="section" id="example-code">
+<h4>Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h4>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span>
+
+    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+        <span class="n">square</span><span class="o">.</span><span class="n">set_owner</span><span class="p">(</span><span class="n">player_turn</span><span class="p">)</span>
+        <span class="c1"># TODO: switch who&#39;s turn it is</span>
+        <span class="c1"># TODO: clone the game or the board.</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">)</span>
+        <span class="n">square</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="ainame"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The name of the AI player is Robbert, or Bob for short.</p>
+</dd>
+<dt class="label" id="funai"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>One of the challenges of creating AI for video games is the AI needs
+to be fun. An AI that picked the same square every time would not be fun!</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -789,9 +913,9 @@ Retrieved from <a class="reference external" href="https://eecs.ceas.uc.edu/~cpu
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
-    
     <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    
+    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
     
