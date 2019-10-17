@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>4.2. Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Glossary" href="../glossary.html" />
-    <link rel="prev" title="Public API" href="public-api.html" />
+    <link rel="next" title="4.3. Other Considerations" href="other-considerations.html" />
+    <link rel="prev" title="4.1. Public API" href="public-api.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,16 +33,16 @@
           <div class="body" role="main">
             
   <div class="section" id="artificial-intelligence-algorithms">
-<h1>Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h1>
+<h1>4.2. Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h1>
 <p>The AI algorithms are responsible for picking a position to place the AI player’s mark. <a class="footnote-reference brackets" href="#ainame" id="id1">1</a>
 It does this by doing a depth first search for all possible game outcomes based
 on the current state of the game board. An example is shown in
-<a class="reference internal" href="#fig-ai-depth-first-search-example"><span class="std std-numref">Fig. 16</span></a>.</p>
-<div class="figure align-default" id="id3">
-<span id="fig-ai-depth-first-search-example"></span><img alt="AI search tree example." src="../_images/ai-depth-first-search-example.svg" /><p class="caption"><span class="caption-number">Fig. 16 </span><span class="caption-text">Example dept first search algorithm looking for possible Tic Tac Toe game
+<a class="reference internal" href="#fig-ai-depth-first-search-example"><span class="std std-numref">Figure 4.7</span></a>.</p>
+<div class="figure align-default" id="id4">
+<span id="fig-ai-depth-first-search-example"></span><img alt="AI search tree example." src="../_images/ai-depth-first-search-example.svg" /><p class="caption"><span class="caption-number">Figure 4.7 </span><span class="caption-text">Example dept first search algorithm looking for possible Tic Tac Toe game
 outcomes. The AI player is playing as X and the opponent is playing as O.
 The possible outcomes of selecting a particular square are marked with W for
-win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>The algorithm selects a free position then traverses the tree looking one of the
 end game conditions: win, loss, or cat’s game. Once the end of the game is found,
@@ -60,9 +60,9 @@ The best possible outcome is a cat’s game. Therefore, to give human players a
 chance to win, the algorithm sometimes fails to consider one of the outcomes.
 The probability of making a mistake is configurable.</p>
 <div class="section" id="example-code">
-<h2>Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-number">Listing 1 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id4" title="Permalink to this code">¶</a></div>
+<h2>4.2.1. Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-number">Listing 4.1 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span>
@@ -83,7 +83,8 @@ The probability of making a mistake is configurable.</p>
 </dd>
 <dt class="label" id="funai"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>One of the challenges of creating AI for video games is the AI needs
-to be fun. An AI that picked the same square every time would not be fun!</p>
+to be fun. An AI that picked the same square every time would not be fun!
+See <a class="reference internal" href="../references.html#buckland-2004" id="id3"><span>[Buckland-2004]</span></a> for a discussion on making game AI fun.</p>
 </dd>
 </dl>
 </div>
@@ -108,36 +109,37 @@ to be fun. An AI that picked the same square every time would not be fun!</p>
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">Requirements</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Design</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="public-api.html">Public API</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Design</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="public-api.html">4.1. Public API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other-considerations.html">4.3. Other Considerations</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">6. References</a></li>
 </ul>
 
 
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Design</a><ul>
-      <li>Previous: <a href="public-api.html" title="previous chapter">Public API</a></li>
-      <li>Next: <a href="../glossary.html" title="next chapter">Glossary</a></li>
+  <li><a href="index.html">4. Design</a><ul>
+      <li>Previous: <a href="public-api.html" title="previous chapter">4.1. Public API</a></li>
+      <li>Next: <a href="other-considerations.html" title="next chapter">4.3. Other Considerations</a></li>
   </ul></li>
   </ul></li>
 </ul>

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Current System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>2.2. Current System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Proposed System" href="proposed-system.html" />
-    <link rel="prev" title="Objectives of the Project" href="objectives.html" />
+    <link rel="next" title="2.3. Proposed System" href="proposed-system.html" />
+    <link rel="prev" title="2.1. Objectives of the Project" href="objectives.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,37 +33,37 @@
           <div class="body" role="main">
             
   <div class="section" id="current-system">
-<h1>Current System<a class="headerlink" href="#current-system" title="Permalink to this headline">¶</a></h1>
+<h1>2.2. Current System<a class="headerlink" href="#current-system" title="Permalink to this headline">¶</a></h1>
 <p>Tic Tac Toe is a game where two players, X and O, take turns placing their mark
 in a gird. The first player to get three marks in a row, column, or diagonal
 wins the game. The game can also end in a draw, known as a “cat’s game”.
-An example of a Tic Tac Toe game is shown in <a class="reference internal" href="#fig-tic-tac-toe-example-game"><span class="std std-numref">Fig. 1</span></a>.</p>
+An example of a Tic Tac Toe game is shown in <a class="reference internal" href="#fig-tic-tac-toe-example-game"><span class="std std-numref">Figure 2.1</span></a>.</p>
 <div class="figure align-default" id="id1">
-<span id="fig-tic-tac-toe-example-game"></span><img alt="An example Tic Tac Toe game" src="../_images/tic-tac-toe-example-game.svg" /><p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">An example game of Tic Tac Toe where player X is victorious.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<span id="fig-tic-tac-toe-example-game"></span><img alt="An example Tic Tac Toe game" src="../_images/tic-tac-toe-example-game.svg" /><p class="caption"><span class="caption-number">Figure 2.1 </span><span class="caption-text">An example game of Tic Tac Toe where player X is victorious.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="pencil-and-paper">
-<h2>Pencil and Paper<a class="headerlink" href="#pencil-and-paper" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.1. Pencil and Paper<a class="headerlink" href="#pencil-and-paper" title="Permalink to this headline">¶</a></h2>
 <p>Traditionally Tic Tac Toe is played by two players using pencil and paper.
 This is a quick and convenient way to play with a friend. However, this does not
 allow for single player games. For people stuck on an airplane this can lead to
 extreme boredom!</p>
 </div>
 <div class="section" id="computer-games">
-<h2>Computer Games<a class="headerlink" href="#computer-games" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.2. Computer Games<a class="headerlink" href="#computer-games" title="Permalink to this headline">¶</a></h2>
 <p>Tic Tac Toe computer games allow for single player versions of the game. There
 are many versions of the game created over the years.
-<a class="reference internal" href="#fig-ttt-screen-shot"><span class="std std-numref">Fig. 2</span></a> shows a screen shot from one of the classic
+<a class="reference internal" href="#fig-ttt-screen-shot"><span class="std std-numref">Figure 2.2</span></a> shows a screen shot from one of the classic
 Tic Tac Toe games.</p>
 <div class="figure align-default" id="id2">
 <span id="fig-ttt-screen-shot"></span><img alt="Screen shot of a Tic Tac Toe computer game." src="../_images/ttt-screen-shot.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">Screen shot of <a class="reference external" href="https://www.imaginaryphase.com/ttt.html">Tic Tac Toe</a>
+<p class="caption"><span class="caption-number">Figure 2.2 </span><span class="caption-text">Screen shot of <a class="reference external" href="https://www.imaginaryphase.com/ttt.html">Tic Tac Toe</a>
 developed by James Richey.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>These games can be developed as stand alone applications or can be created with
 the help of supporting libraries.</p>
 </div>
 <div class="section" id="supporting-libraries">
-<h2>Supporting Libraries<a class="headerlink" href="#supporting-libraries" title="Permalink to this headline">¶</a></h2>
+<h2>2.2.3. Supporting Libraries<a class="headerlink" href="#supporting-libraries" title="Permalink to this headline">¶</a></h2>
 <p>To support the creation of Tic Tac Toe games many libraries have been developed
 to provide common functionality. Searching Rust’s package repository,
 <a class="reference external" href="https://crates.io/">https://crates.io/</a>, reveals several such libraries including <code class="docutils literal notranslate"><span class="pre">ultimate-ttt</span></code>,
@@ -94,39 +94,39 @@ Thus it is worth going through the effort to create another Tic Tac Toe library.
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="objectives.html">Objectives of the Project</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Current System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="proposed-system.html">Proposed System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactions-other-systems.html">Interactions with Other Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="users.html">User Roles and Responsibilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="objectives.html">2.1. Objectives of the Project</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Current System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="proposed-system.html">2.3. Proposed System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactions-other-systems.html">2.4. Interactions with Other Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users.html">2.5. User Roles and Responsibilities</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">4. Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">6. References</a></li>
 </ul>
 
 
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Overview</a><ul>
-      <li>Previous: <a href="objectives.html" title="previous chapter">Objectives of the Project</a></li>
-      <li>Next: <a href="proposed-system.html" title="next chapter">Proposed System</a></li>
+  <li><a href="index.html">2. Overview</a><ul>
+      <li>Previous: <a href="objectives.html" title="previous chapter">2.1. Objectives of the Project</a></li>
+      <li>Next: <a href="proposed-system.html" title="next chapter">2.3. Proposed System</a></li>
   </ul></li>
   </ul></li>
 </ul>

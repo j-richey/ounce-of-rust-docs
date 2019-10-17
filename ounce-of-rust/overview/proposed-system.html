@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Proposed System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>2.3. Proposed System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Interactions with Other Systems" href="interactions-other-systems.html" />
-    <link rel="prev" title="Current System" href="current-system.html" />
+    <link rel="next" title="2.4. Interactions with Other Systems" href="interactions-other-systems.html" />
+    <link rel="prev" title="2.2. Current System" href="current-system.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,7 +33,7 @@
           <div class="body" role="main">
             
   <div class="section" id="proposed-system">
-<h1>Proposed System<a class="headerlink" href="#proposed-system" title="Permalink to this headline">¶</a></h1>
+<h1>2.3. Proposed System<a class="headerlink" href="#proposed-system" title="Permalink to this headline">¶</a></h1>
 <p>This project creates a Rust library that application developers can use to create
 Tic Tac Toe games. The library contains common Tic Tac Toe functionality such as
 game state management and single player artificial intelligence. The library
@@ -44,26 +44,26 @@ The library is open source and is available in Rust’s package repository
 or other unique Tic Tac Toe experience without worrying about the underlying game
 logic and management.</p>
 <div class="section" id="game-state-and-board-management">
-<h2>Game State and Board Management<a class="headerlink" href="#game-state-and-board-management" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.1. Game State and Board Management<a class="headerlink" href="#game-state-and-board-management" title="Permalink to this headline">¶</a></h2>
 <p>A common task of Tic Tac Toe games is managing the state of the game. This
 includes knowing which player’s turn it is, ensuring players cannot mark a
 previously marked square, and checking for victory or draw conditions.</p>
 </div>
 <div class="section" id="ai-players">
-<h2>AI Players<a class="headerlink" href="#ai-players" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.2. AI Players<a class="headerlink" href="#ai-players" title="Permalink to this headline">¶</a></h2>
 <p>The library allows single player Tic Tac Toe games to be created by providing
 AI players. These players use artificial intelligence algorithms that pick a
 square to place the AI player’s mark. The application developer has control over
 how difficult to win over the AI player.</p>
 </div>
 <div class="section" id="available-on-crates-io">
-<h2>Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.3. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
 <p>The library is available on <a class="reference external" href="https://crates.io/">https://crates.io/</a>, the source code released
 under a permissive open source license, and the API documentation is hosted
 on a publicly accessible website.</p>
 </div>
 <div class="section" id="deliverables">
-<h2>Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
+<h2>2.3.4. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
 <p>The project deliverables are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> crate. <a class="footnote-reference brackets" href="#a" id="id1">1</a></p></li>
@@ -105,39 +105,39 @@ and <a class="reference external" href="https://pages.github.com/">https://pages
 <h3>Navigation</h3>
 <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Overview</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="objectives.html">Objectives of the Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="current-system.html">Current System</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Proposed System</a></li>
-<li class="toctree-l2"><a class="reference internal" href="interactions-other-systems.html">Interactions with Other Systems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="users.html">User Roles and Responsibilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Overview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="objectives.html">2.1. Objectives of the Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="current-system.html">2.2. Current System</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. Proposed System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="interactions-other-systems.html">2.4. Interactions with Other Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="users.html">2.5. User Roles and Responsibilities</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">Requirements</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../design/index.html">Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../design/index.html">4. Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">6. References</a></li>
 </ul>
 
 
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Overview</a><ul>
-      <li>Previous: <a href="current-system.html" title="previous chapter">Current System</a></li>
-      <li>Next: <a href="interactions-other-systems.html" title="next chapter">Interactions with Other Systems</a></li>
+  <li><a href="index.html">2. Overview</a><ul>
+      <li>Previous: <a href="current-system.html" title="previous chapter">2.2. Current System</a></li>
+      <li>Next: <a href="interactions-other-systems.html" title="next chapter">2.4. Interactions with Other Systems</a></li>
   </ul></li>
   </ul></li>
 </ul>
