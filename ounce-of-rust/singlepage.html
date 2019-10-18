@@ -97,7 +97,14 @@ on safety. Its mix of high level concepts, ability to avoid entire categories
 of bugs, and focus on correctness has made Rust an increasingly popular language.</p>
 <p>Even though Rust is unlikely to replace C and C++ any time soon, Rust’s
 concepts, such as traits, error handling, and memory management systems are
-worth learning to help expand ones general programming knowledge.</p>
+worth learning to help expand ones general programming knowledge. <a class="footnote-reference brackets" href="#rustdocs" id="id1">1</a></p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="rustdocs"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The Rust official documentation is likely to be helpful for
+meeting this objective. For details see <a class="reference internal" href="singlepage.html#rust-docs" id="id2"><span>[Rust-Docs]</span></a>.</p>
+</dd>
+</dl>
 </div>
 </div>
 <span id="document-overview/current-system"></span><div class="section" id="current-system">
@@ -183,9 +190,7 @@ on a publicly accessible website.</p>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The naming conventions for crates is described in the
-<a class="reference external" href="https://doc.rust-lang.org/1.0.0/style/style/naming/README.html">Rust Style Guidelines</a>.
-Future projects built around <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> may use <code class="docutils literal notranslate"><span class="pre">open_ttt</span></code> as
+<dd><p>Future projects built around <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> may use <code class="docutils literal notranslate"><span class="pre">open_ttt</span></code> as
 part of their crate name.</p>
 </dd>
 <dt class="label" id="b"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
@@ -303,7 +308,7 @@ and determining the winner of the game, if any.</p></li>
 <p>The design details of the APIs are outside the scope of this requirements chapter.</p>
 </div>
 <div class="section" id="know-cells-that-contributed-to-player-s-victory">
-<h4>3.2.2. Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h4>
+<span id="ref-know-victory-squares-story"></span><h4>3.2.2. Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want to know what cells contributed to the player’s victory,</div>
@@ -316,7 +321,7 @@ contributed to the victory.</p></li>
 </ul>
 </div>
 <div class="section" id="stable-library-api">
-<h4>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h4>
+<span id="ref-stable-library-api-story"></span><h4>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to have a stable API,</div>
@@ -325,7 +330,7 @@ contributed to the victory.</p></li>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
 <li><p>The library uses semantic versioning to clearly communicate when there are API
-changes.</p></li>
+changes. <a class="footnote-reference brackets" href="#semver" id="id1">1</a></p></li>
 <li><p>There are integration tests that help library developers detect if the
 library’s API changes.</p></li>
 </ul>
@@ -371,10 +376,10 @@ a mistake.</p>
 </ul>
 <p class="rubric">Notes</p>
 <p>The player who takes the first move has more wining possibilities than the
-second player. <a class="footnote-reference brackets" href="#winingmoves" id="id1">1</a></p>
+second player. <a class="footnote-reference brackets" href="#winingmoves" id="id2">2</a></p>
 </div>
 <div class="section" id="maximum-ai-update-time">
-<h4>3.2.7. Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h4>
+<span id="ref-maximum-ai-update-time-story"></span><h4>3.2.7. Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the AI to block for less than one frame when picking its next move,</div>
@@ -396,7 +401,7 @@ the Rust application developer to see if this library meets their needs is
 sufficient to fulfill this requirement.</p>
 </div>
 <div class="section" id="getting-started-example">
-<h4>3.2.8. Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h4>
+<span id="ref-getting-started-example-story"></span><h4>3.2.8. Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want an example of getting started with the library,</div>
@@ -409,7 +414,7 @@ sufficient to fulfill this requirement.</p>
 </ul>
 </div>
 <div class="section" id="detailed-library-documentation">
-<h4>3.2.9. Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h4>
+<span id="ref-detailed-library-documentation-story"></span><h4>3.2.9. Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want detailed and thorough library documentation,</div>
@@ -424,8 +429,8 @@ comments.</p></li>
 <a class="reference external" href="https://docs.rs">Docs.rs</a>.</p></li>
 </ul>
 </div>
-<div class="section" id="idiomatic-rust-apis">
-<h4>3.2.10. Idiomatic Rust APIs<a class="headerlink" href="#idiomatic-rust-apis" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="ref-idiomatic-rust-apis-story">
+<span id="idiomatic-rust-apis"></span><h4>3.2.10. Idiomatic Rust APIs<a class="headerlink" href="#ref-idiomatic-rust-apis-story" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to provide idiomatic Rust APIs,</div>
@@ -433,7 +438,7 @@ comments.</p></li>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
-<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id2">2</a></p></li>
+<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id3">3</a></p></li>
 <li><p>An experienced Rust programmer code reviews and signs off on the library’s API.</p></li>
 </ul>
 <p class="rubric">Notes</p>
@@ -441,7 +446,7 @@ comments.</p></li>
 API is important to fulfilling the <a class="reference internal" href="singlepage.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective.</p>
 </div>
 <div class="section" id="cross-platform-support">
-<h4>3.2.11. Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h4>
+<span id="ref-cross-platform-support-story"></span><h4>3.2.11. Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to work on a variety of platforms,</div>
@@ -457,7 +462,7 @@ Windows 10 and Linux.</p></li>
 the library is tested on may be limited due to resource constraints.</p>
 </div>
 <div class="section" id="available-on-crates-io">
-<h4>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h4>
+<span id="ref-available-on-crates-io-story"></span><h4>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to be on <a class="reference external" href="https://crates.io/">crates.io</a>,</div>
@@ -470,7 +475,7 @@ the library is tested on may be limited due to resource constraints.</p>
 </ul>
 </div>
 <div class="section" id="source-available-on-github">
-<h4>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h4>
+<span id="ref-source-available-on-github-story"></span><h4>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library’s source code to be available on <a class="reference external" href="https://github.com/">GitHub</a></div>
@@ -483,7 +488,7 @@ the library is tested on may be limited due to resource constraints.</p>
 </ul>
 </div>
 <div class="section" id="permissive-license">
-<h4>3.2.14. Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h4>
+<span id="ref-permissive-license-story"></span><h4>3.2.14. Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h4>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to be licensed under a permissive open source license,</div>
@@ -496,13 +501,16 @@ fulfills this requirement.</p></li>
 </ul>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
-<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="semver"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://semver.org/">https://semver.org/</a> for details on semantic versioning.</p>
+</dd>
+<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>The player with the first move has about double the number of
 winning possibilities. For details see
 <a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Wikipedia’s Tic-tac-toe page</a>.</p>
 </dd>
-<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>See the <a class="reference internal" href="singlepage.html#rust-api-guidelines" id="id3"><span>[Rust-API-Guidelines]</span></a> for details.</p>
+<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>See the <a class="reference internal" href="singlepage.html#rust-api-guidelines" id="id4"><span>[Rust-API-Guidelines]</span></a> for details.</p>
 </dd>
 </dl>
 </div>
@@ -518,7 +526,7 @@ winning possibilities. For details see
 functions are used by other applications to create Tic Tac Toe games. The legend
 shown in <a class="reference internal" href="#uml-public-api-diagram-legend"><span class="std std-numref">Figure 4.1</span></a> is used for the type diagrams
 in this section.</p>
-<div class="figure align-default" id="id4">
+<div class="figure align-default" id="id6">
 <span id="uml-public-api-diagram-legend"></span><p class="plantuml">
 <img src="_images/plantuml-00bc1a3458499a6140367b06be9ec5cb0a3af016.svg" alt="hide members
 
@@ -537,10 +545,10 @@ enum Enum {
 
 show Struct members
 show Enum fields"/></p>
-<p class="caption"><span class="caption-number">Figure 4.1 </span><span class="caption-text">Legend used for the type diagrams in this section.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.1 </span><span class="caption-text">Legend used for the type diagrams in this section.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>An overview of the major public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Figure 4.2</span></a>.</p>
-<div class="figure align-default" id="id5">
+<div class="figure align-default" id="id7">
 <span id="uml-public-api-overview"></span><p class="plantuml">
 <img src="_images/plantuml-5f7c392386e284f1496e57fe2fbdee2b0f7c521a.svg" alt="hide members
 
@@ -556,10 +564,13 @@ package tic_tac_toe {
     AIMove .&gt; Game
 }"/></p>
 <p class="caption"><span class="caption-number">Figure 4.2 </span><span class="caption-text">Major public modules, structures, and other types. Note: the
-module contains additional supporting types.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+module contains additional supporting types.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<p>The library contains a single public module that holds the public types. Each of
-the major and supporting types are described below.</p>
+<p>The library contains a single public module that holds the public types. The
+naming conventions used in this library follow those described in the Rust API
+Guidelines <a class="footnote-reference brackets" href="#rustapiguidelines" id="id1">1</a> per the <a class="reference internal" href="singlepage.html#ref-idiomatic-rust-apis-story"><span class="std std-ref">Idiomatic Rust APIs</span></a>
+user story.</p>
+<p>Each of the major and supporting types are described below.</p>
 <div class="section" id="game-management">
 <h4>4.1.1. Game Management<a class="headerlink" href="#game-management" title="Permalink to this headline">¶</a></h4>
 <p>Game management is handled by the Game structure. This structure is one of the
@@ -567,9 +578,9 @@ central types provided by the crate. It contains the state machine logic and
 holds the underlying game board.
 <a class="reference internal" href="#uml-game-management"><span class="std std-numref">Figure 4.3</span></a> shows the Game structure along with the GameState
 enumeration.</p>
-<div class="figure align-default" id="id6">
+<div class="figure align-default" id="id8">
 <span id="uml-game-management"></span><p class="plantuml">
-<img src="_images/plantuml-dfb83fbdbfc67adce8a8443297112da24ad6ddce.svg" alt="hide empty fields
+<img src="_images/plantuml-7c87539368cb8db028298b06f319d1276d9ad336.svg" alt="hide empty fields
 
 class Game {
     +new()
@@ -583,17 +594,17 @@ class Game {
 enum GameState {
     PlayerXMove
     PlayerOMove
-    PlayerXWin
-    PlayerOWin
+    PlayerXWin[VictorySets]
+    PlayerOWin[VictorySets]
     CatsGame
 
     +is_game_over() -&gt; bool
 }"/></p>
-<p class="caption"><span class="caption-number">Figure 4.3 </span><span class="caption-text">The Game structure and GameState enumeration.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.3 </span><span class="caption-text">The Game structure and GameState enumeration.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>A state machine to determine which player has the next move or when the game
 is over. The state diagram is shown in <a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Figure 4.4</span></a>.</p>
-<div class="figure align-default" id="id7">
+<div class="figure align-default" id="id9">
 <span id="uml-game-state-diagram"></span><p class="plantuml">
 <img src="_images/plantuml-54833c3598e19d85d75d20dd988336c5557b179e.svg" alt="hide empty description
 
@@ -607,7 +618,7 @@ PlayerXMove --&gt; CatsGame
 PlayerOMove --&gt; PlayerXMove
 PlayerOMove --&gt; PlayerOWin
 PlayerOMove --&gt; CatsGame"/></p>
-<p class="caption"><span class="caption-number">Figure 4.4 </span><span class="caption-text">State diagram of a Tic Tac Toe game.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.4 </span><span class="caption-text">State diagram of a Tic Tac Toe game.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
 <p>When a new game starts either player X or player O takes the first turn.
 The players alternate making their moves until one of the end game conditions is
@@ -637,7 +648,7 @@ went second last game goes first next game.</p>
 </dl>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
-<li><p>Clone <a class="footnote-reference brackets" href="#clonecopy" id="id1">1</a></p></li>
+<li><p>Clone <a class="footnote-reference brackets" href="#clonecopy" id="id2">2</a></p></li>
 </ul>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
@@ -656,9 +667,11 @@ methods.</p>
 </dd>
 <dt>PlayerOMove</dt><dd><p>Player O’s turn to mark an empty square.</p>
 </dd>
-<dt>PlayerXWin</dt><dd><p>Player X has won the game.</p>
+<dt>PlayerXWin[VictorySets]</dt><dd><p>Player X has won the game. The victory sets that contributed to the win are
+provided as the enum value.</p>
 </dd>
-<dt>PlayerOWin</dt><dd><p>Player O has won the game.</p>
+<dt>PlayerOWin[VictorySets]</dt><dd><p>Player O has won the game. The victory sets that contributed to the win are
+provided as the enum value.</p>
 </dd>
 <dt>CatsGame</dt><dd><p>The game has ended in a draw where there are no winners.</p>
 </dd>
@@ -673,15 +686,19 @@ false is returned.</p>
 <li><p>Eq</p></li>
 <li><p>Debug</p></li>
 </ul>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="singlepage.html#ref-know-victory-squares-story"><span class="std std-ref">Know Cells that Contributed to Player’s Victory</span></a></p></li>
+</ul>
 </div>
 </div>
 <div class="section" id="board-data">
 <h4>4.1.2. Board Data<a class="headerlink" href="#board-data" title="Permalink to this headline">¶</a></h4>
 <p>The board structure models a Tic Tac Toe game board. It holds the individual
 squares of the board and provides functions to access and iterate over the
-squares. <a class="footnote-reference brackets" href="#iterators" id="id2">2</a> The board and square structures along with supporting
-types are shown in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Figure 4.5</span></a>.</p>
-<div class="figure align-default" id="id8">
+squares. The board and square structures along with supporting types are shown
+in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Figure 4.5</span></a>.</p>
+<div class="figure align-default" id="id10">
 <span id="uml-struct-board"></span><p class="plantuml">
 <img src="_images/plantuml-cfbd9bf53441b346430e7d6ae65a828547cedde2.svg" alt="hide empty fields
 hide empty methods
@@ -737,7 +754,7 @@ Board -[hidden] std::iter::Iterator
 VictorySets -[hidden]- Owner
 Square -[hidden] Position
 Position -[hidden] Owner"/></p>
-<p class="caption"><span class="caption-number">Figure 4.5 </span><span class="caption-text">The Board structure and supporting types.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.5 </span><span class="caption-text">The Board structure and supporting types.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="struct-board">
 <h5>4.1.2.1. Struct Board<a class="headerlink" href="#struct-board" title="Permalink to this headline">¶</a></h5>
@@ -765,6 +782,22 @@ owned by a player, would make the player victorious. E.g. this gets all the
 rows, columns, and both diagonals as slices.</p>
 </dd>
 </dl>
+<p>The board structure also implements the Display trait. This provides a formatted
+output of the board and is suitable for use in simple console applications or
+debugging purposes. An example of the boards display is shown in
+<a class="reference internal" href="#code-example-board-display"><span class="std std-numref">Listing 4.1</span></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<span id="code-example-board-display"></span><div class="code-block-caption"><span class="caption-number">Listing 4.1 </span><span class="caption-text">Example board display output.</span><a class="headerlink" href="#id11" title="Permalink to this code">¶</a></div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+---+---+---+
+| X | O | O |
++---+---+---+
+| O | X |   |
++---+---+---+
+| X |   | X |
++---+---+---+
+</pre></div>
+</div>
+</div>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
 <li><p>Display</p></li>
@@ -775,7 +808,7 @@ rows, columns, and both diagonals as slices.</p>
 <h5>4.1.2.2. Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h5>
 <p>Represents an individual square of the game board.</p>
 <dl class="simple">
-<dt>position</dt><dd><p>The position the square is located at on the board. This is</p>
+<dt>position</dt><dd><p>The position the square is located at on the board.</p>
 </dd>
 <dt>owner</dt><dd><p>The owner of the square.</p>
 </dd>
@@ -785,6 +818,7 @@ rows, columns, and both diagonals as slices.</p>
 <li><p>Debug</p></li>
 <li><p>Clone</p></li>
 <li><p>Copy</p></li>
+<li><p>Eq</p></li>
 </ul>
 </div>
 <div class="section" id="struct-position">
@@ -804,6 +838,7 @@ column.</p>
 <li><p>Clone</p></li>
 <li><p>From&lt;(i32, i32)&gt;</p></li>
 <li><p>Eq</p></li>
+<li><p>Hash</p></li>
 </ul>
 </div>
 <div class="section" id="enum-owner">
@@ -821,18 +856,30 @@ column.</p>
 <ul class="simple">
 <li><p>Debug</p></li>
 <li><p>Copy</p></li>
+<li><p>Clone</p></li>
 <li><p>Eq</p></li>
 </ul>
 </div>
 <div class="section" id="iterating-over-squares">
 <h5>4.1.2.5. Iterating Over Squares<a class="headerlink" href="#iterating-over-squares" title="Permalink to this headline">¶</a></h5>
+<p>The board structure provides several ways to iterate over board’s squares. <a class="footnote-reference brackets" href="#iterators" id="id3">3</a>
+Helper types that implement the Iterator trait are used to provide this support.</p>
+<dl class="simple">
+<dt>Iter</dt><dd><p>Iterates over all the squares in the board.</p>
+</dd>
+<dt>FreeSquares</dt><dd><p>Iterates over squares that do not have an owner.</p>
+</dd>
+<dt>VictorySets</dt><dd><p>Iterates over all the sets of squares that, if all owned by a player, would
+make the player victorious.</p>
+</dd>
+</dl>
 </div>
 </div>
 <div class="section" id="ai-moves">
 <h4>4.1.3. AI Moves<a class="headerlink" href="#ai-moves" title="Permalink to this headline">¶</a></h4>
 <p>The AI move structure represents a move by an AI player. The AI move structure is
 shown in <a class="reference internal" href="#uml-struct-ai-move"><span class="std std-numref">Figure 4.6</span></a>.</p>
-<div class="figure align-default" id="id9">
+<div class="figure align-default" id="id12">
 <span id="uml-struct-ai-move"></span><p class="plantuml">
 <img src="_images/plantuml-589eb37676a3e003d515cbbd37579a04195ff6ff.svg" alt="hide empty fields
 
@@ -840,7 +887,7 @@ class AIMove {
     +new(game, mistake_probability)
     +position() -&gt; Position
 }"/></p>
-<p class="caption"><span class="caption-number">Figure 4.6 </span><span class="caption-text">AI Move structure.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.6 </span><span class="caption-text">AI Move structure.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <p>See <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> for details on how the AI selects a position.</p>
 <p class="rubric">Member Details</p>
@@ -861,12 +908,12 @@ game.</p>
 <li><p><a class="reference internal" href="singlepage.html#ref-ai-player-story"><span class="std std-ref">AI Player</span></a></p></li>
 <li><p><a class="reference internal" href="singlepage.html#ref-ai-difficulty-settings-story"><span class="std std-ref">AI Difficulty Settings</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="example-api-usage">
-<h4>4.1.4. Example API Usage<a class="headerlink" href="#example-api-usage" title="Permalink to this headline">¶</a></h4>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
-<dt class="label" id="clonecopy"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See the <a class="reference internal" href="singlepage.html#rust-api-guidelines" id="id4"><span>[Rust-API-Guidelines]</span></a> for details.</p>
+</dd>
+<dt class="label" id="clonecopy"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Rust’s clone and copy traits both serve to duplicate an object but
 each goes about duplication in a different manner. Copy performs an operation
 similar to <cite>memcpy</cite> where it just copies the bits of the object. Alternately,
@@ -874,10 +921,10 @@ Clone explicitly duplicates the object giving the programmer control over
 what parts are cloned. For details see the discussion in
 <a class="reference external" href="https://doc.rust-lang.org/std/clone/trait.Clone.html">Trait std::clone::Clone</a>.</p>
 </dd>
-<dt class="label" id="iterators"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dt class="label" id="iterators"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
 <dd><p>Rust’s standard library documentation states “Iterators are
 heavily used in idiomatic Rust code, so it’s worth becoming familiar
-with them.” For details see <a class="reference internal" href="singlepage.html#rust-crate-std" id="id3"><span>[Rust-Crate-std]</span></a>.</p>
+with them.” For details see <a class="reference internal" href="singlepage.html#rust-crate-std" id="id5"><span>[Rust-Crate-std]</span></a>.</p>
 </dd>
 </dl>
 </div>
@@ -912,7 +959,7 @@ The probability of making a mistake is configurable.</p>
 <div class="section" id="example-code">
 <h4>4.2.1. Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h4>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 4.1 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
+<div class="code-block-caption"><span class="caption-number">Listing 4.2 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
         <span class="k">return</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span>
@@ -942,6 +989,32 @@ See <a class="reference internal" href="singlepage.html#buckland-2004" id="id3">
 <span id="document-design/other-considerations"></span><div class="section" id="other-considerations">
 <h3>4.3. Other Considerations<a class="headerlink" href="#other-considerations" title="Permalink to this headline">¶</a></h3>
 <p>This section contains other design considerations for the Tic Tac Toe crate.</p>
+<div class="section" id="benchmarking-ai-update-time">
+<h4>4.3.1. Benchmarking AI Update Time<a class="headerlink" href="#benchmarking-ai-update-time" title="Permalink to this headline">¶</a></h4>
+<p>The <a class="reference internal" href="singlepage.html#ref-maximum-ai-update-time-story"><span class="std std-ref">Maximum AI Update Time</span></a> user story requires there be a benchmark
+for the AI update time. Luckily cargo makes this as easy as running <cite>cargo bench</cite>. <a class="footnote-reference brackets" href="#rustbenchmark" id="id1">1</a></p>
+<p><a class="reference internal" href="#code-ai-move-benchmark"><span class="std std-numref">Listing 4.3</span></a> shows an example of benchmarking the worst case
+AI move.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<span id="code-ai-move-benchmark"></span><div class="code-block-caption"><span class="caption-number">Listing 4.3 </span><span class="caption-text">Example worst case AI move benchmark.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[bench]</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">worst_case_ai_move_benchmark</span><span class="p">(</span><span class="n">b</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Bencher</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Game</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">iter</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="n">AIMove</span>::<span class="n">new</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>The worst case is time is for a new game and a zero percent mistake probability.
+Under these situations the <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> have to evaluate the entire
+problem space.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="rustbenchmark"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://doc.rust-lang.org/1.7.0/book/benchmark-tests.html">Benchmark tests</a> for details.</p>
+</dd>
+</dl>
+</div>
 </div>
 </div>
 </div>
@@ -979,6 +1052,10 @@ Retrieved from <a class="reference external" href="https://eecs.ceas.uc.edu/~cpu
 </dd>
 <dt class="label" id="buckland-2004"><span class="brackets">Buckland-2004</span></dt>
 <dd><p>Mat Buckland (2004) <em>Programming Game AI by Example</em></p>
+</dd>
+<dt class="label" id="rust-docs"><span class="brackets">Rust-Docs</span></dt>
+<dd><p><em>Rust Documentation</em>. Available online at <a class="reference external" href="https://www.rust-lang.org/learn">https://www.rust-lang.org/learn</a>
+and on any system with Rust installed by running <cite>rustup doc</cite>.</p>
 </dd>
 <dt class="label" id="rust-crate-std"><span class="brackets">Rust-Crate-std</span></dt>
 <dd><p><em>Crate std - The Rust Standard Library</em>. Retrieved from <a class="reference external" href="https://doc.rust-lang.org/std/index.html">https://doc.rust-lang.org/std/index.html</a></p>
@@ -1024,9 +1101,9 @@ Retrieved from <a class="reference external" href="https://eecs.ceas.uc.edu/~cpu
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
     
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
-    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
+    
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

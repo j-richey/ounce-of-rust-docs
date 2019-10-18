@@ -35,6 +35,32 @@
   <div class="section" id="other-considerations">
 <h1>4.3. Other Considerations<a class="headerlink" href="#other-considerations" title="Permalink to this headline">¶</a></h1>
 <p>This section contains other design considerations for the Tic Tac Toe crate.</p>
+<div class="section" id="benchmarking-ai-update-time">
+<h2>4.3.1. Benchmarking AI Update Time<a class="headerlink" href="#benchmarking-ai-update-time" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../requirements/user-stories.html#ref-maximum-ai-update-time-story"><span class="std std-ref">Maximum AI Update Time</span></a> user story requires there be a benchmark
+for the AI update time. Luckily cargo makes this as easy as running <cite>cargo bench</cite>. <a class="footnote-reference brackets" href="#rustbenchmark" id="id1">1</a></p>
+<p><a class="reference internal" href="#code-ai-move-benchmark"><span class="std std-numref">Listing 4.3</span></a> shows an example of benchmarking the worst case
+AI move.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<span id="code-ai-move-benchmark"></span><div class="code-block-caption"><span class="caption-number">Listing 4.3 </span><span class="caption-text">Example worst case AI move benchmark.</span><a class="headerlink" href="#id2" title="Permalink to this code">¶</a></div>
+<div class="highlight-rust notranslate"><div class="highlight"><pre><span></span><span class="cp">#[bench]</span><span class="w"></span>
+<span class="k">fn</span> <span class="nf">worst_case_ai_move_benchmark</span><span class="p">(</span><span class="n">b</span>: <span class="kp">&amp;</span><span class="nc">mut</span><span class="w"> </span><span class="n">Bencher</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Game</span>::<span class="n">new</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">b</span><span class="p">.</span><span class="n">iter</span><span class="p">(</span><span class="o">||</span><span class="w"> </span><span class="n">AIMove</span>::<span class="n">new</span><span class="p">(</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>The worst case is time is for a new game and a zero percent mistake probability.
+Under these situations the <a class="reference internal" href="ai-algorithms.html"><span class="doc">Artificial Intelligence Algorithms</span></a> have to evaluate the entire
+problem space.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="rustbenchmark"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://doc.rust-lang.org/1.7.0/book/benchmark-tests.html">Benchmark tests</a> for details.</p>
+</dd>
+</dl>
+</div>
 </div>
 
 
@@ -73,11 +99,11 @@
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
-    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
+    
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

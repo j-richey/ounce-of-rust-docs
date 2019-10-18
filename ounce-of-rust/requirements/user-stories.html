@@ -58,7 +58,7 @@ and determining the winner of the game, if any.</p></li>
 <p>The design details of the APIs are outside the scope of this requirements chapter.</p>
 </div>
 <div class="section" id="know-cells-that-contributed-to-player-s-victory">
-<h2>3.2.2. Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h2>
+<span id="ref-know-victory-squares-story"></span><h2>3.2.2. Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want to know what cells contributed to the player’s victory,</div>
@@ -71,7 +71,7 @@ contributed to the victory.</p></li>
 </ul>
 </div>
 <div class="section" id="stable-library-api">
-<h2>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h2>
+<span id="ref-stable-library-api-story"></span><h2>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to have a stable API,</div>
@@ -80,7 +80,7 @@ contributed to the victory.</p></li>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
 <li><p>The library uses semantic versioning to clearly communicate when there are API
-changes.</p></li>
+changes. <a class="footnote-reference brackets" href="#semver" id="id1">1</a></p></li>
 <li><p>There are integration tests that help library developers detect if the
 library’s API changes.</p></li>
 </ul>
@@ -126,10 +126,10 @@ a mistake.</p>
 </ul>
 <p class="rubric">Notes</p>
 <p>The player who takes the first move has more wining possibilities than the
-second player. <a class="footnote-reference brackets" href="#winingmoves" id="id1">1</a></p>
+second player. <a class="footnote-reference brackets" href="#winingmoves" id="id2">2</a></p>
 </div>
 <div class="section" id="maximum-ai-update-time">
-<h2>3.2.7. Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h2>
+<span id="ref-maximum-ai-update-time-story"></span><h2>3.2.7. Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the AI to block for less than one frame when picking its next move,</div>
@@ -151,7 +151,7 @@ the Rust application developer to see if this library meets their needs is
 sufficient to fulfill this requirement.</p>
 </div>
 <div class="section" id="getting-started-example">
-<h2>3.2.8. Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h2>
+<span id="ref-getting-started-example-story"></span><h2>3.2.8. Getting Started Example<a class="headerlink" href="#getting-started-example" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want an example of getting started with the library,</div>
@@ -164,7 +164,7 @@ sufficient to fulfill this requirement.</p>
 </ul>
 </div>
 <div class="section" id="detailed-library-documentation">
-<h2>3.2.9. Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h2>
+<span id="ref-detailed-library-documentation-story"></span><h2>3.2.9. Detailed Library Documentation<a class="headerlink" href="#detailed-library-documentation" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want detailed and thorough library documentation,</div>
@@ -179,8 +179,8 @@ comments.</p></li>
 <a class="reference external" href="https://docs.rs">Docs.rs</a>.</p></li>
 </ul>
 </div>
-<div class="section" id="idiomatic-rust-apis">
-<h2>3.2.10. Idiomatic Rust APIs<a class="headerlink" href="#idiomatic-rust-apis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ref-idiomatic-rust-apis-story">
+<span id="idiomatic-rust-apis"></span><h2>3.2.10. Idiomatic Rust APIs<a class="headerlink" href="#ref-idiomatic-rust-apis-story" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to provide idiomatic Rust APIs,</div>
@@ -188,7 +188,7 @@ comments.</p></li>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
-<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id2">2</a></p></li>
+<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id3">3</a></p></li>
 <li><p>An experienced Rust programmer code reviews and signs off on the library’s API.</p></li>
 </ul>
 <p class="rubric">Notes</p>
@@ -196,7 +196,7 @@ comments.</p></li>
 API is important to fulfilling the <a class="reference internal" href="../overview/objectives.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective.</p>
 </div>
 <div class="section" id="cross-platform-support">
-<h2>3.2.11. Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h2>
+<span id="ref-cross-platform-support-story"></span><h2>3.2.11. Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to work on a variety of platforms,</div>
@@ -212,7 +212,7 @@ Windows 10 and Linux.</p></li>
 the library is tested on may be limited due to resource constraints.</p>
 </div>
 <div class="section" id="available-on-crates-io">
-<h2>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
+<span id="ref-available-on-crates-io-story"></span><h2>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to be on <a class="reference external" href="https://crates.io/">crates.io</a>,</div>
@@ -225,7 +225,7 @@ the library is tested on may be limited due to resource constraints.</p>
 </ul>
 </div>
 <div class="section" id="source-available-on-github">
-<h2>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h2>
+<span id="ref-source-available-on-github-story"></span><h2>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library’s source code to be available on <a class="reference external" href="https://github.com/">GitHub</a></div>
@@ -238,7 +238,7 @@ the library is tested on may be limited due to resource constraints.</p>
 </ul>
 </div>
 <div class="section" id="permissive-license">
-<h2>3.2.14. Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h2>
+<span id="ref-permissive-license-story"></span><h2>3.2.14. Permissive License<a class="headerlink" href="#permissive-license" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to be licensed under a permissive open source license,</div>
@@ -251,13 +251,16 @@ fulfills this requirement.</p></li>
 </ul>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
-<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="semver"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://semver.org/">https://semver.org/</a> for details on semantic versioning.</p>
+</dd>
+<dt class="label" id="winingmoves"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>The player with the first move has about double the number of
 winning possibilities. For details see
 <a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Wikipedia’s Tic-tac-toe page</a>.</p>
 </dd>
-<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
-<dd><p>See the <a class="reference internal" href="../references.html#rust-api-guidelines" id="id3"><span>[Rust-API-Guidelines]</span></a> for details.</p>
+<dt class="label" id="rustapiguidelines"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>See the <a class="reference internal" href="../references.html#rust-api-guidelines" id="id4"><span>[Rust-API-Guidelines]</span></a> for details.</p>
 </dd>
 </dl>
 </div>
@@ -298,11 +301,11 @@ winning possibilities. For details see
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
-    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
     <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
+    
+    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
