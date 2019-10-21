@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>1. Introduction &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>1. Introduction &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -15,7 +15,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Overview" href="overview/index.html" />
-    <link rel="prev" title="Ounce of Rust Project Design Document" href="index.html" />
+    <link rel="prev" title="Ounce of Rust Project Manual" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -34,36 +34,37 @@
             
   <div class="section" id="introduction">
 <h1>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="purpose-of-this-document">
-<h2>1.1. Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h2>
-<p>This is the design document for the Ounce of Rust project. This document
-describes in detail the objectives requirements, and design considerations of
-the project providing a central location for this information. This is
-invaluable for planning the project’s tasks and milestones. Anyone wishing to
-understand the project and resulting deliverables is encouraged to read this
-document.</p>
+<div class="section" id="purpose-of-this-manual">
+<h2>1.1. Purpose of this Manual<a class="headerlink" href="#purpose-of-this-manual" title="Permalink to this headline">¶</a></h2>
+<p>This is the manual Ounce of Rust project. This manual describes in detail the
+objectives, requirements, and design considerations of the project providing a
+central location for this information. This is invaluable for understanding the
+project’s scope, planning the project’s milestones, and creating the project’s
+deliverables.</p>
+<p>Anyone who is involved with this project is encouraged to read this manual and
+keep a copy handy while they are working on the project.</p>
 </div>
 <div class="section" id="scope-of-the-project">
 <h2>1.2. Scope of the Project<a class="headerlink" href="#scope-of-the-project" title="Permalink to this headline">¶</a></h2>
-<p>The main deliverable of the Ounce of Rust project is a Rust crate that provides
+<p>The main deliverable of the Ounce of Rust project is a Rust library that provides
 common Tic Tac Toe logic that can be used by other Rust applications. While there
-are existing crates that provide similar functionality, this project provides
+are existing libraries that provide similar functionality, this project provides
 an opportunity to gain experience with Rust, its ecosystem, and general software
 development practices.</p>
 </div>
-<div class="section" id="overview-of-this-document">
-<h2>1.3. Overview of this Document<a class="headerlink" href="#overview-of-this-document" title="Permalink to this headline">¶</a></h2>
-<p>There are three main parts to this document. <a class="footnote-reference brackets" href="#a" id="id1">1</a> The <a class="reference internal" href="overview/index.html"><span class="doc">Overview</span></a>
+<div class="section" id="overview-of-this-manual">
+<h2>1.3. Overview of this Manual<a class="headerlink" href="#overview-of-this-manual" title="Permalink to this headline">¶</a></h2>
+<p>There are three main parts to this manual. <a class="footnote-reference brackets" href="#a" id="id1">1</a> The <a class="reference internal" href="overview/index.html"><span class="doc">Overview</span></a>
 chapter provides a general overview of the problems this project is intended to
 address and how the project addresses these problems. The <a class="reference internal" href="requirements/index.html"><span class="doc">Requirements</span></a>
-chapter specifies the requirements of the project. The <a class="reference internal" href="design/index.html"><span class="doc">Design</span></a>
+chapter specifies the requirements of the project. The <a class="reference internal" href="design/index.html"><span class="doc">Design</span></a> chapter
 describes how the project’s deliverables are designed to fulfill the requirements.</p>
 <p>Additionally, the <a class="reference internal" href="glossary.html"><span class="doc">Glossary</span></a> defines terms that are used throughout this
-document.</p>
+manual.</p>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>The structure of this document is influenced by <a class="reference internal" href="references.html#berezin-1999" id="id2"><span>[Berezin-1999]</span></a>.</p>
+<dd><p>The structure of this manual is influenced by <a class="reference internal" href="references.html#berezin-1999" id="id2"><span>[Berezin-1999]</span></a>.</p>
 </dd>
 </dl>
 </div>
@@ -76,7 +77,7 @@ document.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -86,12 +87,11 @@ document.</p>
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#purpose-of-this-document">1.1. Purpose of this Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#purpose-of-this-manual">1.1. Purpose of this Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#scope-of-the-project">1.2. Scope of the Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#overview-of-this-document">1.3. Overview of this Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-this-manual">1.3. Overview of this Manual</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="overview/index.html">2. Overview</a></li>
@@ -105,18 +105,18 @@ document.</p>
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Ounce of Rust Project Design Document</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Ounce of Rust Project Manual</a></li>
       <li>Next: <a href="overview/index.html" title="next chapter">2. Overview</a></li>
   </ul></li>
 </ul>

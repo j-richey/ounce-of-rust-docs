@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>3.2. User Stories &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>3.2. User Stories &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,7 +34,7 @@
             
   <div class="section" id="user-stories">
 <h1>3.2. User Stories<a class="headerlink" href="#user-stories" title="Permalink to this headline">¶</a></h1>
-<p>User stories are informal descriptions of the software system features. These
+<p>User stories are informal descriptions of the software’s features. These
 stories are written from the perspective of the users roles described in
 <a class="reference internal" href="../overview/users.html"><span class="doc">User Roles and Responsibilities</span></a>. The general format is:</p>
 <blockquote>
@@ -57,21 +57,21 @@ and determining the winner of the game, if any.</p></li>
 <p class="rubric">Notes</p>
 <p>The design details of the APIs are outside the scope of this requirements chapter.</p>
 </div>
-<div class="section" id="know-cells-that-contributed-to-player-s-victory">
-<span id="ref-know-victory-squares-story"></span><h2>3.2.2. Know Cells that Contributed to Player’s Victory<a class="headerlink" href="#know-cells-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="know-squares-that-contributed-to-player-s-victory">
+<span id="ref-know-victory-squares-story"></span><h2>3.2.2. Know Squares that Contributed to Player’s Victory<a class="headerlink" href="#know-squares-that-contributed-to-player-s-victory" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
-<div class="line">I want to know what cells contributed to the player’s victory,</div>
+<div class="line">I want to know what squares contributed to the player’s victory,</div>
 <div class="line">so I can draw a line through them or mark them in a special color.</div>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
-<li><p>When a player has won the game there is a way to obtain the board’s cells that
-contributed to the victory.</p></li>
+<li><p>When a player has won the game there is a way to obtain the board’s squares
+that contributed to the victory.</p></li>
 </ul>
 </div>
 <div class="section" id="stable-library-api">
-<span id="ref-stable-library-api-story"></span><h2>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h2>
+<span id="ref-stable-library-api-story"></span><span id="index-0"></span><h2>3.2.3. Stable Library API<a class="headerlink" href="#stable-library-api" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library to have a stable API,</div>
@@ -86,7 +86,7 @@ library’s API changes.</p></li>
 </ul>
 </div>
 <div class="section" id="ai-player">
-<span id="ref-ai-player-story"></span><h2>3.2.4. AI Player<a class="headerlink" href="#ai-player" title="Permalink to this headline">¶</a></h2>
+<span id="ref-ai-player-story"></span><span id="index-1"></span><h2>3.2.4. AI Player<a class="headerlink" href="#ai-player" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Tic Tac Toe player,</div>
 <div class="line">I want to play against the computer,</div>
@@ -132,13 +132,13 @@ second player. <a class="footnote-reference brackets" href="#winingmoves" id="id
 <span id="ref-maximum-ai-update-time-story"></span><h2>3.2.7. Maximum AI Update Time<a class="headerlink" href="#maximum-ai-update-time" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
-<div class="line">I want the AI to block for less than one frame when picking its next move,</div>
+<div class="line">I want the AI to block for less than one frame when picking a square,</div>
 <div class="line">so it does not block my rendering thread making my animations choppy.</div>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
 <li><p>There is a benchmark that measures the worst case time the AI blocks while
-picking the next move.</p></li>
+picking a square.</p></li>
 <li><p>How to run the benchmark is documented so developers can quickly evaluate this
 library to see if it meets their needs.</p></li>
 </ul>
@@ -160,7 +160,8 @@ sufficient to fulfill this requirement.</p>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
 <li><p>There is a runnable example of using the library.</p></li>
-<li><p>The example is in a prominent location such as library’s documentation.</p></li>
+<li><p>The example is in a prominent location such as library’s documentation’s
+home page.</p></li>
 </ul>
 </div>
 <div class="section" id="detailed-library-documentation">
@@ -168,7 +169,7 @@ sufficient to fulfill this requirement.</p>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want detailed and thorough library documentation,</div>
-<div class="line">so I can determine how to use the library from my specific needs.</div>
+<div class="line">so I can determine how to use the library for my specific needs.</div>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
@@ -188,12 +189,14 @@ comments.</p></li>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
-<li><p>The Rust API Guidelines are consulted when designing the libraries API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id3">3</a></p></li>
+<li><p>The Rust API Guidelines are consulted when designing the library’s API. <a class="footnote-reference brackets" href="#rustapiguidelines" id="id3">3</a></p></li>
 <li><p>An experienced Rust programmer code reviews and signs off on the library’s API.</p></li>
 </ul>
 <p class="rubric">Notes</p>
-<p>This can be a subjective subject subject. However, providing an idiomatic Rust
-API is important to fulfilling the <a class="reference internal" href="../overview/objectives.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective.</p>
+<p>API design can be subjective. However, providing an idiomatic Rust API is important
+to fulfilling the <a class="reference internal" href="../overview/objectives.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective. Therefore,
+obtaining the onions of an experienced Rust programmer helps ensure the resulting
+design is reasonable and idiomatic.</p>
 </div>
 <div class="section" id="cross-platform-support">
 <span id="ref-cross-platform-support-story"></span><h2>3.2.11. Cross Platform Support<a class="headerlink" href="#cross-platform-support" title="Permalink to this headline">¶</a></h2>
@@ -212,20 +215,21 @@ Windows 10 and Linux.</p></li>
 the library is tested on may be limited due to resource constraints.</p>
 </div>
 <div class="section" id="available-on-crates-io">
-<span id="ref-available-on-crates-io-story"></span><h2>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
+<span id="ref-available-on-crates-io-story"></span><span id="index-2"></span><h2>3.2.12. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
-<div class="line">I want the library to be on <a class="reference external" href="https://crates.io/">crates.io</a>,</div>
+<div class="line">I want the library to be on Rust’s package registry, <a class="reference external" href="https://crates.io/">https://crates.io/</a>,</div>
 <div class="line">so that I can easily incorporate it into my Rust based application with Cargo.</div>
 </div>
 <p class="rubric">Acceptance Criteria</p>
 <ul class="simple">
-<li><p>The library can be downloaded from crates.io.</p></li>
-<li><p>The library can be obtained by simply specifying it as a dependency in Cargo.toml.</p></li>
+<li><p>The library is hosted on crates.io.</p></li>
+<li><p>The library can be obtained by simply specifying it as a dependency in a
+package’s <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code>.</p></li>
 </ul>
 </div>
 <div class="section" id="source-available-on-github">
-<span id="ref-source-available-on-github-story"></span><h2>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h2>
+<span id="ref-source-available-on-github-story"></span><span id="index-3"></span><h2>3.2.13. Source Available on GitHub<a class="headerlink" href="#source-available-on-github" title="Permalink to this headline">¶</a></h2>
 <div class="line-block">
 <div class="line">As a Rust application developer,</div>
 <div class="line">I want the library’s source code to be available on <a class="reference external" href="https://github.com/">GitHub</a></div>
@@ -273,7 +277,7 @@ winning possibilities. For details see
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -283,7 +287,6 @@ winning possibilities. For details see
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
@@ -301,11 +304,11 @@ winning possibilities. For details see
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

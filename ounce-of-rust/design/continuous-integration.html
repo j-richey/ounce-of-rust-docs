@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4. Design &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
+    <title>4.5. Continuous Integration &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.1. Public API" href="public-api.html" />
-    <link rel="prev" title="3.2. User Stories" href="../requirements/user-stories.html" />
+    <link rel="next" title="4.6. Benchmarking" href="benchmarking.html" />
+    <link rel="prev" title="4.4. Artificial Intelligence Algorithms" href="ai-algorithms.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -32,21 +32,28 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="design">
-<h1>4. Design<a class="headerlink" href="#design" title="Permalink to this headline">¶</a></h1>
-<p>This chapter provides design details for the Tic Tac Toe library. This includes
-user facing areas such as the library’s API and internal algorithms.</p>
-<div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Design Topics:</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="public-api.html">4.1. Public API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="documentation.html">4.2. Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="distribution.html">4.3. Distribution</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ai-algorithms.html">4.4. Artificial Intelligence Algorithms</a></li>
-<li class="toctree-l1"><a class="reference internal" href="continuous-integration.html">4.5. Continuous Integration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="benchmarking.html">4.6. Benchmarking</a></li>
+  <div class="section" id="continuous-integration">
+<span id="index-0"></span><h1>4.5. Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline">¶</a></h1>
+<p>The Tic Tac Toe library uses the <a class="reference external" href="https://travis-ci.com/">Travis CI</a>
+continuous integration system to build and test every commit on a variety of
+platforms. <a class="footnote-reference brackets" href="#multios" id="id1">1</a> This ensures potential problems are found as soon as possible.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> included in the library’s source code repository tells Travis CI
+how to build and test the code. The <a class="reference external" href="https://docs.travis-ci.com/user/tutorial/">Travis CI Tutorial</a>
+provides a starting point on how to create the <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file.</p>
+<p>The library’s source code repository <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file contains a link to the
+Travis CI build page and includes a badge that indicates if the build is passing
+or failing.</p>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-stable-library-api-story"><span class="std std-ref">Stable Library API</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-cross-platform-support-story"><span class="std std-ref">Cross Platform Support</span></a></p></li>
 </ul>
-</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="multios"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See <a class="reference external" href="https://docs.travis-ci.com/user/multi-os/">Testing Your Project on Multiple Operating Systems</a>.</p>
+</dd>
+</dl>
 </div>
 
 
@@ -70,12 +77,12 @@ user facing areas such as the library’s API and internal algorithms.</p>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Design</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Design</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="public-api.html">4.1. Public API</a></li>
 <li class="toctree-l2"><a class="reference internal" href="documentation.html">4.2. Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distribution.html">4.3. Distribution</a></li>
 <li class="toctree-l2"><a class="reference internal" href="ai-algorithms.html">4.4. Artificial Intelligence Algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="continuous-integration.html">4.5. Continuous Integration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.5. Continuous Integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmarking.html">4.6. Benchmarking</a></li>
 </ul>
 </li>
@@ -98,8 +105,10 @@ user facing areas such as the library’s API and internal algorithms.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="../requirements/user-stories.html" title="previous chapter">3.2. User Stories</a></li>
-      <li>Next: <a href="public-api.html" title="next chapter">4.1. Public API</a></li>
+  <li><a href="index.html">4. Design</a><ul>
+      <li>Previous: <a href="ai-algorithms.html" title="previous chapter">4.4. Artificial Intelligence Algorithms</a></li>
+      <li>Next: <a href="benchmarking.html" title="next chapter">4.6. Benchmarking</a></li>
+  </ul></li>
   </ul></li>
 </ul>
 </div>
@@ -133,7 +142,7 @@ user facing areas such as the library’s API and internal algorithms.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
-      <a href="../_sources/design/index.rst.txt"
+      <a href="../_sources/design/continuous-integration.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

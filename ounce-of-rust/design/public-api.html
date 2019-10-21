@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.1. Public API &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>4.1. Public API &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,7 +14,7 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.2. Artificial Intelligence Algorithms" href="ai-algorithms.html" />
+    <link rel="next" title="4.2. Documentation" href="documentation.html" />
     <link rel="prev" title="4. Design" href="index.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
@@ -76,7 +76,7 @@ package tic_tac_toe {
     AIMove .&gt; Game
 }"/></p>
 <p class="caption"><span class="caption-number">Figure 4.2 </span><span class="caption-text">Major public modules, structures, and other types. Note: the
-module contains additional supporting types.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+module contains additional supporting types that are not shown here.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
 <p>The library contains a single public module that holds the public types. The
 naming conventions used in this library follow those described in the Rust API
@@ -84,10 +84,10 @@ Guidelines <a class="footnote-reference brackets" href="#rustapiguidelines" id="
 user story.</p>
 <p>Each of the major and supporting types are described below.</p>
 <div class="section" id="game-management">
-<h2>4.1.1. Game Management<a class="headerlink" href="#game-management" title="Permalink to this headline">¶</a></h2>
+<span id="index-0"></span><h2>4.1.1. Game Management<a class="headerlink" href="#game-management" title="Permalink to this headline">¶</a></h2>
 <p>Game management is handled by the Game structure. This structure is one of the
-central types provided by the crate. It contains the state machine logic and
-holds the underlying game board.
+central types provided by the library. It contains the state machine logic,
+holds the underlying game board, and enforces the rules of Tic Tac Toe.
 <a class="reference internal" href="#uml-game-management"><span class="std std-numref">Figure 4.3</span></a> shows the Game structure along with the GameState
 enumeration.</p>
 <div class="figure align-default" id="id8">
@@ -170,7 +170,7 @@ went second last game goes first next game.</p>
 </ul>
 </div>
 <div class="section" id="enum-gamesate">
-<h3>4.1.1.2. Enum GameSate<a class="headerlink" href="#enum-gamesate" title="Permalink to this headline">¶</a></h3>
+<span id="index-1"></span><h3>4.1.1.2. Enum GameSate<a class="headerlink" href="#enum-gamesate" title="Permalink to this headline">¶</a></h3>
 <p>The game state enumeration contains a variant for each possible game state
 described in <a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Figure 4.4</span></a> along with some additional helper
 methods.</p>
@@ -188,31 +188,30 @@ provided as the enum value.</p>
 <dt>CatsGame</dt><dd><p>The game has ended in a draw where there are no winners.</p>
 </dd>
 <dt>is_game_over()</dt><dd><p>Indicates if the state represents one of the game over states. That is,
-if either player has won or it is a cat’s game true is returned; otherwise,
-false is returned.</p>
+if either player has won or it is a cat’s game then <code class="docutils literal notranslate"><span class="pre">true</span></code> is returned;
+otherwise, <code class="docutils literal notranslate"><span class="pre">false</span></code> is returned.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
 <li><p>Copy</p></li>
-<li><p>Eq</p></li>
 <li><p>Debug</p></li>
 </ul>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-know-victory-squares-story"><span class="std std-ref">Know Cells that Contributed to Player’s Victory</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-know-victory-squares-story"><span class="std std-ref">Know Squares that Contributed to Player’s Victory</span></a></p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="board-data">
-<h2>4.1.2. Board Data<a class="headerlink" href="#board-data" title="Permalink to this headline">¶</a></h2>
+<span id="index-2"></span><h2>4.1.2. Board Data<a class="headerlink" href="#board-data" title="Permalink to this headline">¶</a></h2>
 <p>The board structure models a Tic Tac Toe game board. It holds the individual
 squares of the board and provides functions to access and iterate over the
 squares. The board and square structures along with supporting types are shown
 in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Figure 4.5</span></a>.</p>
 <div class="figure align-default" id="id10">
 <span id="uml-struct-board"></span><p class="plantuml">
-<img src="../_images/plantuml-cfbd9bf53441b346430e7d6ae65a828547cedde2.svg" alt="hide empty fields
+<img src="../_images/plantuml-644d10f229506aa7a9e541ad1d5ec055b4a1cc0d.svg" alt="hide empty fields
 hide empty methods
 
 class Board {
@@ -241,7 +240,7 @@ class FreeSquares {
 std::iter::Iterator &lt;|-- FreeSquares
 
 class VictorySets {
-    +Item: slice&lt;Square&gt;
+    +Item: Vec&lt;Square&gt;
 }
 std::iter::Iterator &lt;|-- VictorySets
 
@@ -317,7 +316,7 @@ debugging purposes. An example of the boards display is shown in
 </ul>
 </div>
 <div class="section" id="struct-square">
-<h3>4.1.2.2. Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h3>
+<span id="index-3"></span><h3>4.1.2.2. Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h3>
 <p>Represents an individual square of the game board.</p>
 <dl class="simple">
 <dt>position</dt><dd><p>The position the square is located at on the board.</p>
@@ -334,7 +333,7 @@ debugging purposes. An example of the boards display is shown in
 </ul>
 </div>
 <div class="section" id="struct-position">
-<h3>4.1.2.3. Struct Position<a class="headerlink" href="#struct-position" title="Permalink to this headline">¶</a></h3>
+<span id="index-4"></span><h3>4.1.2.3. Struct Position<a class="headerlink" href="#struct-position" title="Permalink to this headline">¶</a></h3>
 <p>The position structure represents a specific board position denoted by row and
 column.</p>
 <dl class="simple">
@@ -354,7 +353,7 @@ column.</p>
 </ul>
 </div>
 <div class="section" id="enum-owner">
-<h3>4.1.2.4. Enum Owner<a class="headerlink" href="#enum-owner" title="Permalink to this headline">¶</a></h3>
+<span id="index-5"></span><h3>4.1.2.4. Enum Owner<a class="headerlink" href="#enum-owner" title="Permalink to this headline">¶</a></h3>
 <p>The owner enumeration indicates which player owns a square, if any.</p>
 <dl class="simple">
 <dt>PlayerX</dt><dd><p>Player X owns the square.</p>
@@ -373,7 +372,7 @@ column.</p>
 </ul>
 </div>
 <div class="section" id="iterating-over-squares">
-<h3>4.1.2.5. Iterating Over Squares<a class="headerlink" href="#iterating-over-squares" title="Permalink to this headline">¶</a></h3>
+<span id="index-6"></span><h3>4.1.2.5. Iterating Over Squares<a class="headerlink" href="#iterating-over-squares" title="Permalink to this headline">¶</a></h3>
 <p>The board structure provides several ways to iterate over board’s squares. <a class="footnote-reference brackets" href="#iterators" id="id3">3</a>
 Helper types that implement the Iterator trait are used to provide this support.</p>
 <dl class="simple">
@@ -388,7 +387,7 @@ make the player victorious.</p>
 </div>
 </div>
 <div class="section" id="ai-moves">
-<h2>4.1.3. AI Moves<a class="headerlink" href="#ai-moves" title="Permalink to this headline">¶</a></h2>
+<span id="index-7"></span><h2>4.1.3. AI Moves<a class="headerlink" href="#ai-moves" title="Permalink to this headline">¶</a></h2>
 <p>The AI move structure represents a move by an AI player. The AI move structure is
 shown in <a class="reference internal" href="#uml-struct-ai-move"><span class="std std-numref">Figure 4.6</span></a>.</p>
 <div class="figure align-default" id="id12">
@@ -428,7 +427,7 @@ game.</p>
 <dt class="label" id="clonecopy"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Rust’s clone and copy traits both serve to duplicate an object but
 each goes about duplication in a different manner. Copy performs an operation
-similar to <cite>memcpy</cite> where it just copies the bits of the object. Alternately,
+similar to <code class="docutils literal notranslate"><span class="pre">memcpy</span></code> where it just copies the bits of the object. Alternately,
 Clone explicitly duplicates the object giving the programmer control over
 what parts are cloned. For details see the discussion in
 <a class="reference external" href="https://doc.rust-lang.org/std/clone/trait.Clone.html">Trait std::clone::Clone</a>.</p>
@@ -449,7 +448,7 @@ with them.” For details see <a class="reference internal" href="../references.
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -459,15 +458,17 @@ with them.” For details see <a class="reference internal" href="../references.
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Design</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Public API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ai-algorithms.html">4.2. Artificial Intelligence Algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="other-considerations.html">4.3. Other Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">4.2. Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution.html">4.3. Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-algorithms.html">4.4. Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous-integration.html">4.5. Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html">4.6. Benchmarking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
@@ -478,11 +479,11 @@ with them.” For details see <a class="reference internal" href="../references.
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
@@ -491,7 +492,7 @@ with them.” For details see <a class="reference internal" href="../references.
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">4. Design</a><ul>
       <li>Previous: <a href="index.html" title="previous chapter">4. Design</a></li>
-      <li>Next: <a href="ai-algorithms.html" title="next chapter">4.2. Artificial Intelligence Algorithms</a></li>
+      <li>Next: <a href="documentation.html" title="next chapter">4.2. Documentation</a></li>
   </ul></li>
   </ul></li>
 </ul>

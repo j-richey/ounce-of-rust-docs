@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>4.3. Distribution &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4.4. Artificial Intelligence Algorithms" href="ai-algorithms.html" />
+    <link rel="prev" title="4.2. Documentation" href="documentation.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="distribution">
+<h1>4.3. Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how the Tic Tac Toe library is shared with others.</p>
+<div class="section" id="mit-license">
+<span id="index-0"></span><h2>4.3.1. MIT License<a class="headerlink" href="#mit-license" title="Permalink to this headline">¶</a></h2>
+<p>The library’s code is released under the MIT license. <a class="footnote-reference brackets" href="#mitlicense" id="id1">1</a> The MIT
+license is short and simple that allows for both commercial and private use.</p>
+<p>The library’s source code repository contains a <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code> file that includes
+the text of the MIT license. Additionally, the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file mentions the
+this license.</p>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-permissive-license-story"><span class="std std-ref">Permissive License</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="publishing-to-crates-io">
+<span id="index-1"></span><h2>4.3.2. Publishing to crates.io<a class="headerlink" href="#publishing-to-crates-io" title="Permalink to this headline">¶</a></h2>
+<p>Crates.io is the Rust community’s package registry. Uploading the Tic Tac Toe
+package to cargo.io allows others to easily grab the library using the Rust
+package manager, Cargo.</p>
+<p>See <a class="reference external" href="https://doc.rust-lang.org/cargo/reference/publishing.html">Publishing on crates.io</a>
+for a step by step guide on how to publish a package. This includes a list of mandatory
+metadata that <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code> must contain and how to upload the package.</p>
+<p>The library’s source code repository <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file contains a link to the
+crates.io for the library.</p>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-available-on-crates-io-story"><span class="std std-ref">Available on crates.io</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="github-repository">
+<span id="index-2"></span><h2>4.3.3. GitHub Repository<a class="headerlink" href="#github-repository" title="Permalink to this headline">¶</a></h2>
+<p>The library’s source code is available on GitHub so others can clone and modify
+the code as they wish. The repository is named after the library. Additionally,
+the <code class="docutils literal notranslate"><span class="pre">repository</span></code> value in the packages’s <code class="docutils literal notranslate"><span class="pre">Cargo.toml</span></code> file points to this
+repository.</p>
+<p>GitHub also takes care of the library’s bug tracker.</p>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-source-available-on-github-story"><span class="std std-ref">Source Available on GitHub</span></a></p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="mitlicense"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>For details on the MIT license see
+<a class="reference external" href="https://choosealicense.com/licenses/mit/">Choose an open source license - MIT License</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Design</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="public-api.html">4.1. Public API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">4.2. Documentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3. Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ai-algorithms.html">4.4. Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous-integration.html">4.5. Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html">4.6. Benchmarking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">6. References</a></li>
+</ul>
+
+
+<hr />
+<ul>
+    
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
+    <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
+    
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
+    
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">4. Design</a><ul>
+      <li>Previous: <a href="documentation.html" title="previous chapter">4.2. Documentation</a></li>
+      <li>Next: <a href="ai-algorithms.html" title="next chapter">4.4. Artificial Intelligence Algorithms</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, James Richey.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/design/distribution.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

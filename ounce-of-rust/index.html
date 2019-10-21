@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Ounce of Rust Project Design Document &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>Ounce of Rust Project Manual &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -31,15 +31,22 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="ounce-of-rust-project-design-document">
-<h1>Ounce of Rust Project Design Document<a class="headerlink" href="#ounce-of-rust-project-design-document" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="ounce-of-rust-project-manual">
+<h1>Ounce of Rust Project Manual<a class="headerlink" href="#ounce-of-rust-project-manual" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the manual for the Ounce of Rust project for the creation of a
+Tic Tac Toe Rust library.</p>
+<p>This manual is also available in other formats:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></p></li>
+<li><p><a class="reference external" href="singlepage.html">View as single page</a></p></li>
+</ul>
+<p>Contents:</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#purpose-of-this-document">1.1. Purpose of this Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#purpose-of-this-manual">1.1. Purpose of this Manual</a></li>
 <li class="toctree-l2"><a class="reference internal" href="introduction.html#scope-of-the-project">1.2. Scope of the Project</a></li>
-<li class="toctree-l2"><a class="reference internal" href="introduction.html#overview-of-this-document">1.3. Overview of this Document</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#overview-of-this-manual">1.3. Overview of this Manual</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="overview/index.html">2. Overview</a><ul>
@@ -57,8 +64,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="design/index.html">4. Design</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="design/public-api.html">4.1. Public API</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design/ai-algorithms.html">4.2. Artificial Intelligence Algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="design/other-considerations.html">4.3. Other Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/documentation.html">4.2. Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/distribution.html">4.3. Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/ai-algorithms.html">4.4. Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/continuous-integration.html">4.5. Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design/benchmarking.html">4.6. Benchmarking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">5. Glossary</a></li>
@@ -70,11 +80,6 @@
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
 <li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
-<p>Other Formats:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></p></li>
-<li><p><a class="reference external" href="singlepage.html">View as single page</a></p></li>
-</ul>
 </div>
 
 
@@ -84,7 +89,7 @@
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="#">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -94,7 +99,6 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="overview/index.html">2. Overview</a></li>
@@ -108,11 +112,11 @@
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

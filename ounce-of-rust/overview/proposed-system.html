@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>2.3. Proposed System &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>2.3. Proposed System &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -36,25 +36,25 @@
 <h1>2.3. Proposed System<a class="headerlink" href="#proposed-system" title="Permalink to this headline">¶</a></h1>
 <p>This project creates a Rust library that application developers can use to create
 Tic Tac Toe games. The library contains common Tic Tac Toe functionality such as
-game state management and single player artificial intelligence. The library
-exposes this functionality through a well defined and documented public API.
-The library is open source and is available in Rust’s package repository
+game state management and single player support. The library
+exposes this functionality through a well defined and documented API.
+The library is open source and is available in Rust’s package registry
 <a class="reference external" href="https://crates.io/">https://crates.io/</a>.</p>
-<p>By using this library application developers can focus on making flashy graphics
-or other unique Tic Tac Toe experience without worrying about the underlying game
-logic and management.</p>
+<p>By using this library, application developers can focus on making flashy graphics
+or other unique Tic Tac Toe experiences without worrying about the underlying game
+logic or artificial intelligence algorithms.</p>
 <div class="section" id="game-state-and-board-management">
 <h2>2.3.1. Game State and Board Management<a class="headerlink" href="#game-state-and-board-management" title="Permalink to this headline">¶</a></h2>
 <p>A common task of Tic Tac Toe games is managing the state of the game. This
-includes knowing which player’s turn it is, ensuring players cannot mark a
-previously marked square, and checking for victory or draw conditions.</p>
+includes knowing which player takes the next turn, ensuring players cannot mark
+a previously marked square, and checking for victory conditions.</p>
 </div>
 <div class="section" id="ai-players">
 <h2>2.3.2. AI Players<a class="headerlink" href="#ai-players" title="Permalink to this headline">¶</a></h2>
 <p>The library allows single player Tic Tac Toe games to be created by providing
 AI players. These players use artificial intelligence algorithms that pick a
 square to place the AI player’s mark. The application developer has control over
-how difficult to win over the AI player.</p>
+how difficult it is win over the AI player.</p>
 </div>
 <div class="section" id="available-on-crates-io">
 <h2>2.3.3. Available on crates.io<a class="headerlink" href="#available-on-crates-io" title="Permalink to this headline">¶</a></h2>
@@ -66,15 +66,15 @@ on a publicly accessible website.</p>
 <h2>2.3.4. Deliverables<a class="headerlink" href="#deliverables" title="Permalink to this headline">¶</a></h2>
 <p>The project deliverables are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> crate. <a class="footnote-reference brackets" href="#a" id="id1">1</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> package. <a class="footnote-reference brackets" href="#a" id="id1">1</a></p></li>
 <li><p>API documentation. <a class="footnote-reference brackets" href="#b" id="id2">2</a></p></li>
-<li><p>Public source code repository with a tagged release.</p></li>
+<li><p>Source code available on a public repository with a tagged release.</p></li>
 </ul>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="a"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Future projects built around <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> may use <code class="docutils literal notranslate"><span class="pre">open_ttt</span></code> as
-part of their crate name.</p>
+part of their package name.</p>
 </dd>
 <dt class="label" id="b"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Popular places to host Rust API documentation include <a class="reference external" href="https://docs.rs/">https://docs.rs/</a>
@@ -91,7 +91,7 @@ and <a class="reference external" href="https://pages.github.com/">https://pages
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -101,7 +101,6 @@ and <a class="reference external" href="https://pages.github.com/">https://pages
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Overview</a><ul class="current">
@@ -122,11 +121,11 @@ and <a class="reference external" href="https://pages.github.com/">https://pages
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">

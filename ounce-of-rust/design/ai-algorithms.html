@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.2. Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>4.4. Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -14,8 +14,8 @@
     <script type="text/javascript" src="../_static/language_data.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.3. Other Considerations" href="other-considerations.html" />
-    <link rel="prev" title="4.1. Public API" href="public-api.html" />
+    <link rel="next" title="4.5. Continuous Integration" href="continuous-integration.html" />
+    <link rel="prev" title="4.3. Distribution" href="distribution.html" />
    
   <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
   
@@ -33,16 +33,16 @@
           <div class="body" role="main">
             
   <div class="section" id="artificial-intelligence-algorithms">
-<h1>4.2. Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h1>
-<p>The AI algorithms are responsible for picking a position to place the AI player’s mark. <a class="footnote-reference brackets" href="#ainame" id="id1">1</a>
+<span id="index-0"></span><h1>4.4. Artificial Intelligence Algorithms<a class="headerlink" href="#artificial-intelligence-algorithms" title="Permalink to this headline">¶</a></h1>
+<p>The AI algorithms are responsible for picking a square to place the AI player’s mark. <a class="footnote-reference brackets" href="#ainame" id="id1">1</a>
 It does this by doing a depth first search for all possible game outcomes based
 on the current state of the game board. An example is shown in
 <a class="reference internal" href="#fig-ai-depth-first-search-example"><span class="std std-numref">Figure 4.7</span></a>.</p>
-<div class="figure align-default" id="id4">
+<div class="figure align-default" id="id5">
 <span id="fig-ai-depth-first-search-example"></span><img alt="AI search tree example." src="../_images/ai-depth-first-search-example.svg" /><p class="caption"><span class="caption-number">Figure 4.7 </span><span class="caption-text">Example dept first search algorithm looking for possible Tic Tac Toe game
 outcomes. The AI player is playing as X and the opponent is playing as O.
 The possible outcomes of selecting a particular square are marked with W for
-win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
 <p>The algorithm selects a free position then traverses the tree looking one of the
 end game conditions: win, loss, or cat’s game. Once the end of the game is found,
@@ -55,27 +55,104 @@ lead to the best outcome. Winning positions are picked over cat’s games, and
 cat’s games are picked over losses. Additionally, if there are multiple positions
 with the same outcome, one is picked at random to ensure the game appears more
 natural to human players. <a class="footnote-reference brackets" href="#funai" id="id2">2</a></p>
-<p>The dept search algorithm can see to the end of the game, thus it cannot be beat.
+<p>The depth search algorithm can see to the end of the game, thus it cannot be beat.
 The best possible outcome is a cat’s game. Therefore, to give human players a
 chance to win, the algorithm sometimes fails to consider one of the outcomes.
 The probability of making a mistake is configurable.</p>
-<div class="section" id="example-code">
-<h2>4.2.1. Example Code<a class="headerlink" href="#example-code" title="Permalink to this headline">¶</a></h2>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-number">Listing 4.2 </span><span class="caption-text">searching the tree</span><a class="headerlink" href="#id5" title="Permalink to this code">¶</a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span>
+<div class="section" id="ai-logic-details">
+<h2>4.4.1. AI Logic Details<a class="headerlink" href="#ai-logic-details" title="Permalink to this headline">¶</a></h2>
+<p>There are two main parts to the AI’s logic. A high level part examines the
+state of the game and picks the best move and a low level part that
+evaluates the outcome of picking a specific position. The best way
+to examine this logic is to look at some pseudo code.</p>
+<p>The pseudo code in <a class="reference internal" href="#code-ai-move"><span class="std std-numref">Listing 4.2</span></a> examines the overall state of the game
+and returns the best position for the AI to place its mark.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<span id="code-ai-move"></span><div class="code-block-caption"><span class="caption-number">Listing 4.2 </span><span class="caption-text">Pseudo code for examining game state and picking the best move.</span><a class="headerlink" href="#id6" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">):</span>
+    <span class="c1"># Determine which player the AI is playing as.</span>
+    <span class="n">ai_player</span> <span class="o">=</span> <span class="n">get_ai_player</span><span class="p">(</span><span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="p">())</span>
 
-    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
-        <span class="n">square</span><span class="o">.</span><span class="n">set_owner</span><span class="p">(</span><span class="n">player_turn</span><span class="p">)</span>
-        <span class="c1"># TODO: switch who&#39;s turn it is</span>
-        <span class="c1"># TODO: clone the game or the board.</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">ai_move</span><span class="p">(</span><span class="n">game</span><span class="p">,</span> <span class="n">player_turn</span><span class="p">)</span>
-        <span class="n">square</span><span class="o">.</span><span class="n">set_result</span><span class="p">(</span><span class="n">square</span><span class="p">)</span>
+    <span class="c1"># For each free square, evaluate the consequences of using</span>
+    <span class="c1"># that square. The outcome for each position and the position</span>
+    <span class="c1"># is recorded.</span>
+    <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+         <span class="n">outcomes</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
+            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">((</span><span class="n">outcome</span><span class="p">,</span> <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">))</span>
+
+    <span class="c1"># Return the best position based on the outcomes.</span>
+    <span class="k">return</span> <span class="n">best_position</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+<p>There are several notable items in this pseudo code. The <code class="docutils literal notranslate"><span class="pre">get_ai_player()</span></code>
+function indicates which player the AI is playing as, X or O, based on the
+current state of the game. <a class="footnote-reference brackets" href="#aiplayernew" id="id3">3</a> It panics if the game is over. The
+resulting variant is passed to the lower level <code class="docutils literal notranslate"><span class="pre">evaluate_game()</span></code> function.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">best_position()</span></code> function takes the collection of outcome and position
+tuples and picks a position with the best outcome. The ordering of outcomes from
+best to worst are: <code class="docutils literal notranslate"><span class="pre">Win</span></code>, <code class="docutils literal notranslate"><span class="pre">CatsGame</span></code>, <code class="docutils literal notranslate"><span class="pre">Unknown</span></code>, <code class="docutils literal notranslate"><span class="pre">Loss</span></code>. A cats game is
+considered better than unknown as the AI rather have the game end in a draw than
+risk a loss. If there are multiple positions with the same outcome, one of the
+positions is picked at random.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">evaluate_position()</span></code> function is responsible for evaluate a specific position.
+<a class="reference internal" href="#code-evaluate-position"><span class="std std-numref">Listing 4.3</span></a> shows the pseudo for this function.</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<span id="code-evaluate-position"></span><div class="code-block-caption"><span class="caption-number">Listing 4.3 </span><span class="caption-text">Pseudo code for evaluating a specific position.</span><a class="headerlink" href="#id7" title="Permalink to this code">¶</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_position</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">):</span>
+    <span class="c1"># Check to see if the AI should make a mistake given the</span>
+    <span class="c1"># mistake probability. If so, don&#39;t consider this position.</span>
+    <span class="k">if</span> <span class="n">should_make_mistake</span><span class="p">(</span><span class="n">mistake_probability</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Outcome</span><span class="o">.</span><span class="n">Unknown</span>
+
+    <span class="c1"># Clone the game so this function can try out the move without</span>
+    <span class="c1"># modifying the original game.</span>
+    <span class="n">game</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+
+    <span class="c1"># Check to see if the game is over. If so, return the</span>
+    <span class="c1"># outcome of the game from the AI&#39;s perspective,</span>
+    <span class="c1"># e.g. win, loss, or cat&#39;s game.</span>
+    <span class="k">if</span> <span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="p">()</span><span class="o">.</span><span class="n">is_game_over</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">game_state_to_ai_outcome</span><span class="p">(</span><span class="n">game</span><span class="o">.</span><span class="n">state</span><span class="p">(),</span> <span class="n">ai_player</span><span class="p">)</span>
+
+    <span class="c1"># The game is not over, to evaluate each of the remaining</span>
+    <span class="c1"># free squares. Note: the game automatically takes care of</span>
+    <span class="c1"># switching between player X&#39;s and player O&#39;s turn.</span>
+    <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+        <span class="n">outcome</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
+            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+        <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
+
+    <span class="c1"># The AI assumes the other player plays a perfect game,</span>
+    <span class="c1"># so return the worst outcome that was found.</span>
+    <span class="k">return</span> <span class="n">worst_outcome</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">should_make_mistake()</span></code> function takes the mistake probability and returns
+<code class="docutils literal notranslate"><span class="pre">true</span></code> if the algorithm should skip examining this branch of the tree. The
+<code class="docutils literal notranslate"><span class="pre">Unknown</span></code> outcome is used for parts of the tree that are skipped.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">game_state_to_ai_outcome()</span></code> function is responsible for converting one of
+the game over states into an AI outcome. That is: one of <code class="docutils literal notranslate"><span class="pre">Win</span></code>, <code class="docutils literal notranslate"><span class="pre">Loss</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">CatsGame</span></code>. It uses the <code class="docutils literal notranslate"><span class="pre">ai_player</span></code> to know what player the AI is playing as.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">worst_outcome()</span></code> function takes the outcomes from all the positions and
+returns the worst possible one for the AI player. The ordering of outcomes
+returned are: <code class="docutils literal notranslate"><span class="pre">Loss</span></code>, <code class="docutils literal notranslate"><span class="pre">CatsGame</span></code>, <code class="docutils literal notranslate"><span class="pre">Win</span></code>, <code class="docutils literal notranslate"><span class="pre">Unknown</span></code>. Unknown is returned
+only if other information was not obtained about the position.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The ordering of outcomes used by <code class="docutils literal notranslate"><span class="pre">worst_outcome()</span></code> is different than
+different than <code class="docutils literal notranslate"><span class="pre">best_position()</span></code>.</p>
+</div>
+<p class="rubric">Related Requirements</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-ai-player-story"><span class="std std-ref">AI Player</span></a></p></li>
+<li><p><a class="reference internal" href="../requirements/user-stories.html#ref-ai-difficulty-settings-story"><span class="std std-ref">AI Difficulty Settings</span></a></p></li>
+</ul>
 <p class="rubric">Footnotes</p>
 <dl class="footnote brackets">
 <dt class="label" id="ainame"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
@@ -84,7 +161,12 @@ The probability of making a mistake is configurable.</p>
 <dt class="label" id="funai"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>One of the challenges of creating AI for video games is the AI needs
 to be fun. An AI that picked the same square every time would not be fun!
-See <a class="reference internal" href="../references.html#buckland-2004" id="id3"><span>[Buckland-2004]</span></a> for a discussion on making game AI fun.</p>
+See <a class="reference internal" href="../references.html#buckland-2004" id="id4"><span>[Buckland-2004]</span></a> for a discussion on making game AI fun.</p>
+</dd>
+<dt class="label" id="aiplayernew"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Rust enums support methods, so <code class="docutils literal notranslate"><span class="pre">get_ai_player()</span></code> could actually be
+implemented as <code class="docutils literal notranslate"><span class="pre">fn</span> <span class="pre">new(state:</span> <span class="pre">GameState)</span> <span class="pre">-&gt;</span> <span class="pre">AIPlayer</span></code> for the
+<code class="docutils literal notranslate"><span class="pre">AIPlayer</span></code> enum.</p>
 </dd>
 </dl>
 </div>
@@ -97,7 +179,7 @@ See <a class="reference internal" href="../references.html#buckland-2004" id="id
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -107,15 +189,17 @@ See <a class="reference internal" href="../references.html#buckland-2004" id="id
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../requirements/index.html">3. Requirements</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Design</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="public-api.html">4.1. Public API</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.2. Artificial Intelligence Algorithms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="other-considerations.html">4.3. Other Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="documentation.html">4.2. Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distribution.html">4.3. Distribution</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.4. Artificial Intelligence Algorithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="continuous-integration.html">4.5. Continuous Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmarking.html">4.6. Benchmarking</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../glossary.html">5. Glossary</a></li>
@@ -126,11 +210,11 @@ See <a class="reference internal" href="../references.html#buckland-2004" id="id
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
@@ -138,8 +222,8 @@ See <a class="reference internal" href="../references.html#buckland-2004" id="id
 <ul>
   <li><a href="../index.html">Documentation overview</a><ul>
   <li><a href="index.html">4. Design</a><ul>
-      <li>Previous: <a href="public-api.html" title="previous chapter">4.1. Public API</a></li>
-      <li>Next: <a href="other-considerations.html" title="next chapter">4.3. Other Considerations</a></li>
+      <li>Previous: <a href="distribution.html" title="previous chapter">4.3. Distribution</a></li>
+      <li>Next: <a href="continuous-integration.html" title="next chapter">4.5. Continuous Integration</a></li>
   </ul></li>
   </ul></li>
 </ul>

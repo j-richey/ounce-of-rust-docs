@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>3.1. Rules of Tic Tac Toe &#8212; Ounce of Rust Project Design Document Rev. A draft 1</title>
+    <title>3.1. Rules of Tic Tac Toe &#8212; Ounce of Rust Project Manual Rev. A draft 1</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -34,17 +34,20 @@
             
   <div class="section" id="rules-of-tic-tac-toe">
 <h1>3.1. Rules of Tic Tac Toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h1>
-<p>The rules for Tic Tac Toe are as follows:</p>
+<p>The Tic Tac Toe library provides functionality for managing the game and
+ensuring players only make valid moves. This requires the library’s logic know
+the rules of Tic Tac Toe. The rules for Tic Tac Toe are as follows:</p>
 <ol class="arabic">
-<li><p>Play occurs on 3 x 3 grid. The grid starts empty with no marks.</p></li>
+<li><p>Play occurs on a board composed of a 3 x 3 grid of squares. The board starts
+empty with no marks.</p></li>
 <li><p>The first player places their mark in one of the grid’s squares. Traditionally,
 the mark is the letter <em>X</em>.</p></li>
 <li><p>The second player places their mark in one of the grid’s empty squares. A square
 that already contains a mark cannot be updated or altered. Traditionally, the
 second player uses the letter <em>O</em> as their mark.</p></li>
 <li><p>Turns alternate between the players until the game is over.</p></li>
-<li><p>The game ends in a win when one of the players gets three of their marks in
-a line. That is: they have three marks in a row, column, or diagonally.
+<li><p>The first player to get three of their marks in a line wins the game.
+That is: they have three marks in a row, column, or diagonally.
 Examples of winning games are shown in <a class="reference internal" href="#fig-example-wining-games"><span class="std std-numref">Figure 3.1</span></a>.</p>
 <div class="figure align-default" id="id1">
 <span id="fig-example-wining-games"></span><img alt="Examples of winning Tic Tac Toe games." src="../_images/example-wining-games.svg" /><p class="caption"><span class="caption-number">Figure 3.1 </span><span class="caption-text">Examples of winning Tic Tac Toe games showing player X winning by getting
@@ -53,11 +56,11 @@ that contributed to the win. Notice that it is possible to get multiple
 sets of three marks in a row.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>The game ends in a draw, known as a cat’s game, if no more empty squares
-remain and a player has failed to get three marks in a row. Examples of cat’s
+<li><p>The game ends in a draw, known as a <span class="target" id="index-0"></span>cat’s game, if no more empty squares
+remain and a player has failed to get three marks in a line. Examples of cat’s
 games are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Figure 3.2</span></a>.</p>
 <div class="figure align-default" id="id2">
-<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="../_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Figure 3.2 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a cats game. No player managed
+<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="../_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Figure 3.2 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a cat’s game. No player managed
 to get three marks in a line.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </li>
@@ -71,7 +74,7 @@ to get three marks in a line.</span><a class="headerlink" href="#id2" title="Per
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">Ounce of Rust Project Design Document</a></h1>
+<h1 class="logo"><a href="../index.html">Ounce of Rust Project Manual</a></h1>
 
 
 
@@ -81,7 +84,6 @@ to get three marks in a line.</span><a class="headerlink" href="#id2" title="Per
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">1. Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../overview/index.html">2. Overview</a></li>
@@ -99,11 +101,11 @@ to get three marks in a line.</span><a class="headerlink" href="#id2" title="Per
 <hr />
 <ul>
     
+    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-manual">GitHub Source</a></li>
+    
     <li class="toctree-l1"><a href="singlepage.html">View Single Page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/ounce-of-rust-design-doc">GitHub Source</a></li>
-    
-    <li class="toctree-l1"><a href="ounce_of_rust_project_design_document_rev_a_draft_1.pdf">Download PDF</a></li>
+    <li class="toctree-l1"><a href="ounce_of_rust_project_manual_rev_a_draft_1.pdf">Download PDF</a></li>
     
 </ul>
 <div class="relations">
