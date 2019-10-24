@@ -158,7 +158,7 @@ Getting Started Example
 .. rubric:: Acceptance Criteria
 
 * There is a runnable example of using the library.
-* The example is in a prominent location such as library's documentation's
+* The example is in a prominent location such as library's documentation
   home page.
 
 
@@ -177,7 +177,7 @@ Detailed Library Documentation
   comments.
 * The documentation contains the typical sections such as **Panics** and **Errors**.
 * The documentation is accessible from the internet, such as being hosted on
-  `Docs.rs <https://docs.rs>`__.
+  `<https://docs.rs>`__.
 
 
 .. _ref-idiomatic-rust-apis-story:
@@ -199,7 +199,7 @@ Idiomatic Rust APIs
 
 API design can be subjective. However, providing an idiomatic Rust API is important
 to fulfilling the :ref:`ref-learn-about-rust-objective` objective. Therefore,
-obtaining the onions of an experienced Rust programmer helps ensure the resulting
+obtaining the opinions of an experienced Rust programmer helps ensure the resulting
 design is reasonable and idiomatic.
 
 
