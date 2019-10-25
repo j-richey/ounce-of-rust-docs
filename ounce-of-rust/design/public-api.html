@@ -41,7 +41,7 @@ shown in <a class="reference internal" href="#uml-public-api-diagram-legend"><sp
 in this section.</p>
 <div class="figure align-default" id="id6">
 <span id="uml-public-api-diagram-legend"></span><p class="plantuml">
-<img src="../_images/plantuml-00bc1a3458499a6140367b06be9ec5cb0a3af016.svg" alt="hide members
+<img src="../_images/plantuml-101269ad3b71f8419eb1fa379618795a9fae17bf.svg" alt="hide members
 
 package Module {
 
@@ -57,7 +57,12 @@ enum Enum {
 }
 
 show Struct members
-show Enum fields"/></p>
+show Enum fields
+
+' Hidden links are used to help with the diagram's layout.
+Module -[hidden] Trait
+Trait -[hidden] Struct
+Struct -[hidden] Enum"/></p>
 <p class="caption"><span class="caption-number">Figure 4.1 </span><span class="caption-text">Legend used for the type diagrams in this section.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>An overview of the major public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Figure 4.2</span></a>.</p>
@@ -141,7 +146,8 @@ first turn next game.</p>
 <h3>4.1.1.1. Struct Game<a class="headerlink" href="#struct-game" title="Permalink to this headline">¶</a></h3>
 <p>Members of the Game structure are as follows:</p>
 <dl class="simple">
-<dt>new()</dt><dd><p>Creates a new Tic Tac Toe game.</p>
+<dt>new()</dt><dd><p>Creates a new Tic Tac Toe game structure. Note: use <code class="docutils literal notranslate"><span class="pre">start_next_game()</span></code> for
+playing consecutive games to ensure each player gets to start the game.</p>
 </dd>
 <dt>board()</dt><dd><p>Gets the board associated with the game.</p>
 </dd>

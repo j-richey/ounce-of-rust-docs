@@ -541,7 +541,7 @@ shown in <a class="reference internal" href="#uml-public-api-diagram-legend"><sp
 in this section.</p>
 <div class="figure align-default" id="id6">
 <span id="uml-public-api-diagram-legend"></span><p class="plantuml">
-<img src="_images/plantuml-00bc1a3458499a6140367b06be9ec5cb0a3af016.svg" alt="hide members
+<img src="_images/plantuml-101269ad3b71f8419eb1fa379618795a9fae17bf.svg" alt="hide members
 
 package Module {
 
@@ -557,7 +557,12 @@ enum Enum {
 }
 
 show Struct members
-show Enum fields"/></p>
+show Enum fields
+
+' Hidden links are used to help with the diagram's layout.
+Module -[hidden] Trait
+Trait -[hidden] Struct
+Struct -[hidden] Enum"/></p>
 <p class="caption"><span class="caption-number">Figure 4.1 </span><span class="caption-text">Legend used for the type diagrams in this section.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>An overview of the major public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Figure 4.2</span></a>.</p>
@@ -641,7 +646,8 @@ first turn next game.</p>
 <h5>4.1.1.1. Struct Game<a class="headerlink" href="#struct-game" title="Permalink to this headline">¶</a></h5>
 <p>Members of the Game structure are as follows:</p>
 <dl class="simple">
-<dt>new()</dt><dd><p>Creates a new Tic Tac Toe game.</p>
+<dt>new()</dt><dd><p>Creates a new Tic Tac Toe game structure. Note: use <code class="docutils literal notranslate"><span class="pre">start_next_game()</span></code> for
+playing consecutive games to ensure each player gets to start the game.</p>
 </dd>
 <dt>board()</dt><dd><p>Gets the board associated with the game.</p>
 </dd>
@@ -1016,7 +1022,7 @@ describes semantic versioning as understood by Rust.</p>
 <div class="section" id="mit-license">
 <span id="index-0"></span><h4>4.3.1. MIT License<a class="headerlink" href="#mit-license" title="Permalink to this headline">¶</a></h4>
 <p>The library’s code is released under the MIT license. <a class="footnote-reference brackets" href="#mitlicense" id="id1">1</a> The MIT
-license is short and simple that allows for both commercial and private use.</p>
+license is simple and allows for use with open source, commercial, or private projects.</p>
 <p>The library’s source code repository contains a <code class="docutils literal notranslate"><span class="pre">LICENSE.txt</span></code> file that includes
 the text of the MIT license. Additionally, the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file mentions the
 this license.</p>
@@ -1028,7 +1034,7 @@ this license.</p>
 <div class="section" id="publishing-to-crates-io">
 <span id="index-1"></span><h4>4.3.2. Publishing to crates.io<a class="headerlink" href="#publishing-to-crates-io" title="Permalink to this headline">¶</a></h4>
 <p>Crates.io is the Rust community’s package registry. Uploading the Tic Tac Toe
-package to cargo.io allows others to easily grab the library using the Rust
+package to cargo.io allows others to easily obtain the library using the Rust
 package manager, Cargo.</p>
 <p>See <a class="reference external" href="https://doc.rust-lang.org/cargo/reference/publishing.html">Publishing on crates.io</a>
 for a step by step guide on how to publish a package. This includes a list of mandatory
@@ -1072,7 +1078,7 @@ outcomes. The AI player is playing as X and the opponent is playing as O.
 The possible outcomes of selecting a particular square are marked with W for
 win, L for loss, and C for cat’s game.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<p>The algorithm selects a free position then traverses the tree looking one of the
+<p>The algorithm selects a free position then traverses the tree looking for one of the
 end game conditions: win, loss, or cat’s game. Once the end of the game is found,
 the result is propagated up the tree. The algorithm assumes the opponent will
 play a perfect game. That is, if a specific position leads for both a win for the
@@ -1241,8 +1247,8 @@ case AI move.</p>
 </pre></div>
 </div>
 </div>
-<p>The worst case is time is for a new game and a zero percent mistake probability.
-Under these situations the <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> have to evaluate the entire
+<p>The worst case update time is for a new game and a zero percent mistake probability.
+Under this situation the <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> have to evaluate the entire
 problem space.</p>
 <p>The library’s source code repository <code class="docutils literal notranslate"><span class="pre">README.md</span></code> file contains instructions on
 how to run the benchmarks.</p>
@@ -1275,7 +1281,7 @@ specify their projects metadata and dependencies.</p>
 </dd>
 <dt id="term-cat-s-game">cat’s game</dt><dd><p>Term used when a game of Tic Tac Toe ends in a draw where there is no winner.</p>
 </dd>
-<dt id="term-crate">crate</dt><dd><p>Rust’s term for binary or library.</p>
+<dt id="term-crate">crate</dt><dd><p>Rust’s term for an application binary or library.</p>
 </dd>
 <dt id="term-idiomatic-coding">idiomatic coding</dt><dd><p>Idiomatic coding is using familiar conventions, techniques, and practices
 of a particular programming language.</p>
@@ -1284,7 +1290,7 @@ of a particular programming language.</p>
 other applications.</p>
 </dd>
 <dt id="term-ounce-of-rust">Ounce of Rust</dt><dd><p>The code name for the project to make a <a class="reference internal" href="#term-rust-programming-language"><span class="xref std std-term">Rust</span></a>
-based Tic Tac Toe library. The etymology of this code name is a Tic Tac
+based Tic Tac Toe library. The etymology comes from how a Tic Tac
 Toe board is similar to a pound sign ( # ) but this project for making
 just a part of full game: an ounce is part of a pound.</p>
 </dd>
