@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Ounce of Rust Project Manual Rev. A draft 2</title>
+    <title>Ounce of Rust Project Manual Rev. A</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -149,7 +149,7 @@ to provide common functionality. Searching Rust’s package registry,
 <code class="docutils literal notranslate"><span class="pre">zero_sum</span></code>, and <code class="docutils literal notranslate"><span class="pre">minimax</span></code>.</p>
 <p>With the wide variety of libraries available, for both Rust and other languages,
 there is likely one that meets the needs of Tic Tac Toe application developers.
-However, due to the <a class="reference internal" href="singlepage.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective, is worth
+However, due to the <a class="reference internal" href="singlepage.html#ref-learn-about-rust-objective"><span class="std std-ref">Learn About Rust</span></a> objective, it is worth
 going through the effort to create another Tic Tac Toe library.</p>
 </div>
 </div>
@@ -258,7 +258,7 @@ the library is used.</p>
 <span id="document-requirements/ttt-rules"></span><div class="section" id="rules-of-tic-tac-toe">
 <h3>3.1. Rules of Tic Tac Toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h3>
 <p>The Tic Tac Toe library provides functionality for managing the game and
-ensuring players only make valid moves. This requires the library’s logic know
+ensuring players only make valid moves. This requires the library’s logic to know
 the rules of Tic Tac Toe. The rules for Tic Tac Toe are as follows:</p>
 <ol class="arabic">
 <li><p>Play occurs on a board composed of a 3 x 3 grid of squares. The board starts
@@ -1128,7 +1128,7 @@ resulting variant is passed to the lower level <code class="docutils literal not
 <p>The <code class="docutils literal notranslate"><span class="pre">best_position()</span></code> function takes the collection of outcome and position
 tuples and picks a position with the best outcome. The ordering of outcomes from
 best to worst are: <code class="docutils literal notranslate"><span class="pre">Win</span></code>, <code class="docutils literal notranslate"><span class="pre">CatsGame</span></code>, <code class="docutils literal notranslate"><span class="pre">Unknown</span></code>, <code class="docutils literal notranslate"><span class="pre">Loss</span></code>. A cats game is
-considered better than unknown as the AI rather have the game end in a draw than
+considered better than unknown as the AI would rather have the game end in a draw than
 risk a loss. If there are multiple positions with the same outcome, one of the
 positions is picked at random.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">evaluate_position()</span></code> function is responsible for evaluate a specific position.
