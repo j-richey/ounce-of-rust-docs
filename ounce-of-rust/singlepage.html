@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Ounce of Rust Project Manual Rev. A</title>
+    <title>Ounce of Rust Project Manual Rev. B</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -325,6 +325,9 @@ and determining the winner of the game, if any.</p></li>
 <ul class="simple">
 <li><p>When a player has won the game there is a way to obtain the board’s squares
 that contributed to the victory.</p></li>
+<li><p>If the player won by getting multiple sets of squares as shown in
+<a class="reference internal" href="singlepage.html#fig-example-wining-games"><span class="std std-numref">Figure 3.1</span></a> then all square that contributed to the
+win are available.</p></li>
 </ul>
 </div>
 <div class="section" id="stable-library-api">
@@ -534,7 +537,7 @@ winning possibilities. For details see
 user facing areas such as the library’s API and internal algorithms.</p>
 <div class="toctree-wrapper compound">
 <span id="document-design/public-api"></span><div class="section" id="public-api">
-<h3>4.1. Public API<a class="headerlink" href="#public-api" title="Permalink to this headline">¶</a></h3>
+<span id="index-0"></span><h3>4.1. Public API<a class="headerlink" href="#public-api" title="Permalink to this headline">¶</a></h3>
 <p>This section describes the public API of the library. The provided types and
 functions are used by other applications to create Tic Tac Toe games. The legend
 shown in <a class="reference internal" href="#uml-public-api-diagram-legend"><span class="std std-numref">Figure 4.1</span></a> is used for the type diagrams
@@ -568,18 +571,18 @@ Struct -[hidden] Enum"/></p>
 <p>An overview of the major public types is shown in <a class="reference internal" href="#uml-public-api-overview"><span class="std std-numref">Figure 4.2</span></a>.</p>
 <div class="figure align-default" id="id7">
 <span id="uml-public-api-overview"></span><p class="plantuml">
-<img src="_images/plantuml-5f7c392386e284f1496e57fe2fbdee2b0f7c521a.svg" alt="hide members
+<img src="_images/plantuml-16cbb27f08fbf7259c9a38eddf0bbda0e647f73c.svg" alt="hide members
 
-package tic_tac_toe {
+package open_ttt_lib {
     enum Owner
-    enum GameState
+    enum State
 
-    Game o-- Board
-    Game o- GameState
+    Game *-- Board
+    Game *-- State
 
-    Board &quot;1&quot; *-- &quot;n&quot; Square
-    Square o- Owner
-    AIMove .&gt; Game
+    Board &quot;1..*&quot; *-- Position
+    Board &quot;1..*&quot; *-- Owner
+    Game &lt;. AIOpponent
 }"/></p>
 <p class="caption"><span class="caption-number">Figure 4.2 </span><span class="caption-text">Major public modules, structures, and other types. Note: the
 module contains additional supporting types that are not shown here.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
@@ -590,35 +593,50 @@ Guidelines <a class="footnote-reference brackets" href="#rustapiguidelines" id="
 user story.</p>
 <p>Each of the major and supporting types are described below.</p>
 <div class="section" id="game-management">
-<span id="index-0"></span><h4>4.1.1. Game Management<a class="headerlink" href="#game-management" title="Permalink to this headline">¶</a></h4>
+<span id="index-1"></span><h4>4.1.1. Game Management<a class="headerlink" href="#game-management" title="Permalink to this headline">¶</a></h4>
 <p>Game management is handled by the Game structure. This structure is one of the
 central types provided by the library. It contains the state machine logic,
 holds the underlying game board, and enforces the rules of Tic Tac Toe.
-<a class="reference internal" href="#uml-game-management"><span class="std std-numref">Figure 4.3</span></a> shows the Game structure along with the GameState
-enumeration.</p>
+<a class="reference internal" href="#uml-game-management"><span class="std std-numref">Figure 4.3</span></a> shows the Game structure and other types related
+to management of Tic Tac Toe games.</p>
 <div class="figure align-default" id="id8">
 <span id="uml-game-management"></span><p class="plantuml">
-<img src="_images/plantuml-7c87539368cb8db028298b06f319d1276d9ad336.svg" alt="hide empty fields
+<img src="_images/plantuml-e0bff4a04ca4db57cc17a507407b8e9ac4001cce.svg" alt="hide empty fields
+hide empty methods
 
 class Game {
     +new()
     +board() -&gt; Board
-    +state() -&gt; GameState
-    +can_move(position) -&gt; bool
-    +do_move(position)
-    +start_next_game()
+    +state() -&gt; State
+    +free_positions() -&gt; FreePositions
+    +can_move(Position) -&gt; bool
+    +do_move(Position) -&gt; Result&lt;State, InvalidMoveError&gt;
+    +start_next_game() -&gt; State
 }
 
-enum GameState {
+enum State {
     PlayerXMove
     PlayerOMove
-    PlayerXWin[VictorySets]
-    PlayerOWin[VictorySets]
+    PlayerXWin[HashSet&lt;Position&gt;]
+    PlayerOWin[HashSet&lt;Position&gt;]
     CatsGame
 
     +is_game_over() -&gt; bool
-}"/></p>
-<p class="caption"><span class="caption-number">Figure 4.3 </span><span class="caption-text">The Game structure and GameState enumeration.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+}
+
+class FreePositions &lt;&lt; Iterator &gt;&gt; {
+    +Item: Position
+    +next() -&gt; Option&lt;Item&gt;
+}
+
+class InvalidMoveError &lt;&lt; Error &gt;&gt; {
+
+}
+
+Game *-- Board
+Game *-- State
+FreePositions --[hidden] InvalidMoveError"/></p>
+<p class="caption"><span class="caption-number">Figure 4.3 </span><span class="caption-text">The Game structure contains a State and a Board.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
 <p>A state machine is used determine which player has the next move or when the game
 is over. The state diagram is shown in <a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Figure 4.4</span></a>.</p>
@@ -653,16 +671,22 @@ playing consecutive games to ensure each player gets to start the game.</p>
 </dd>
 <dt>state()</dt><dd><p>Gets the current state of the game.</p>
 </dd>
+<dt>free_positions()</dt><dd><p>Gets an iterator over the free positions that do not have an owner and thus
+can be provided to <code class="docutils literal notranslate"><span class="pre">do_move()</span></code>. When the game is over there are no free
+positions.</p>
+</dd>
 <dt>can_move()</dt><dd><p>Indicates if the square at the indicated position can be marked as owned.
-That is, if <code class="docutils literal notranslate"><span class="pre">can_move()</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> then <code class="docutils literal notranslate"><span class="pre">do_move()</span></code> is guaranteed
-to not panic.</p>
+That is, if <code class="docutils literal notranslate"><span class="pre">can_move()</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> for a given position then
+<code class="docutils literal notranslate"><span class="pre">do_move()</span></code> is guaranteed to be successful.</p>
 </dd>
 <dt>do_move()</dt><dd><p>Marks the indicated square as being owned by the current player. The state
-of the game is updated as a side effect of <code class="docutils literal notranslate"><span class="pre">do_move()</span></code>.
-Panics if the indicated position is already owned or if the game is over.</p>
+of the game is updated as a side effect of <code class="docutils literal notranslate"><span class="pre">do_move()</span></code> and the new state
+of the game is returned. An error is returned if the position is already
+owned or if the game is over.</p>
 </dd>
 <dt>start_next_game()</dt><dd><p>Starts the next game by resetting the state machine ensuring the player who
-went second last game goes first next game.</p>
+went second last game goes first next game. This can be called at any time
+even if the current game is not over. The new state of the game is returned.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
@@ -676,21 +700,21 @@ went second last game goes first next game.</p>
 <li><p><a class="reference internal" href="singlepage.html#ref-players-take-turns-having-first-move-story"><span class="std std-ref">Players Take Turns Having the First Move</span></a></p></li>
 </ul>
 </div>
-<div class="section" id="enum-gamesate">
-<span id="index-1"></span><h5>4.1.1.2. Enum GameSate<a class="headerlink" href="#enum-gamesate" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="enum-sate">
+<span id="index-2"></span><h5>4.1.1.2. Enum Sate<a class="headerlink" href="#enum-sate" title="Permalink to this headline">¶</a></h5>
 <p>The game state enumeration contains a variant for each possible game state
 described in <a class="reference internal" href="#uml-game-state-diagram"><span class="std std-numref">Figure 4.4</span></a> along with some additional helper
 methods.</p>
 <dl class="simple">
-<dt>PlayerXMove</dt><dd><p>Player X’s turn to mark an empty square.</p>
+<dt>PlayerXMove</dt><dd><p>Player X’s turn to mark a free position.</p>
 </dd>
-<dt>PlayerOMove</dt><dd><p>Player O’s turn to mark an empty square.</p>
+<dt>PlayerOMove</dt><dd><p>Player O’s turn to mark a free position.</p>
 </dd>
-<dt>PlayerXWin[VictorySets]</dt><dd><p>Player X has won the game. The victory sets that contributed to the win are
-provided as the enum value.</p>
+<dt>PlayerXWin[HashSet&lt;position&gt;]</dt><dd><p>Player X has won the game. The set of positions that contributed to the win
+are provided as the enum value.</p>
 </dd>
-<dt>PlayerOWin[VictorySets]</dt><dd><p>Player O has won the game. The victory sets that contributed to the win are
-provided as the enum value.</p>
+<dt>PlayerOWin[HashSet&lt;position&gt;]</dt><dd><p>Player O has won the game. The set of positions that contributed to the win
+are provided as the enum value.</p>
 </dd>
 <dt>CatsGame</dt><dd><p>The game has ended in a draw where there are no winners.</p>
 </dd>
@@ -699,61 +723,68 @@ if either player has won or it is a cat’s game then <code class="docutils lite
 otherwise, <code class="docutils literal notranslate"><span class="pre">false</span></code> is returned.</p>
 </dd>
 </dl>
+<p>The set of positions provided to <code class="docutils literal notranslate"><span class="pre">PlayerXWin</span></code> and  <code class="docutils literal notranslate"><span class="pre">PlayerOWin</span></code> contain all
+the positions that contributed to the victory. Usually, there will be three items
+in this set representing a row, column, or diagonal. However, there are some
+situations as <a class="reference internal" href="singlepage.html#fig-example-wining-games"><span class="std std-numref">Figure 3.1</span></a> where more than three squares
+can contribute to a victory.</p>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
-<li><p>Copy</p></li>
+<li><p>Clone</p></li>
 <li><p>Debug</p></li>
+<li><p>Eq</p></li>
 </ul>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="singlepage.html#ref-know-victory-squares-story"><span class="std std-ref">Know Squares that Contributed to Player’s Victory</span></a></p></li>
 </ul>
 </div>
+<div class="section" id="struct-free-positions">
+<span id="index-3"></span><h5>4.1.1.3. Struct Free Positions<a class="headerlink" href="#struct-free-positions" title="Permalink to this headline">¶</a></h5>
+<p>An iterator over free positions that do not have an owner. <a class="footnote-reference brackets" href="#iterators" id="id3">3</a></p>
+<dl class="simple">
+<dt>next()</dt><dd><p>Gets the next free position in the board, or None once all the free positions
+have been returned.</p>
+</dd>
+</dl>
+<p class="rubric">Trait Implementations</p>
+<ul class="simple">
+<li><p>Iterator</p></li>
+</ul>
+</div>
+<div class="section" id="struct-invalid-move-error">
+<span id="index-4"></span><h5>4.1.1.4. Struct Invalid Move Error<a class="headerlink" href="#struct-invalid-move-error" title="Permalink to this headline">¶</a></h5>
+<p>Used to indicate moving to the indicated position is invalid. This could be due
+to the position being owned or the game being over.</p>
+<p class="rubric">Trait Implementations</p>
+<ul class="simple">
+<li><p>Error</p></li>
+</ul>
+</div>
 </div>
 <div class="section" id="board-data">
-<span id="index-2"></span><h4>4.1.2. Board Data<a class="headerlink" href="#board-data" title="Permalink to this headline">¶</a></h4>
-<p>The board structure models a Tic Tac Toe game board. It holds the individual
-squares of the board and provides functions to access and iterate over the
-squares. The board and square structures along with supporting types are shown
-in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Figure 4.5</span></a>.</p>
+<span id="index-5"></span><h4>4.1.2. Board Data<a class="headerlink" href="#board-data" title="Permalink to this headline">¶</a></h4>
+<p>The board structure models a Tic Tac Toe game board. It maps the individual
+positions to owners of the position. It provides functions to access and iterate
+over each position. The board and square structures along with supporting types
+are shown in <a class="reference internal" href="#uml-struct-board"><span class="std std-numref">Figure 4.5</span></a>.</p>
 <div class="figure align-default" id="id10">
 <span id="uml-struct-board"></span><p class="plantuml">
-<img src="_images/plantuml-644d10f229506aa7a9e541ad1d5ec055b4a1cc0d.svg" alt="hide empty fields
+<img src="_images/plantuml-af5974dade9023a5ad6af1455e0efd198ef6ae7e.svg" alt="hide empty fields
 hide empty methods
 
 class Board {
-    +new()
-    +size() -&gt; i32
-    +get(position) -&gt; Square
-    +get_mut(position) -&gt; Square
+    +new(Size)
+    +size() -&gt; Size
+    +contains(Position) -&gt; bool
+    +get(Position) -&gt; Option&lt;Owner&gt;
+    +get_mut(Position) -&gt; Option&lt;mut Owner&gt;
     +iter() -&gt; Iter
-    +free_squares() -&gt; FreeSquares
-    +victory_sets() -&gt; VictorySets
 }
 
-interface std::iter::Iterator {
-    +Item: type
+class Iter &lt;&lt; Iterator &gt;&gt; {
+    +Item: (Position, Owner)
     +next() -&gt; Option&lt;Item&gt;
-}
-
-class Iter {
-    +Item: Square
-}
-std::iter::Iterator &lt;|-- Iter
-
-class FreeSquares {
-    +Item: Square
-}
-std::iter::Iterator &lt;|-- FreeSquares
-
-class VictorySets {
-    +Item: Vec&lt;Square&gt;
-}
-std::iter::Iterator &lt;|-- VictorySets
-
-class Square {
-    +position: Position
-    +owner: Owner
 }
 
 class Position {
@@ -767,11 +798,14 @@ enum Owner {
     None
 }
 
-' Hidden links are used to help with the diagram's layout.
-Board -[hidden] std::iter::Iterator
-VictorySets -[hidden]- Owner
-Square -[hidden] Position
-Position -[hidden] Owner"/></p>
+class Size {
+    +rows: i32
+    +columns: i32
+}
+
+Board &quot;1..*&quot; *-- Position
+Board &quot;1..*&quot; *-- Owner
+Board *-- Size"/></p>
 <p class="caption"><span class="caption-number">Figure 4.5 </span><span class="caption-text">The Board structure and supporting types.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="struct-board">
@@ -779,25 +813,19 @@ Position -[hidden] Owner"/></p>
 <p>Data structure representing the Tic Tac Toe board. Provides multiple ways to
 access individual squares.</p>
 <dl class="simple">
-<dt>new()</dt><dd><p>Constructs a new board.</p>
+<dt>new()</dt><dd><p>Constructs a new board based on the given size. Panics if the size is less
+than one row and one column.</p>
 </dd>
-<dt>size()</dt><dd><p>Gets the size of board, that is the number of rows and columns.
-Note: boards are always square.</p>
+<dt>size()</dt><dd><p>Gets the size of board, that is the number of rows and columns.</p>
 </dd>
-<dt>get()</dt><dd><p>Gets the square at the indicated position. Panics if requested position is
-outside the size of the board.</p>
+<dt>get()</dt><dd><p>Gets the owner of the provided position. None is returned if requested
+position is outside the size of the board.</p>
 </dd>
-<dt>get_mut()</dt><dd><p>Gets a mutable square at the indicated position. Panics under the same
-situations as get().</p>
+<dt>get_mut()</dt><dd><p>Gets a mutable reference ot the owner at the indicated position. This allows
+the owner of the position to be changed. None is returned if requested
+position is outside the size of the board.</p>
 </dd>
 <dt>iter()</dt><dd><p>Gets an iterator that iterates over all the squares in the board.</p>
-</dd>
-<dt>free_squares()</dt><dd><p>Gets an iterator that iterates the squares in the board that do not have an
-owner.</p>
-</dd>
-<dt>victory_sets()</dt><dd><p>Gets an iterator that iterates over all the sets of squares that, if all
-owned by a player, would make the player victorious. E.g. this gets all the
-rows, columns, and both diagonals as slices.</p>
 </dd>
 </dl>
 <p>The board structure also implements the Display trait. This provides a formatted
@@ -822,25 +850,37 @@ debugging purposes. An example of the boards display is shown in
 <li><p>Clone</p></li>
 </ul>
 </div>
-<div class="section" id="struct-square">
-<span id="index-3"></span><h5>4.1.2.2. Struct Square<a class="headerlink" href="#struct-square" title="Permalink to this headline">¶</a></h5>
-<p>Represents an individual square of the game board.</p>
+<div class="section" id="struct-iter">
+<span id="index-6"></span><h5>4.1.2.2. Struct Iter<a class="headerlink" href="#struct-iter" title="Permalink to this headline">¶</a></h5>
+<p>Implements the iterator trait for iterating over all the positions and owner
+pairs of the board.</p>
 <dl class="simple">
-<dt>position</dt><dd><p>The position the square is located at on the board.</p>
+<dt>next()</dt><dd><p>Gets a tuple containing the next position and owner of that position. None
+is returned if the end of the board has been reached.</p>
 </dd>
-<dt>owner</dt><dd><p>The owner of the square.</p>
+</dl>
+</div>
+<div class="section" id="struct-size">
+<span id="index-7"></span><h5>4.1.2.3. Struct Size<a class="headerlink" href="#struct-size" title="Permalink to this headline">¶</a></h5>
+<p>The size structure represents the size of the board in number of rows and columns.</p>
+<dl class="simple">
+<dt>rows</dt><dd><p>The number of rows in the board.</p>
+</dd>
+<dt>columns</dt><dd><p>The number of column in the board.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
 <li><p>Debug</p></li>
-<li><p>Clone</p></li>
 <li><p>Copy</p></li>
+<li><p>Clone</p></li>
+<li><p>From&lt;(usize, usize)&gt;</p></li>
 <li><p>Eq</p></li>
+<li><p>Hash</p></li>
 </ul>
 </div>
 <div class="section" id="struct-position">
-<span id="index-4"></span><h5>4.1.2.3. Struct Position<a class="headerlink" href="#struct-position" title="Permalink to this headline">¶</a></h5>
+<span id="index-8"></span><h5>4.1.2.4. Struct Position<a class="headerlink" href="#struct-position" title="Permalink to this headline">¶</a></h5>
 <p>The position structure represents a specific board position denoted by row and
 column.</p>
 <dl class="simple">
@@ -854,67 +894,59 @@ column.</p>
 <li><p>Debug</p></li>
 <li><p>Copy</p></li>
 <li><p>Clone</p></li>
-<li><p>From&lt;(i32, i32)&gt;</p></li>
+<li><p>From&lt;(usize, usize)&gt;</p></li>
 <li><p>Eq</p></li>
 <li><p>Hash</p></li>
 </ul>
 </div>
 <div class="section" id="enum-owner">
-<span id="index-5"></span><h5>4.1.2.4. Enum Owner<a class="headerlink" href="#enum-owner" title="Permalink to this headline">¶</a></h5>
-<p>The owner enumeration indicates which player owns a square, if any.</p>
+<span id="index-9"></span><h5>4.1.2.5. Enum Owner<a class="headerlink" href="#enum-owner" title="Permalink to this headline">¶</a></h5>
+<p>The owner enumeration indicates which player owns a position, if any.</p>
 <dl class="simple">
-<dt>PlayerX</dt><dd><p>Player X owns the square.</p>
+<dt>PlayerX</dt><dd><p>Player X owns the position.</p>
 </dd>
-<dt>PlayerO</dt><dd><p>Player O owns the square.</p>
+<dt>PlayerO</dt><dd><p>Player O owns the position.</p>
 </dd>
-<dt>None</dt><dd><p>No player owns the square.</p>
+<dt>None</dt><dd><p>No player owns the position.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
 <ul class="simple">
+<li><p>Default</p></li>
 <li><p>Debug</p></li>
 <li><p>Copy</p></li>
 <li><p>Clone</p></li>
 <li><p>Eq</p></li>
+<li><p>Hash</p></li>
 </ul>
 </div>
-<div class="section" id="iterating-over-squares">
-<span id="index-6"></span><h5>4.1.2.5. Iterating Over Squares<a class="headerlink" href="#iterating-over-squares" title="Permalink to this headline">¶</a></h5>
-<p>The board structure provides several ways to iterate over board’s squares. <a class="footnote-reference brackets" href="#iterators" id="id3">3</a>
-Helper types that implement the Iterator trait are used to provide this support.</p>
-<dl class="simple">
-<dt>Iter</dt><dd><p>Iterates over all the squares in the board.</p>
-</dd>
-<dt>FreeSquares</dt><dd><p>Iterates over squares that do not have an owner.</p>
-</dd>
-<dt>VictorySets</dt><dd><p>Iterates over all the sets of squares that, if all owned by a player, would
-make the player victorious.</p>
-</dd>
-</dl>
 </div>
-</div>
-<div class="section" id="ai-moves">
-<span id="index-7"></span><h4>4.1.3. AI Moves<a class="headerlink" href="#ai-moves" title="Permalink to this headline">¶</a></h4>
-<p>The AI move structure represents a move by an AI player. The AI move structure is
-shown in <a class="reference internal" href="#uml-struct-ai-move"><span class="std std-numref">Figure 4.6</span></a>.</p>
+<div class="section" id="ai-opponent">
+<span id="index-10"></span><h4>4.1.3. AI Opponent<a class="headerlink" href="#ai-opponent" title="Permalink to this headline">¶</a></h4>
+<p>The AI opponent structure represents a computer controlled AI player. The AI
+opponent structure is shown in <a class="reference internal" href="#uml-struct-ai-opponent"><span class="std std-numref">Figure 4.6</span></a>.</p>
 <div class="figure align-default" id="id12">
-<span id="uml-struct-ai-move"></span><p class="plantuml">
-<img src="_images/plantuml-589eb37676a3e003d515cbbd37579a04195ff6ff.svg" alt="hide empty fields
+<span id="uml-struct-ai-opponent"></span><p class="plantuml">
+<img src="_images/plantuml-e9a3456759aa2198a0b42861591f3a7fe7568106.svg" alt="hide empty fields
 
-class AIMove {
-    +new(game, mistake_probability)
-    +position() -&gt; Position
+class AIOpponent {
+    +new(mistake_probability)
+    +get_move(Game) -&gt; Option&lt;Position&gt;
 }"/></p>
-<p class="caption"><span class="caption-number">Figure 4.6 </span><span class="caption-text">AI Move structure.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-number">Figure 4.6 </span><span class="caption-text">AI Opponent structure.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
 </div>
 <p>See <a class="reference internal" href="singlepage.html#document-design/ai-algorithms"><span class="doc">Artificial Intelligence Algorithms</span></a> for details on how the AI selects a position.</p>
 <p class="rubric">Member Details</p>
 <dl class="simple">
-<dt>new()</dt><dd><p>Constructs a new AI move using the provided game and a given probability of
-making a mistake. Panics if the game is over.</p>
+<dt>new()</dt><dd><p>Constructs a new AI opponent. The mistake probability indicates how likely
+the AI will fail to consider various situations. A value of 0.0 makes the
+AI play a perfect game. A value of 1.0 causes the AI to always pick a random
+position. Values less than 0.0 are set to 0.0 and values greater than
+1.0 are set to 1.0.</p>
 </dd>
-<dt>position()</dt><dd><p>Gets the position selected by the AI player based on the previously provided
-game.</p>
+<dt>get_move()</dt><dd><p>Gets the position the AI opponent wishes to move based on the provided game.
+None is returned if the game is over. The AI opponent never tries to select
+an invalid position, that is a position that is not free.</p>
 </dd>
 </dl>
 <p class="rubric">Trait Implementations</p>
@@ -963,9 +995,9 @@ for the library’s top level module shows a getting started example that is a s
 yet complete Tic Tac Toe game that uses the APIs provided by the library.
 Additionally, the example code is exercised as part of the library’s tests which
 help developers detect if a public API has changed.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">deny(missing_docs)</span></code> attribute is added to <code class="docutils literal notranslate"><span class="pre">lib.rs</span></code> to ensure all public
-items are documented. Any public item that is not documented causes a compile
-time error.</p>
+<p>The <a class="reference internal" href="singlepage.html#document-design/continuous-integration"><span class="doc">Continuous Integration</span></a> system is configured to ensure all public
+items are documented. Any public item that is not documented causes a build
+error to be reported.</p>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="singlepage.html#ref-stable-library-api-story"><span class="std std-ref">Stable Library API</span></a></p></li>
@@ -1111,10 +1143,10 @@ and returns the best position for the AI to place its mark.</p>
     <span class="c1"># that square. The outcome for each position and the position</span>
     <span class="c1"># is recorded.</span>
     <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">free_positions</span><span class="p">():</span>
          <span class="n">outcomes</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
-            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
-         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">((</span><span class="n">outcome</span><span class="p">,</span> <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">))</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">((</span><span class="n">outcome</span><span class="p">,</span> <span class="n">position</span><span class="p">))</span>
 
     <span class="c1"># Return the best position based on the outcomes.</span>
     <span class="k">return</span> <span class="n">best_position</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
@@ -1144,7 +1176,7 @@ positions is picked at random.</p>
     <span class="c1"># Clone the game so this function can try out the move without</span>
     <span class="c1"># modifying the original game.</span>
     <span class="n">game</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
-    <span class="n">game</span><span class="o">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
 
     <span class="c1"># Check to see if the game is over. If so, return the</span>
     <span class="c1"># outcome of the game from the AI&#39;s perspective,</span>
@@ -1156,9 +1188,9 @@ positions is picked at random.</p>
     <span class="c1"># free squares. Note: the game automatically takes care of</span>
     <span class="c1"># switching between player X&#39;s and player O&#39;s turn.</span>
     <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">free_positions</span><span class="p">():</span>
         <span class="n">outcome</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
-            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
 
     <span class="c1"># The AI assumes the other player plays a perfect game,</span>
@@ -1167,7 +1199,7 @@ positions is picked at random.</p>
 </pre></div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">should_make_mistake()</span></code> function takes the mistake probability and returns
+<p id="index-1">The <code class="docutils literal notranslate"><span class="pre">should_make_mistake()</span></code> function takes the mistake probability and returns
 <code class="docutils literal notranslate"><span class="pre">true</span></code> if the algorithm should skip examining this branch of the tree. The
 <code class="docutils literal notranslate"><span class="pre">Unknown</span></code> outcome is used for parts of the tree that are skipped.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">game_state_to_ai_outcome()</span></code> function is responsible for converting one of
@@ -1210,6 +1242,8 @@ implemented as <code class="docutils literal notranslate"><span class="pre">fn</
 <p>The Tic Tac Toe library uses the <a class="reference external" href="https://travis-ci.com/">Travis CI</a>
 continuous integration system to build and test every commit on a variety of
 platforms. <a class="footnote-reference brackets" href="#multios" id="id1">1</a> This ensures potential problems are found as soon as possible.</p>
+<p>The continuous integration system also enforces additional rules such as requiring
+the project have fully documented public APIs and contain no unused code.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> included in the library’s source code repository tells Travis CI
 how to build and test the code. The <a class="reference external" href="https://docs.travis-ci.com/user/tutorial/">Travis CI Tutorial</a>
 provides a starting point on how to create the <code class="docutils literal notranslate"><span class="pre">.travis.yml</span></code> file.</p>
@@ -1229,7 +1263,7 @@ or failing.</p>
 </dl>
 </div>
 <span id="document-design/benchmarking"></span><div class="section" id="benchmarking">
-<h3>4.6. Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this headline">¶</a></h3>
+<span id="index-0"></span><h3>4.6. Benchmarking<a class="headerlink" href="#benchmarking" title="Permalink to this headline">¶</a></h3>
 <p>The library provides a benchmark of the worst case AI update time allowing
 users of the library to evaluate if the library fits in with their performance
 goals. Cargo contains built in benchmark support: any tests that have the
@@ -1389,7 +1423,7 @@ and on any system with Rust installed by running <code class="docutils literal n
       &copy;2019, James Richey.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
     </div>

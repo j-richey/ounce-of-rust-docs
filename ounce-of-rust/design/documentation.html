@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.2. Documentation &#8212; Ounce of Rust Project Manual Rev. A</title>
+    <title>4.2. Documentation &#8212; Ounce of Rust Project Manual Rev. B</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -49,9 +49,9 @@ for the library’s top level module shows a getting started example that is a s
 yet complete Tic Tac Toe game that uses the APIs provided by the library.
 Additionally, the example code is exercised as part of the library’s tests which
 help developers detect if a public API has changed.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">deny(missing_docs)</span></code> attribute is added to <code class="docutils literal notranslate"><span class="pre">lib.rs</span></code> to ensure all public
-items are documented. Any public item that is not documented causes a compile
-time error.</p>
+<p>The <a class="reference internal" href="continuous-integration.html"><span class="doc">Continuous Integration</span></a> system is configured to ensure all public
+items are documented. Any public item that is not documented causes a build
+error to be reported.</p>
 <p class="rubric">Related Requirements</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../requirements/user-stories.html#ref-stable-library-api-story"><span class="std std-ref">Stable Library API</span></a></p></li>
@@ -181,7 +181,7 @@ describes semantic versioning as understood by Rust.</p>
       &copy;2019, James Richey.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.4. Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Manual Rev. A</title>
+    <title>4.4. Artificial Intelligence Algorithms &#8212; Ounce of Rust Project Manual Rev. B</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -78,10 +78,10 @@ and returns the best position for the AI to place its mark.</p>
     <span class="c1"># that square. The outcome for each position and the position</span>
     <span class="c1"># is recorded.</span>
     <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">free_positions</span><span class="p">():</span>
          <span class="n">outcomes</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
-            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
-         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">((</span><span class="n">outcome</span><span class="p">,</span> <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">))</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">((</span><span class="n">outcome</span><span class="p">,</span> <span class="n">position</span><span class="p">))</span>
 
     <span class="c1"># Return the best position based on the outcomes.</span>
     <span class="k">return</span> <span class="n">best_position</span><span class="p">(</span><span class="n">outcomes</span><span class="p">)</span>
@@ -111,7 +111,7 @@ positions is picked at random.</p>
     <span class="c1"># Clone the game so this function can try out the move without</span>
     <span class="c1"># modifying the original game.</span>
     <span class="n">game</span> <span class="o">=</span> <span class="n">game</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
-    <span class="n">game</span><span class="o">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+    <span class="n">game</span><span class="o">.</span><span class="n">do_move</span><span class="p">(</span><span class="n">position</span><span class="p">)</span>
 
     <span class="c1"># Check to see if the game is over. If so, return the</span>
     <span class="c1"># outcome of the game from the AI&#39;s perspective,</span>
@@ -123,9 +123,9 @@ positions is picked at random.</p>
     <span class="c1"># free squares. Note: the game automatically takes care of</span>
     <span class="c1"># switching between player X&#39;s and player O&#39;s turn.</span>
     <span class="n">outcomes</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">square</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">board</span><span class="p">()</span><span class="o">.</span><span class="n">free_squares</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">game</span><span class="o">.</span><span class="n">free_positions</span><span class="p">():</span>
         <span class="n">outcome</span> <span class="o">=</span> <span class="n">evaluate_position</span><span class="p">(</span>
-            <span class="n">square</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
+            <span class="n">position</span><span class="p">,</span> <span class="n">game</span><span class="p">,</span> <span class="n">ai_player</span><span class="p">,</span> <span class="n">mistake_probability</span><span class="p">)</span>
         <span class="n">outcomes</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">outcome</span><span class="p">)</span>
 
     <span class="c1"># The AI assumes the other player plays a perfect game,</span>
@@ -134,7 +134,7 @@ positions is picked at random.</p>
 </pre></div>
 </div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">should_make_mistake()</span></code> function takes the mistake probability and returns
+<p id="index-1">The <code class="docutils literal notranslate"><span class="pre">should_make_mistake()</span></code> function takes the mistake probability and returns
 <code class="docutils literal notranslate"><span class="pre">true</span></code> if the algorithm should skip examining this branch of the tree. The
 <code class="docutils literal notranslate"><span class="pre">Unknown</span></code> outcome is used for parts of the tree that are skipped.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">game_state_to_ai_outcome()</span></code> function is responsible for converting one of
@@ -251,7 +251,7 @@ implemented as <code class="docutils literal notranslate"><span class="pre">fn</
       &copy;2019, James Richey.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
