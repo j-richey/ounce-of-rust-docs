@@ -47,14 +47,14 @@
 
 
 ..  toctree::
-    :maxdepth: 1
+    :maxdepth: 2
     :numbered:
 
     introduction
-    overview
+    gameplay
     gui
     environments
-    license-compliance
+    misc/index
     technical-design
     glossary
     references

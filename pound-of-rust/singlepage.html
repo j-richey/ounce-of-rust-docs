@@ -38,19 +38,451 @@
 <h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="purpose-of-this-document">
 <h2><span class="section-number">1.1. </span>Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h2>
+<p>This is the game design document for Tic Tac Toe. This document describes in
+detail the he objectives, requirements, and design considerations of the game
+providing a central location for this information. This is invaluable for
+understanding the game’s scope, planning the project milestones, and creating
+the games assets.</p>
+<p>Anyone who is involved with the game’s development is encouraged to read this
+document and keep a copy handy.</p>
 </div>
-<div class="section" id="scope-of-the-project">
-<h2><span class="section-number">1.2. </span>Scope of the Project<a class="headerlink" href="#scope-of-the-project" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scope-of-the-game">
+<h2><span class="section-number">1.2. </span>Scope of the Game<a class="headerlink" href="#scope-of-the-game" title="Permalink to this headline">¶</a></h2>
+<p>Tic Tac Toe is a game of strategy where two players, X and O, take turns placing
+their mark in a 3 x 3 gird. The first player to get three marks in a row,
+column, or diagonal wins the game.</p>
+<p>This version of Tic Tac Toe is an unique take on the classic game. Players of
+all ages battle the computer or each other in a variety of stunning environments.
+Each environment tells part of the story of Tic Tac Toe from the past, present,
+and future. Each environment has a strong visual theme and complementary
+soundtrack.</p>
+<p>Tic Tac Toe runs on Windows, Mac, and Linux and launches Summer 2020.</p>
 </div>
 <div class="section" id="overview-of-this-document">
 <h2><span class="section-number">1.3. </span>Overview of this Document<a class="headerlink" href="#overview-of-this-document" title="Permalink to this headline">¶</a></h2>
 </div>
+<div class="section" id="project-objectives">
+<h2><span class="section-number">1.4. </span>Project Objectives<a class="headerlink" href="#project-objectives" title="Permalink to this headline">¶</a></h2>
+<p>Creation of the Tic Tac Toe game described in this document is part of the
+Pound of Rust project. This section describes the project’s objectives.</p>
+<div class="section" id="create-tic-tac-toe-game-with-rust">
+<h3><span class="section-number">1.4.1. </span>Create Tic Tac Toe Game with Rust<a class="headerlink" href="#create-tic-tac-toe-game-with-rust" title="Permalink to this headline">¶</a></h3>
+<p>The main deliverable of this project is the Tic Tac Toe game for Windows, Mac,
+and Linux. This project is the follow-up to the Ounce of Rust project <a class="footnote-reference brackets" href="#ounceofrust" id="id1">1</a>
+that resulted in the creation of a Rust based Tic Tac Toe logic library,
+<code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code>. <a class="footnote-reference brackets" href="#opentttlib" id="id2">2</a></p>
+<p>In addition to creating a fun game, the project provides more hand on experience
+using Rust and is a showcase for <code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code>.</p>
 </div>
-<span id="document-overview"></span><div class="section" id="overview">
-<h1><span class="section-number">2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="provide-free-of-charge-and-under-an-open-source-license">
+<span id="ref-objective-free-of-charge"></span><h3><span class="section-number">1.4.2. </span>Provide Free of Charge and Under an Open Source License<a class="headerlink" href="#provide-free-of-charge-and-under-an-open-source-license" title="Permalink to this headline">¶</a></h3>
+<p>Tic Tac Toe and all future releases of the game are free, open source, and
+contain no advertisements or trackers. The game is released under a permissive
+open source license and its code is available from a public repository
+such as <a class="reference external" href="https://github.com/">https://github.com/</a>.</p>
+<p>Many of today’s games casual games are released for free, but include
+questionable monetization models such as microtransactions, pay-to-win schemes,
+advertisements, and personal data harvesters. Tic Tac Toe stands apart from
+these games by respecting player’s who choose to spend their valuable time
+playing the game.</p>
 </div>
-<span id="document-gui"></span><div class="section" id="user-interface-and-controls">
-<h1><span class="section-number">3. </span>User Interface and Controls<a class="headerlink" href="#user-interface-and-controls" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="release-by-rustconf-2020">
+<h3><span class="section-number">1.4.3. </span>Release by RustConf 2020<a class="headerlink" href="#release-by-rustconf-2020" title="Permalink to this headline">¶</a></h3>
+<p>Tic Tac Toe’s initial release is scheduled to coincide with RustConf 2020
+on August 21, 2020. RustConf is the annual Rust developers conference; since
+Tic Tac Toe is developed in Rust this makes an excellent time to launch a Rust
+based game. <a class="footnote-reference brackets" href="#rustconf" id="id3">3</a></p>
+<p>To help meet the target release date, the initial release of the game might
+contain a subset of the environments described in this document.</p>
+</div>
+<div class="section" id="easily-expandable-and-modifiable">
+<h3><span class="section-number">1.4.4. </span>Easily Expandable and Modifiable<a class="headerlink" href="#easily-expandable-and-modifiable" title="Permalink to this headline">¶</a></h3>
+<p>Playing Tic Tac Toe in a variety of environments is a large part of what sets
+this version of Tic Tac Toe apart from others. The game is designed such that
+developers can easily add new environments. This allows developers to focus
+their time and efforts creating stunning environments. Additionally, this
+lowers the barrier of entry for users who are interested in modifying the game.
+Finally, this allows quick turnaround of future releases of the game.</p>
+<p>Automated tools, guides, checklists, and detailed documentation are some ways
+that can help development speed.</p>
+</div>
+<div class="section" id="build-risk-reduction-prototype">
+<h3><span class="section-number">1.4.5. </span>Build Risk Reduction Prototype<a class="headerlink" href="#build-risk-reduction-prototype" title="Permalink to this headline">¶</a></h3>
+<p>The development team creating Tic Tac Toe is new to the Rust programming language
+and the available Rust libraries for game development. To help mitigate this
+risk, a throwaway prototype game is created early in the project that explores
+various technical aspects.</p>
+<p>Using the lessons learned from the prototype also helps the development team
+design a code base that is easily expandable and modifiable per the above
+objective.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="ounceofrust"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>For details on the Ounce of Rust project see the
+<a class="reference external" href="https://j-richey.github.io/project-documentation/ounce-of-rust/">Ounce of Rust Project Manual</a></p>
+</dd>
+<dt class="label" id="opentttlib"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">open_ttt_lib</span></code> is available at <a class="reference external" href="https://crates.io/crates/open_ttt_lib">https://crates.io/crates/open_ttt_lib</a>
+and source code is hosted at <a class="reference external" href="https://github.com/j-richey/open_ttt_lib">https://github.com/j-richey/open_ttt_lib</a></p>
+</dd>
+<dt class="label" id="rustconf"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>For details on RustConf see their website: <a class="reference external" href="https://rustconf.com/">https://rustconf.com/</a></p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+<span id="document-gameplay"></span><div class="section" id="gameplay">
+<h1><span class="section-number">2. </span>Gameplay<a class="headerlink" href="#gameplay" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="rules-of-tic-tac-toe">
+<h2><span class="section-number">2.1. </span>Rules of Tic Tac Toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h2>
+<p>Tic Tac Toe is a game of strategy where two players, X and O, take turns placing
+their mark in a 3 x 3 gird. The rules for Tic Tac Toe used for each game mode
+are as follows:</p>
+<ol class="arabic">
+<li><p>Play occurs on a board composed of a 3 x 3 grid of squares. The board starts
+empty with no marks.</p></li>
+<li><p>The first player places their mark in one of the grid’s squares. Traditionally,
+the mark is the letter <em>X</em>.</p></li>
+<li><p>The second player places their mark in one of the grid’s empty squares. A square
+that already contains a mark cannot be updated or altered. Traditionally, the
+second player uses the letter <em>O</em> as their mark.</p></li>
+<li><p>Turns alternate between the players until the game is over.</p></li>
+<li><p>The first player to get three of their marks in a line wins the game.
+That is: they have three marks in a row, column, or diagonally.
+Examples of winning games are shown in <a class="reference internal" href="#fig-example-wining-games"><span class="std std-numref">Figure 2.1</span></a>.</p>
+<div class="figure align-default" id="id2">
+<span id="fig-example-wining-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-wining-games.svg" /><p class="caption"><span class="caption-number">Figure 2.1 </span><span class="caption-text">Examples of winning Tic Tac Toe games showing player X winning by getting
+three marks a row, diagonal, and column. The red line shows the squares
+that contributed to the win. Notice that it is possible to get multiple
+sets of three marks in a row.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>The game ends in a draw, known as a <span class="target" id="index-0"></span>cat’s game, if no more empty
+squares remain and a player has failed to get three marks in a line.
+Examples of cat’s games are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Figure 2.2</span></a>.</p>
+<div class="figure align-default" id="id3">
+<span id="fig-example-cats-games"></span><img alt="Examples of winning Tic Tac Toe games." src="_images/example-cats-games.svg" /><p class="caption"><span class="caption-number">Figure 2.2 </span><span class="caption-text">Examples of Tic Tac Toe games ending in a cat’s game. No player managed
+to get three marks in a line.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+</li>
+<li><p>The steps above are repeated for a series of games. The starting player
+alternates between games, that is the second game player <em>O</em> gets to make
+the first move.</p></li>
+</ol>
+</div>
+<div class="section" id="one-player-mode">
+<h2><span class="section-number">2.2. </span>One Player Mode<a class="headerlink" href="#one-player-mode" title="Permalink to this headline">¶</a></h2>
+<p>In one player mode the player battles a computer controlled opponent. There are
+three difficulty settings: <strong>easy</strong>, <strong>medium</strong>, and <strong>hard</strong>.</p>
+<p>Easy difficulty is targeted at players who are new to Tic Tac Toe and/or
+computer games. The computer picks random squares allowing players to learn the
+game’s controls and rules.</p>
+<p>Medium difficulty is for players who have some experience with Tic Tac Toe. The
+computer provides a challenge to the player but games are still winnable.</p>
+<p>At hard difficulty the computer plays almost perfect games. The player must
+capitalize on rare mistakes made by the computer to win. This is the recommended
+difficulty for experienced Tic Tac Toe players.</p>
+</div>
+<div class="section" id="two-player-mode">
+<h2><span class="section-number">2.3. </span>Two Player Mode<a class="headerlink" href="#two-player-mode" title="Permalink to this headline">¶</a></h2>
+<p>In two player mode two players take turns placing their marks according to the
+rules described above.</p>
+</div>
+<div class="section" id="speedrun-mode">
+<h2><span class="section-number">2.4. </span>Speedrun Mode<a class="headerlink" href="#speedrun-mode" title="Permalink to this headline">¶</a></h2>
+<p>A speedrun mode provides an additional challenge for experienced players.
+Players battle a flawless computer opponent through 10 environments completing
+the games as fast as possible. At the end of the run the total time is
+displayed along with the previous best times. <a class="footnote-reference brackets" href="#timecalculation" id="id1">1</a></p>
+<p>The player is disqualified and the run halted if the player loses a game.
+Since the computer opponent never makes a mistake, each game in the speedrun
+ends in a cat’s game. In other words, each speedrun requires the same total
+number of moves to complete.</p>
+<p>Unnecessary animations are disabled in speedrun mode so they do not get in the
+way of the speedup gameplay. Additionally, speedrun mode has its own dramatic
+music that replaces the music tracks of each environment — environments are
+played so fast there is not sufficient time to appreciate their individual sound
+tracks.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="timecalculation"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The time it takes the computer to pick a square is not counted
+towards the player’s time. This ensures times are consistent between
+slower and faster computers.</p>
+</dd>
+</dl>
+</div>
+</div>
+<span id="document-gui"></span><div class="section" id="user-interface">
+<h1><span class="section-number">3. </span>User Interface<a class="headerlink" href="#user-interface" title="Permalink to this headline">¶</a></h1>
+<p>This chapter describes the user interface of Tic Tac Toe. This includes the main
+game board, controls, and all game menus.</p>
+<div class="section" id="game-board">
+<h2><span class="section-number">3.1. </span>Game Board<a class="headerlink" href="#game-board" title="Permalink to this headline">¶</a></h2>
+<p>The game board is where players spend the majority of their time. Additionally,
+the game loads directly to this view ensuring players get to gameplay as quickly
+as possible without menus getting in the way. <a class="footnote-reference brackets" href="#firstview" id="id1">1</a> A concept drawing of
+the game board is shown in <a class="reference internal" href="#fig-ui-game-board"><span class="std std-numref">Figure 3.1</span></a>.</p>
+<div class="figure align-default" id="id5">
+<span id="fig-ui-game-board"></span><img alt="_images/game-board.svg" src="_images/game-board.svg" /><p class="caption"><span class="caption-number">Figure 3.1 </span><span class="caption-text">Game board concept drawing.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>The game board contains the following items of interest:</p>
+<ol class="arabic simple">
+<li><p>The marks and grid. The appearance of these depend on the current environment
+being played. However, the marks for all environments use the same center
+point and have the same selectable hotspot. This ensures consistency between
+environments when using the mouse.</p></li>
+<li><p>The background of the game board depends on the current environment.</p></li>
+<li><p>The hamburger button opens the <a class="reference internal" href="#ref-ui-main-menu"><span class="std std-ref">Main Menu</span></a>.</p></li>
+<li><p>Status text indicates who gets to make the next move and the outcome of
+the game. Once the game is over buttons to play the next game or return to
+the menu also appear in this area. The text is outlined or shaded such that
+it is visible over any possible background.</p></li>
+</ol>
+<p>A major focus of the game is playing Tic Tac Toe in variety of stunning
+environments that control how the marks, grid, and background look. Thus, a
+minimalist approach is used for the game board view. The only UI widgets are a
+menu button and some status text.</p>
+<div class="section" id="speedrun">
+<span id="ref-ui-speedrun-game-board"></span><h3><span class="section-number">3.1.1. </span>Speedrun<a class="headerlink" href="#speedrun" title="Permalink to this headline">¶</a></h3>
+<p>Additional UI widgets are added to the game board to facilitate speedrun mode.
+<a class="reference internal" href="#fig-ui-speedrun-game-board"><span class="std std-numref">Figure 3.2</span></a> shows the speedrun gameboard.</p>
+<div class="figure align-default" id="id6">
+<span id="fig-ui-speedrun-game-board"></span><img alt="_images/speedrun-game-board.svg" src="_images/speedrun-game-board.svg" /><p class="caption"><span class="caption-number">Figure 3.2 </span><span class="caption-text">Speedrun game board concept drawing.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+<p>Items of interest are:</p>
+<ol class="arabic simple">
+<li><p>The speedrun status display prominently shows the elapsed time of the run.
+This helps give the player a sense of urgency and lets them see if they are
+on track to get a best time.</p></li>
+<li><p>Splits for each game are additionally displayed. Dashes or other marks are
+used for games that have yet to be played. This allows players to quickly
+visually gauge how many games remain.</p></li>
+<li><p>Opening the game’s menu ends the run. The run is disqualified.</p></li>
+<li><p>Status text indicates the current turn. If the player loses a game, the
+status text notes that the run is disqualified and the player is invited
+to try the run again or return to the Speedrun menu. <a class="footnote-reference brackets" href="#speedrunloss" id="id2">2</a></p></li>
+</ol>
+<p>When a game is competed successfully the next game starts immediately allowing
+players to go as fast as possible through the games.</p>
+</div>
+</div>
+<div class="section" id="controls">
+<h2><span class="section-number">3.2. </span>Controls<a class="headerlink" href="#controls" title="Permalink to this headline">¶</a></h2>
+<p>The game can fully played with either a mouse or keyboard. New or casual players
+may prefer to use a mouse where as speedrun players may prefer to use the
+keyboard.</p>
+<div class="section" id="mouse">
+<h3><span class="section-number">3.2.1. </span>Mouse<a class="headerlink" href="#mouse" title="Permalink to this headline">¶</a></h3>
+<p>Mouse left click is used to select free squares and menu press buttons. Right
+click and other mouse buttons are unused.</p>
+</div>
+<div class="section" id="key-bindings">
+<h3><span class="section-number">3.2.2. </span>Key Bindings<a class="headerlink" href="#key-bindings" title="Permalink to this headline">¶</a></h3>
+<p>The game supports being played using the keyboard. <a class="reference internal" href="#fig-ui-keybindings"><span class="std std-numref">Figure 3.3</span></a>
+shows the game’s keybindings for selecting squares.</p>
+<div class="figure align-default" id="id7">
+<span id="fig-ui-keybindings"></span><img alt="_images/keybindings.svg" src="_images/keybindings.svg" /><p class="caption"><span class="caption-number">Figure 3.3 </span><span class="caption-text">Keybindings for selecting squares.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<p>The <kbd class="kbd docutils literal notranslate">numpad</kbd> keys are available for right handed players and the <kbd class="kbd docutils literal notranslate">QWE</kbd>
+set of keys are available for left handed players.</p>
+<p>The <kbd class="kbd docutils literal notranslate">arrow</kbd>, <kbd class="kbd docutils literal notranslate">ESC</kbd>, <kbd class="kbd docutils literal notranslate">Enter</kbd>, and <kbd class="kbd docutils literal notranslate">Space</kbd> keys
+allow users to navigate the game’s menus.</p>
+</div>
+</div>
+<div class="section" id="menus">
+<h2><span class="section-number">3.3. </span>Menus<a class="headerlink" href="#menus" title="Permalink to this headline">¶</a></h2>
+<p>The Tic Tac Toe menus allow players to select the various game modes and to
+customize the game. The <a class="reference internal" href="#ref-ui-screen-flowchart"><span class="std std-ref">Screen Flowchart</span></a> provides details on how
+the menus and views connect.</p>
+<p>Each menu is described in the following sections.</p>
+<div class="section" id="general">
+<h3><span class="section-number">3.3.1. </span>General<a class="headerlink" href="#general" title="Permalink to this headline">¶</a></h3>
+<p>Unless otherwise noted, the information in this section applies to all menus.</p>
+<p>The menus have translucent or blurred background that show the active
+environment. This includes any animations or environment FX. Additionally, the
+environment’s sound track continues to play while the menus are open.</p>
+</div>
+<div class="section" id="main-menu">
+<span id="ref-ui-main-menu"></span><h3><span class="section-number">3.3.2. </span>Main Menu<a class="headerlink" href="#main-menu" title="Permalink to this headline">¶</a></h3>
+<p>The main menu provides a central point for users to navigate to the game’s
+various modes and settings. <a class="reference internal" href="#fig-ui-main-menu"><span class="std std-numref">Figure 3.4</span></a> shows the main menu.</p>
+<div class="figure align-default" id="id8">
+<span id="fig-ui-main-menu"></span><img alt="_images/main-menu.svg" src="_images/main-menu.svg" /><p class="caption"><span class="caption-number">Figure 3.4 </span><span class="caption-text">Main menu concept drawing.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple">
+<li><p>The title of the game is prominently displayed at the top of the menu.</p></li>
+<li><p>The <span class="guilabel">Resume Game</span> button is visible if there is a current game in
+progress. Selecting it closes the menu and returns the player to the game.</p></li>
+<li><p>New game buttons. The <span class="guilabel">Single-player</span> button navigates to the
+while the <a class="reference internal" href="#ref-ui-single-player"><span class="std std-ref">Single-player</span></a> screen while the
+<span class="guilabel">Multiplayer</span> button immediately starts a new multiplayer game.</p></li>
+<li><p>Miscellaneous buttons to open the <a class="reference internal" href="#ref-ui-options"><span class="std std-ref">Options</span></a>,
+<a class="reference internal" href="#ref-ui-credits"><span class="std std-ref">Credits</span></a>, <a class="reference internal" href="#ref-ui-help"><span class="std std-ref">Help</span></a> screens.</p></li>
+<li><p><span class="guilabel">Exit</span> closes the game and returns the user to their desktop.</p></li>
+</ol>
+</div>
+<div class="section" id="single-player">
+<span id="ref-ui-single-player"></span><h3><span class="section-number">3.3.3. </span>Single-player<a class="headerlink" href="#single-player" title="Permalink to this headline">¶</a></h3>
+<p>The single-player menu, shown in <a class="reference internal" href="#fig-ui-single-player"><span class="std std-numref">Figure 3.5</span></a>, allows players
+start new single-player games.</p>
+<div class="figure align-default" id="id9">
+<span id="fig-ui-single-player"></span><img alt="_images/single-player.svg" src="_images/single-player.svg" /><p class="caption"><span class="caption-number">Figure 3.5 </span><span class="caption-text">Single-player menu concept drawing.</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple">
+<li><p>The <span class="guilabel">Play as</span> selector allows players to select the mark they
+wish to use throughout the games.</p></li>
+<li><p>The difficulty buttons select the difficulty then start a new single player
+game. Selecting one of these buttons closes the menu and launches a new
+single-player game with the requested settings.</p></li>
+<li><p>The <span class="guilabel">Speedrun</span> button navigates to the <a class="reference internal" href="#ref-ui-speedrun"><span class="std std-ref">Speedrun</span></a> menu.</p></li>
+<li><p>The <span class="guilabel">Back</span> button returns to the main menu.</p></li>
+</ol>
+</div>
+<div class="section" id="ref-ui-speedrun">
+<span id="id3"></span><h3><span class="section-number">3.3.4. </span>Speedrun<a class="headerlink" href="#ref-ui-speedrun" title="Permalink to this headline">¶</a></h3>
+<p>The speedrun menu allows players to start a new speedrun and view best times of
+previous runs. <a class="reference internal" href="#fig-ui-speedrun-start"><span class="std std-numref">Figure 3.6</span></a> shows the speedrun menu.</p>
+<div class="figure align-default" id="id10">
+<span id="fig-ui-speedrun-start"></span><img alt="_images/speedrun-start.svg" src="_images/speedrun-start.svg" /><p class="caption"><span class="caption-number">Figure 3.6 </span><span class="caption-text">Speedrun menu concept drawing.</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
+</div>
+<p>The speedrun menu contains the following items of interest:</p>
+<ol class="arabic simple">
+<li><p>Instructional text that provides a short overview of the speedrun rules.
+Once the run is completed this text is replaced with the run’s result and
+invites the player to play again.</p></li>
+<li><p><span class="guilabel">Start</span> begins the run. This navigates to the
+<a class="reference internal" href="#ref-ui-speedrun-game-board"><span class="std std-ref">Speedrun</span></a> game board.</p></li>
+<li><p>Table of previous best times sorted from fastest to slowest.</p></li>
+<li><p>The <span class="guilabel">Back</span> button returns to the main menu.</p></li>
+</ol>
+<p>When the speedrun begins, the game board is shown, a prominent three second
+countdown is show, and dramatic music starts to swell. Once the timer elapses
+the run begins.</p>
+<p>Once the run is completed the speedrun menu is displayed and shows the result
+of the run.</p>
+<p>If the player gets a new best time the dialog shown in
+<a class="reference internal" href="#fig-ui-speedrun-best-time"><span class="std std-numref">Figure 3.7</span></a> is presented to the user.</p>
+<div class="figure align-default" id="id11">
+<span id="fig-ui-speedrun-best-time"></span><img alt="_images/speedrun-best-time.svg" src="_images/speedrun-best-time.svg" /><p class="caption"><span class="caption-number">Figure 3.7 </span><span class="caption-text">Speedrun best time dialog concept drawing.</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
+</div>
+<p>The best time dialog contains the following items:</p>
+<ol class="arabic simple">
+<li><p>The speedrun time time.</p></li>
+<li><p>The <span class="guilabel">Initials</span> text box allows players to enter their initials
+so their best time is differentiated from other players that happen to use
+the same computer. The field remembers the last set of initials entered to
+save players from having to retype their initials.</p></li>
+<li><p>The <span class="guilabel">Close</span> button hides the dialog allowing the speedrun menu
+to be fully visible.</p></li>
+</ol>
+</div>
+<div class="section" id="options">
+<span id="ref-ui-options"></span><h3><span class="section-number">3.3.5. </span>Options<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>The options screen contains all of the game’s player configurable options.
+<a class="reference internal" href="#fig-ui-options"><span class="std std-numref">Figure 3.8</span></a> shows this screen.</p>
+<div class="figure align-default" id="id12">
+<span id="fig-ui-options"></span><img alt="_images/options.svg" src="_images/options.svg" /><p class="caption"><span class="caption-number">Figure 3.8 </span><span class="caption-text">Options screen concept drawing.</span><a class="headerlink" href="#id12" title="Permalink to this image">¶</a></p>
+</div>
+<ol class="arabic simple">
+<li><p>Music and Sound FX sliders to control the volume of these items. This allows
+players to mute some or all of the in-game sounds.</p></li>
+<li><p><span class="guilabel">Reset to Defaults</span> rests all options to their default values.</p></li>
+<li><p>The <span class="guilabel">Back</span> button returns to the main menu.</p></li>
+</ol>
+</div>
+<div class="section" id="credits">
+<span id="ref-ui-credits"></span><h3><span class="section-number">3.3.6. </span>Credits<a class="headerlink" href="#credits" title="Permalink to this headline">¶</a></h3>
+<p>The credits screen displays information the game’s developers and helps fulfill
+the <a class="reference internal" href="singlepage.html#document-misc/license-compliance"><span class="doc">License Compliance</span></a> obligations. The credits screen is shown in
+<a class="reference internal" href="#fig-ui-credits"><span class="std std-numref">Figure 3.9</span></a>.</p>
+<div class="figure align-default" id="id13">
+<span id="fig-ui-credits"></span><img alt="_images/credits.svg" src="_images/credits.svg" /><p class="caption"><span class="caption-number">Figure 3.9 </span><span class="caption-text">Credits screen concept drawing.</span><a class="headerlink" href="#id13" title="Permalink to this image">¶</a></p>
+</div>
+<p>The credits screen contains the following items:</p>
+<ol class="arabic simple">
+<li><p>Scrolling list of developer names, third party assets, and other information
+about the game.</p></li>
+<li><p><span class="guilabel">Back</span> returns to the <a class="reference internal" href="#ref-ui-main-menu"><span class="std std-ref">Main Menu</span></a>.</p></li>
+</ol>
+<p>The credits screen uses a different background and soundtrack than the other
+menus. The background consists of one or more Tic Tac Toe games being played
+in a variety of environments. Each environment is clearly visible — blurring
+and other effects are not used on this screen. The environments are changed
+several times per game. This showcases the many environments of the game.</p>
+<p>The credits screen has its own sound track. The music and sound FX of the
+individual environments are not used.</p>
+<p>Once all of the credits have played the screen remains open with Tic Tac Toe
+games being played in the background.</p>
+</div>
+<div class="section" id="loading-screen">
+<span id="ref-ui-loading-screen"></span><h3><span class="section-number">3.3.7. </span>Loading Screen<a class="headerlink" href="#loading-screen" title="Permalink to this headline">¶</a></h3>
+<p>If necessary for technical reasons, the loading screen provides feedback to the
+player while assets are loaded. This screen is only shown when the game first
+loads.</p>
+</div>
+<div class="section" id="help">
+<span id="ref-ui-help"></span><h3><span class="section-number">3.3.8. </span>Help<a class="headerlink" href="#help" title="Permalink to this headline">¶</a></h3>
+<p>The help screen provides information on how to play Tic Tac Toe, the application
+version, how to report bugs, and other information. All information is hosted
+locally; no internet access is required. <a class="footnote-reference brackets" href="#localhelp" id="id4">3</a></p>
+</div>
+</div>
+<div class="section" id="screen-flowchart">
+<span id="ref-ui-screen-flowchart"></span><h2><span class="section-number">3.4. </span>Screen Flowchart<a class="headerlink" href="#screen-flowchart" title="Permalink to this headline">¶</a></h2>
+<p>The flow chart in <a class="reference internal" href="#uml-screen-flowchart"><span class="std std-numref">Figure 3.10</span></a> visually shows how the screens
+and menus are connected.</p>
+<div class="figure align-default" id="id14">
+<span id="uml-screen-flowchart"></span><p class="plantuml">
+<img src="_images/plantuml-830cad60a9cebd638e2d4c6feb7d3a9d8763a293.svg" alt="hide empty description
+
+' Create aliases for state names with spaces
+state &quot;Tic Tac Toe Board&quot; as game_board
+state &quot;Main Menu&quot; as main_menu
+state &quot;Single-player&quot; as singleplayer
+state &quot;Speedrun&quot; as speedrun
+state &quot;Speedrun Board&quot; as speedrun_game_board
+state &quot;New Best Time!&quot; as speedrun_best_time
+
+Loading --&gt; game_board
+game_board --&gt; main_menu : Menu / ESC
+
+main_menu --&gt; game_board : Resume Game
+main_menu --&gt; game_board : Multiplayer
+main_menu --&gt; singleplayer : Single-player
+main_menu --&gt; Help : Help
+
+singleplayer --&gt; game_board : Easy \n Medium \n Hard
+singleplayer --&gt; speedrun : Speedrun
+singleplayer --&gt; main_menu : Back
+
+speedrun --&gt; singleplayer : Back
+speedrun --&gt; speedrun_game_board : Start
+speedrun_game_board --&gt; speedrun : Non Best Time
+speedrun_game_board --&gt; speedrun_best_time
+speedrun_best_time --&gt; speedrun : Close"/></p>
+<p class="caption"><span class="caption-number">Figure 3.10 </span><span class="caption-text">Connections between Tic Tac Toe’s menus and screens.</span><a class="headerlink" href="#id14" title="Permalink to this image">¶</a></p>
+</div>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="firstview"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The loaded game is a single-player game using the last
+difficulty and player mark settings. The defaults for these are Medium
+difficulty and X marks.</p>
+</dd>
+<dt class="label" id="speedrunloss"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>If the player loses a speedrun game, the board remains
+visible so the player can see where they made mistakes. This allows them
+to adjust their strategy for next time.</p>
+</dd>
+<dt class="label" id="localhelp"><span class="brackets"><a class="fn-backref" href="#id4">3</a></span></dt>
+<dd><p>The <a class="reference internal" href="singlepage.html#ref-objective-free-of-charge"><span class="std std-ref">Provide Free of Charge and Under an Open Source License</span></a> objective mentions not
+tracking players. Websites often contain trackers, advertisements, and
+other items that violate this objective.</p>
+</dd>
+</dl>
+</div>
 </div>
 <span id="document-environments"></span><div class="section" id="environments">
 <h1><span class="section-number">4. </span>Environments<a class="headerlink" href="#environments" title="Permalink to this headline">¶</a></h1>
@@ -59,7 +491,7 @@
 <div class="section" id="notebook-paper-and-pencil">
 <h3><span class="section-number">4.1.1. </span>Notebook Paper and Pencil<a class="headerlink" href="#notebook-paper-and-pencil" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id1">
-<a class="reference internal image-reference" href="_images/paper.jpg"><img alt="_images/paper.jpg" src="_images/paper.jpg" style="width: 3in;" /></a>
+<a class="reference internal image-reference" href="_images/paper.jpg"><img alt="_images/paper.jpg" src="_images/paper.jpg" style="height: 3in;" /></a>
 <p class="caption"><span class="caption-number">Figure 4.1 </span><span class="caption-text">Concept art for the Notebook Paper and Pencil environment.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
@@ -91,11 +523,11 @@
 <li><p>Store receipt background</p></li>
 </ul>
 </div>
-<div class="section" id="neon-sign">
-<h3><span class="section-number">4.1.3. </span>Neon Sign<a class="headerlink" href="#neon-sign" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="neon-lights">
+<h3><span class="section-number">4.1.3. </span>Neon Lights<a class="headerlink" href="#neon-lights" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id2">
-<a class="reference internal image-reference" href="_images/neon.jpg"><img alt="_images/neon.jpg" src="_images/neon.jpg" style="width: 3in;" /></a>
-<p class="caption"><span class="caption-number">Figure 4.2 </span><span class="caption-text">Concept art for the Neon Sign environment.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<a class="reference internal image-reference" href="_images/neon.jpg"><img alt="_images/neon.jpg" src="_images/neon.jpg" style="height: 3in;" /></a>
+<p class="caption"><span class="caption-number">Figure 4.2 </span><span class="caption-text">Concept art for the Neon Lights environment.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
 <dt>Color Scheme</dt><dd><p>luminescent orange, pink, blue</p>
@@ -108,7 +540,7 @@
 <div class="section" id="early-computer">
 <h3><span class="section-number">4.1.4. </span>Early Computer<a class="headerlink" href="#early-computer" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id3">
-<a class="reference internal image-reference" href="_images/computer.png"><img alt="_images/computer.png" src="_images/computer.png" style="width: 3in;" /></a>
+<a class="reference internal image-reference" href="_images/computer.png"><img alt="_images/computer.png" src="_images/computer.png" style="height: 3in;" /></a>
 <p class="caption"><span class="caption-number">Figure 4.3 </span><span class="caption-text">Concept art for the Early Computer environment.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
@@ -127,13 +559,13 @@
 <div class="section" id="sidewalk">
 <h3><span class="section-number">4.1.5. </span>Sidewalk<a class="headerlink" href="#sidewalk" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id4">
-<a class="reference internal image-reference" href="_images/sidewalk.jpg"><img alt="_images/sidewalk.jpg" src="_images/sidewalk.jpg" style="width: 3in;" /></a>
+<a class="reference internal image-reference" href="_images/sidewalk.jpg"><img alt="_images/sidewalk.jpg" src="_images/sidewalk.jpg" style="height: 3in;" /></a>
 <p class="caption"><span class="caption-number">Figure 4.4 </span><span class="caption-text">Concept art for the Sidewalk environment.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <dl class="simple">
 <dt>Color Scheme</dt><dd><p>pastels including blue, yellow, and orange on gray</p>
 </dd>
-<dt>Music Theme</dt><dd><p>Fun, upbeat</p>
+<dt>Music Theme</dt><dd><p>Hip Hob / R&amp;B</p>
 </dd>
 </dl>
 <p>TODO</p>
@@ -154,8 +586,90 @@
 </div>
 </div>
 </div>
-<span id="document-license-compliance"></span><div class="section" id="license-compliance">
-<h1><span class="section-number">5. </span>License Compliance<a class="headerlink" href="#license-compliance" title="Permalink to this headline">¶</a></h1>
+<span id="document-misc/index"></span><div class="section" id="additional-considerations">
+<h1><span class="section-number">5. </span>Additional Considerations<a class="headerlink" href="#additional-considerations" title="Permalink to this headline">¶</a></h1>
+<p>The overview chapter provides a high level summary of the game.</p>
+<div class="toctree-wrapper compound">
+<span id="document-misc/audience"></span><div class="section" id="target-audience">
+<h2><span class="section-number">5.1. </span>Target Audience<a class="headerlink" href="#target-audience" title="Permalink to this headline">¶</a></h2>
+<p>Tic Tac Toe is targeted at casual gamers.</p>
+<p>New PC Gamers</p>
+</div>
+<span id="document-misc/platforms"></span><div class="section" id="target-platforms">
+<h2><span class="section-number">5.2. </span>Target Platforms<a class="headerlink" href="#target-platforms" title="Permalink to this headline">¶</a></h2>
+<p>Tic Tac Toe runs on a variety of popular desktop operating systems including
+Windows, macOS, and Linux. Being a casual game, it does not require a beefy
+video card or fast processor. <a class="reference internal" href="#table-min-system-requirements"><span class="std std-numref">Table 5.1</span></a> lists
+the minimum system requirements.</p>
+<span id="table-min-system-requirements"></span><table class="docutils align-default" id="id2">
+<caption><span class="caption-number">Table 5.1 </span><span class="caption-text">Tic Tac Toe minimum system requirements</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>OS</p></td>
+<td><p>Windows 10, Linux <a class="footnote-reference brackets" href="#linux" id="id1">1</a>, macOS</p></td>
+</tr>
+<tr class="row-even"><td><p>Processor</p></td>
+<td><p>1GHz dual core</p></td>
+</tr>
+<tr class="row-odd"><td><p>RAM</p></td>
+<td><p>4GB</p></td>
+</tr>
+<tr class="row-even"><td><p>Disk</p></td>
+<td><p>500 MB available space</p></td>
+</tr>
+<tr class="row-odd"><td><p>Graphics</p></td>
+<td><p>OpenGL compatible graphics adapter</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="linux"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Tic Tac Toe is tested on the latest releases of Debian and Fedora.
+It should work on other popular distributions including Ubuntu. However,
+testing on other distributions is outside the scope of this project.</p>
+</dd>
+</dl>
+</div>
+<span id="document-misc/monetization"></span><div class="section" id="monetization">
+<h2><span class="section-number">5.3. </span>Monetization<a class="headerlink" href="#monetization" title="Permalink to this headline">¶</a></h2>
+</div>
+<span id="document-misc/license-compliance"></span><div class="section" id="license-compliance">
+<h2><span class="section-number">5.4. </span>License Compliance<a class="headerlink" href="#license-compliance" title="Permalink to this headline">¶</a></h2>
+</div>
+<span id="document-misc/similar-games"></span><div class="section" id="similar-games">
+<h2><span class="section-number">5.5. </span>Similar Games<a class="headerlink" href="#similar-games" title="Permalink to this headline">¶</a></h2>
+<p>Tic Tac Toe is a popular paper and pencil game that has been played since
+the times of ancient Egypt. Sandy Douglas’ 1952 take on Tic Tac Toe, called OXO,
+was one of the first computer games. <a class="footnote-reference brackets" href="#wikittt" id="id1">1</a></p>
+<p>However, the major inspiration for this variant of Tic Tac Toe comes from James
+Richey’s 2004 <a class="reference external" href="https://www.imaginaryphase.com/ttt.html">Tic Tac Toe</a> shown in
+<a class="reference internal" href="#fig-ttt-screen-shot"><span class="std std-numref">Figure 5.1</span></a>.</p>
+<div class="figure align-default" id="id2">
+<span id="fig-ttt-screen-shot"></span><img alt="Screen shot of a Tic Tac Toe computer game." src="_images/ttt-2004-screen-shot.png" />
+<p class="caption"><span class="caption-number">Figure 5.1 </span><span class="caption-text">Screen shot of James Richey’s 2004 Tic Tac Toe.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>James developed his version of while learning the C++ programming language. Tic
+Tac Toe provides a fun challenge for learning a new language: it requires both
+algorithmic and graphical components to implement a small but nontrivial
+application.</p>
+<p>When thinking of a project to use to help learn the Rust programming language,
+creating a Tic Tac Toe game is a fun choice.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="wikittt"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>See Wikipedia’s <a class="reference external" href="https://en.wikipedia.org/wiki/Tic-tac-toe">Tic-tac-toe</a>
+article for additional information about the history of Tic Tac Toe.</p>
+</dd>
+</dl>
+</div>
+<span id="document-misc/future-enhancements"></span><div class="section" id="future-enhancements">
+<h2><span class="section-number">5.6. </span>Future Enhancements<a class="headerlink" href="#future-enhancements" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
 </div>
 <span id="document-technical-design"></span><div class="section" id="technical-design">
 <h1><span class="section-number">6. </span>Technical Design<a class="headerlink" href="#technical-design" title="Permalink to this headline">¶</a></h1>
@@ -191,10 +705,10 @@
 <h3>Navigation</h3>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-introduction">1. Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-overview">2. Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-gui">3. User Interface and Controls</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-gameplay">2. Gameplay</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-gui">3. User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-environments">4. Environments</a></li>
-<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-license-compliance">5. License Compliance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-misc/index">5. Additional Considerations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-technical-design">6. Technical Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-glossary">7. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="singlepage.html#document-references">8. References</a></li>
