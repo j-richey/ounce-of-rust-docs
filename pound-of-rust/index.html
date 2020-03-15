@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Pound of Rust Project Documentation &#8212; Tic Tac Toe Game Design Document Rev. A draft 1</title>
+    <title>Tic Tac Toe Design Document &#8212; Tic Tac Toe Game Design Document Rev. A draft 1</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -31,10 +31,20 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="pound-of-rust-project-documentation">
-<h1>Pound of Rust Project Documentation<a class="headerlink" href="#pound-of-rust-project-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to Pound of Rust Project Documentation. This project results in the
-creation of a Tic Tac Toe game using the Rust programming language.</p>
+  <div class="section" id="tic-tac-toe-design-document">
+<h1>Tic Tac Toe Design Document<a class="headerlink" href="#tic-tac-toe-design-document" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to Tic Tac Toe Design Document. This project results in the
+creation of a Tic Tac Toe game using the Rust programming language.
+This document describes in detail the design considerations of the game.</p>
+<p>This design document is also available in these other formats:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="tic_tac_toe_game_design_document_rev_a_draft_1.pdf">Download PDF</a></p></li>
+<li><p><a class="reference external" href="singlepage.html">View as single page</a></p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The design document is a work in progress.</p>
+</div>
 <div class="section" id="overview-documents">
 <h2>Overview Documents<a class="headerlink" href="#overview-documents" title="Permalink to this headline">¶</a></h2>
 <p>These short overview documents introduce the Tic Tac Toe game and provide
@@ -46,15 +56,13 @@ the scope of the project.</p>
 </div>
 <div class="section" id="useful-resources">
 <h2>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">¶</a></h2>
+<p>Below are links to resources developers working on the game might find useful.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://opengameart.org/">OpenGameArt.org</a></p></li>
+</ul>
 </div>
-<div class="section" id="design-document">
-<h2>Design Document<a class="headerlink" href="#design-document" title="Permalink to this headline">¶</a></h2>
-<p>The Tic Tac Toe Design Document describes in detail the design
-considerations of the game.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The design document is a work in progress.</p>
-</div>
+<div class="section" id="table-of-contents">
+<h2>Table of Contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 <div class="toctree-wrapper compound">
@@ -81,28 +89,23 @@ considerations of the game.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="environments.html">4. Environments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="environments.html#list-of-environments">4.1. List of Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html#environment-selection">4.1. Environment Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html#list-of-environments">4.2. List of Environments</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="misc/index.html">5. Additional Considerations</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="misc/audience.html">5.1. Target Audience</a></li>
 <li class="toctree-l2"><a class="reference internal" href="misc/platforms.html">5.2. Target Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/monetization.html">5.3. Monetization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/license-compliance.html">5.4. License Compliance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/similar-games.html">5.5. Similar Games</a></li>
-<li class="toctree-l2"><a class="reference internal" href="misc/future-enhancements.html">5.6. Future Enhancements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/licensing-and-distribution.html">5.3. Licensing and Distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/similar-games.html">5.4. Similar Games</a></li>
+<li class="toctree-l2"><a class="reference internal" href="misc/future-enhancements.html">5.5. Future Enhancements</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="technical-design.html">6. Technical Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-design/index.html">6. Technical Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">7. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">8. References</a></li>
 </ul>
 </div>
-<p>The design document is also available in other formats:</p>
-<ul class="simple">
-<li><p><a class="reference external" href="tic_tac_toe_game_design_document_rev_a_draft_1.pdf">Download PDF</a></p></li>
-<li><p><a class="reference external" href="singlepage.html">View as single page</a></p></li>
-</ul>
 <p>Also See:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
@@ -132,7 +135,7 @@ considerations of the game.</p>
 <li class="toctree-l1"><a class="reference internal" href="gui.html">3. User Interface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="environments.html">4. Environments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/index.html">5. Additional Considerations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="technical-design.html">6. Technical Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="technical-design/index.html">6. Technical Design</a></li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">7. Glossary</a></li>
 <li class="toctree-l1"><a class="reference internal" href="references.html">8. References</a></li>
 </ul>
