@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4. Environments &#8212; FoxXO Game Design Document Rev. A draft 1</title>
+    <title>4. Environments &#8212; FoxXO Game Design Document Rev. A</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -12,6 +12,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="5. Additional Considerations" href="misc/index.html" />
@@ -45,7 +46,6 @@ experience each environment in a random order.</p>
 </div>
 <div class="section" id="list-of-environments">
 <h2><span class="section-number">4.2. </span>List of Environments<a class="headerlink" href="#list-of-environments" title="Permalink to this headline">¶</a></h2>
-<p>This section lists each of the games environments.</p>
 <div class="section" id="blueprint">
 <span id="ref-environment-blueprint"></span><h3><span class="section-number">4.2.1. </span>Blueprint<a class="headerlink" href="#blueprint" title="Permalink to this headline">¶</a></h3>
 <div class="figure align-default" id="id3">
@@ -54,10 +54,10 @@ experience each environment in a random order.</p>
 </div>
 <p class="rubric">Marks and Grid</p>
 <p>The blueprint uses white text for the marks and white lines for the grid.</p>
-<p>The grid can actually be a series of empty boxes but using thicker interior
-lines.</p>
-<p>Hovering over an empty square shows a dotted version of what would be drawn
-there. Clicking places the mark without further animation.</p>
+<p>The grid is a series of empty boxes. The interior lines are more prominent
+than the exterior lines.</p>
+<p>Hovering over an empty square shows a dotted version of the mark that would
+be drawn. Clicking places the mark without further animation.</p>
 <p>Winning the game causes a “Winning Marks” label to be placed with arrows
 pointing to the corresponding marks.</p>
 <p class="rubric">Background Scenery</p>
@@ -73,8 +73,6 @@ bindings.</p>
 <p class="rubric">Additional Details</p>
 <p>This environment provides an opportunity to point out features of the game
 that might be overlooked by players such as keyboard support.</p>
-<p>This environment makes a template when creating new environments. This is
-due to it literally being a blueprint.</p>
 </div>
 <div class="section" id="notebook-paper-and-pencil">
 <span id="ref-environment-notebook-paper-and-pencil"></span><h3><span class="section-number">4.2.2. </span>Notebook Paper and Pencil<a class="headerlink" href="#notebook-paper-and-pencil" title="Permalink to this headline">¶</a></h3>
@@ -91,8 +89,9 @@ an X or O while a corresponding pencil sound FX is played.</p>
 <p class="rubric">Background Scenery</p>
 <p>The background consists of notebook or engineering paper. Notebook paper is
 white with gray or blue lines. Often times there also a vertical red margin
-line.</p>
-<p>Engineering paper us yellow with gray grid lines.</p>
+line. Engineering paper is yellow with gray grid lines.</p>
+<p>There are doodles, text, or other drawings to give the environment character.
+The engineering paper is more likely to have nerdy drawings.</p>
 <p class="rubric">Music Theme</p>
 <p>Mild background music.</p>
 </div>
@@ -110,11 +109,11 @@ other paper someone might have in their purse.</p>
 <p>Text on the paper should be gray, faded black, or otherwise not interfere
 with the visibility of the marks.</p>
 <p class="rubric">Music Theme</p>
-<p>Something with a gospel / churchy vibe</p>
+<p>Something with a gospel / church vibe</p>
 <p class="rubric">Additional Details</p>
 <p>The mark / grid color and the background image is randomly selected each
 time the environment is played. Blue and red ink is used so the marks stand
-out from the</p>
+out from the background.</p>
 <p>The inspiration from this environment comes from me not paying attention in
 church and drawing on scrap paper my mom happened to have.</p>
 </div>
@@ -133,9 +132,9 @@ flickering animation and an electric buzzing sound FX.</p>
 illuminated. Then the grid flickers on as if the transformer is starting to
 fail.</p>
 <p class="rubric">Background Scenery</p>
-<p>The background is a brick wall holding the neon lights. Ideally, the wall is
-illuminated by the lights. E.g. when a mark is selected the brick wall behind
-the mark gains some illumination as shown in the concept art.</p>
+<p>The background is a brick wall holding the neon lights. The wall is
+illuminated by the lights. E.g. when a mark is selected the brick wall
+behind the mark gains some illumination as shown in the concept art.</p>
 <p class="rubric">Music Theme</p>
 <p>80’s electronic</p>
 <p class="rubric">Additional Details</p>
@@ -163,6 +162,9 @@ and red LED near the power button. The background color is dark green or
 dark amber with perhaps the dark pixels still visible.</p>
 <p class="rubric">Music Theme</p>
 <p>8-bit electronic</p>
+<p class="rubric">Additional Details</p>
+<p>Additional FX include animated scan lines due to a poor connection between
+the monitor and computer.</p>
 </div>
 <div class="section" id="sidewalk">
 <span id="ref-environment-sidewalk"></span><h3><span class="section-number">4.2.6. </span>Sidewalk<a class="headerlink" href="#sidewalk" title="Permalink to this headline">¶</a></h3>
@@ -174,7 +176,7 @@ dark amber with perhaps the dark pixels still visible.</p>
 <p>The marks and grid are created from pastel sidewalk chalk. The lines are
 thick and hand drawn with similar animations as the <em>Notebook Paper and Pencil</em>
 environment.</p>
-<p>Pastel colors include red, blue, yellow, ping, green, and orange. The X, O,
+<p>Pastel colors include red, blue, yellow, pink, green, and orange. The X, O,
 and grid use different colors that are randomly selected each game.</p>
 <p>A line is drawn through the winning squares.</p>
 <p class="rubric">Background Scenery</p>
@@ -250,7 +252,8 @@ chalk is visible.</p>
 Typical colors include, blue, green, black, red, and purple. The grid and
 each mark are hand drawn in different colors.</p>
 <p>A squeaking sound is made when marks are being drawn.</p>
-<p>A line is drawn through winning marks.</p>
+<p>Winning marks are circled to both give a more professional look to the
+environment and differentiate it from the chalkboard environment.</p>
 <p class="rubric">Background Scenery</p>
 <p>The background is a white dry erase board. The board does not erase well so
 faded physics equations is still visible in the background.</p>
@@ -296,14 +299,14 @@ indicate wining marks.</p>
 Stickers such as the “my family” are trying to peak out from underneath the
 dust. The back windshield wiper reinforces the car theme.</p>
 <p class="rubric">Music Theme</p>
-<p>Hip Hob with rattling door sounds.</p>
+<p>Hip Hop with rattling door sounds.</p>
 </div>
 <div class="section" id="x4-lcd-display">
 <span id="ref-environment-16x4-lcd-display"></span><h3><span class="section-number">4.2.13. </span>16x4 LCD Display<a class="headerlink" href="#x4-lcd-display" title="Permalink to this headline">¶</a></h3>
 <p class="rubric">Marks and Grid</p>
 <p>The marks and grid are black or white LCD pixels. Black is used with the
 green background and white is used with the blue background.</p>
-<p>Mousing over a free location causes a curser, the underscore character (<code class="docutils literal notranslate"><span class="pre">_</span></code>),
+<p>Mousing over a free location causes a cursor, the underscore character (<code class="docutils literal notranslate"><span class="pre">_</span></code>),
 to blink in that location.</p>
 <p>Asterisk characters are placed next to winning marks.</p>
 <p class="rubric">Background Scenery</p>
@@ -314,8 +317,7 @@ even LEDs around.</p>
 <p>8 bit</p>
 <p class="rubric">Additional Details</p>
 <p>Some artistic liberty with regards to the 16x4 LCD display might need to
-occur to ensure the might need To ensure the mark’s center points are in
-the correct locations.</p>
+occur to ensure the mark’s center points are in the correct locations.</p>
 </div>
 <div class="section" id="ancient-egypt-tomb">
 <span id="ref-environment-ancient-egypt-tomb"></span><h3><span class="section-number">4.2.14. </span>Ancient Egypt Tomb<a class="headerlink" href="#ancient-egypt-tomb" title="Permalink to this headline">¶</a></h3>
@@ -444,7 +446,7 @@ one advertising a different level switches the environment to that level.</p>
 <dl class="footnote brackets">
 <dt class="label" id="hiddenfox"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>To play off of the game’s name, FoxXO, environment artists are
-encouraged to hid a reference to a fox in the environment.</p>
+encouraged to hid a reference to a fox someplace in the environment.</p>
 </dd>
 <dt class="label" id="shuffelalgorithms"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
 <dd><p>Wikipedia’s <a class="reference external" href="https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle">Fisher–Yates shuffle</a>

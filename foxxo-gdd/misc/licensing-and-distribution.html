@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>5.3. Licensing and Distribution &#8212; FoxXO Game Design Document Rev. A draft 1</title>
+    <title>5.3. Licensing and Distribution &#8212; FoxXO Game Design Document Rev. A</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -12,6 +12,7 @@
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5.4. Similar Games" href="similar-games.html" />
@@ -37,24 +38,24 @@
 <p>This section describes how the game is licensed, distributed, and other related
 details of getting the game into player’s hands.</p>
 <div class="section" id="game-s-license">
-<h2><span class="section-number">5.3.1. </span>Game’s License<a class="headerlink" href="#game-s-license" title="Permalink to this headline">¶</a></h2>
+<span id="index-0"></span><h2><span class="section-number">5.3.1. </span>Game’s License<a class="headerlink" href="#game-s-license" title="Permalink to this headline">¶</a></h2>
 <p>The game is dual licensed under the MIT <a class="footnote-reference brackets" href="#mitlicense" id="id1">1</a> and
 Apache-2.0 <a class="footnote-reference brackets" href="#apachelicense" id="id2">2</a> licenses. This is the same licensing scheme used
 for the Rust language. <a class="footnote-reference brackets" href="#rustlanglicense" id="id3">3</a> Under these licenses users are free
 to obtain, modify, and redistribute the source code for both private and
 commercial use.</p>
-<p>Any original game’s assets are licensed under the CC-BY-4.0 license. <a class="footnote-reference brackets" href="#ccbylicense" id="id4">4</a></p>
+<p>Any original game assets are licensed under the CC-BY-4.0 license. <a class="footnote-reference brackets" href="#ccbylicense" id="id4">4</a></p>
 </div>
 <div class="section" id="distribution">
 <h2><span class="section-number">5.3.2. </span>Distribution<a class="headerlink" href="#distribution" title="Permalink to this headline">¶</a></h2>
 <p>The game is directly distributed to players via the internet. There are two main
-ways to acquire a copy of the game: downloading an platform specific package, or
+ways to acquire a copy of the game: downloading a platform specific package, or
 building the game from source.</p>
 <div class="section" id="platform-packages">
-<h3><span class="section-number">5.3.2.1. </span>Platform Packages<a class="headerlink" href="#platform-packages" title="Permalink to this headline">¶</a></h3>
+<span id="index-1"></span><h3><span class="section-number">5.3.2.1. </span>Platform Packages<a class="headerlink" href="#platform-packages" title="Permalink to this headline">¶</a></h3>
 <p>Platform specific packages can be downloaded from the game’s website.
 In particular, Windows users expect an installer to install the game on their
-system. They do not have readily access to compilers or other tools to build
+system. They do not have ready access to compilers or other tools to build
 software from source. Finally, Windows is the most widely used operating system
 so a Windows installer is a requirement for this project to be successful.</p>
 <p>Linux and Mac users have easier access to compilers but they still appreciate
@@ -63,19 +64,15 @@ best effort basis.</p>
 </div>
 <div class="section" id="build-from-source">
 <h3><span class="section-number">5.3.2.2. </span>Build from Source<a class="headerlink" href="#build-from-source" title="Permalink to this headline">¶</a></h3>
-<p>Because the game is open source anyone can build the game from source.</p>
-<p>There are two main ways to build the game from source:</p>
-<ol class="arabic simple">
-<li><p>Clone the game’s source code repository and follow the build instructions.</p></li>
-<li><p>Use Cargo, the Rust package manager, to download, build, and install the
-game and its dependencies.</p></li>
-</ol>
+<p>Because the game is open source anyone can build the game from source. This
+involves cloning the game’s source code repository and following the build
+instructions documented in the README file. <a class="footnote-reference brackets" href="#cratessizelimit" id="id5">5</a></p>
 </div>
 </div>
 <div class="section" id="monetization">
 <h2><span class="section-number">5.3.3. </span>Monetization<a class="headerlink" href="#monetization" title="Permalink to this headline">¶</a></h2>
 <p>There is no intention to generate revenue from FoxXO. The is released
-free of charge. There are no advertisements, micro-transactions, or data
+free of charge. There are no advertisements, microtransactions, or data
 stealing spyware that is found in other <em>free</em> games.</p>
 </div>
 <div class="section" id="third-party-license-compliance">
@@ -110,10 +107,11 @@ library:</p>
 <div class="section" id="game-assets">
 <h3><span class="section-number">5.3.4.2. </span>Game Assets<a class="headerlink" href="#game-assets" title="Permalink to this headline">¶</a></h3>
 <p>The game can freely use or remix third party music, sound FX, and textures that
-have the following licenses: <a class="footnote-reference brackets" href="#ccbysa" id="id5">5</a></p>
+have the following licenses: <a class="footnote-reference brackets" href="#ccbysa" id="id6">6</a></p>
 <ul class="simple">
 <li><p>CC0</p></li>
 <li><p>CC-BY</p></li>
+<li><p>CC-BY-NC <a class="footnote-reference brackets" href="#ccbync" id="id7">7</a></p></li>
 </ul>
 <p>A list of third party assets used is accessible from the game’s credits or user
 documentation to fulfill the attribution requirements. The following information
@@ -151,10 +149,20 @@ for licensing details.</p>
 <dt class="label" id="ccbylicense"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
 <dd><p><a class="reference external" href="https://choosealicense.com/licenses/cc-by-4.0/">Choose an open source license - Creative Commons Attribution 4.0 International</a></p>
 </dd>
-<dt class="label" id="ccbysa"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dt class="label" id="cratessizelimit"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Cargo, the Rust package manager, can download and build
+applications hosted on crates.io. However, crates.io has a 10MB size
+limit that is too small to host this game.</p>
+</dd>
+<dt class="label" id="ccbysa"><span class="brackets"><a class="fn-backref" href="#id6">6</a></span></dt>
 <dd><p>The CC-BY-SA is incompatible with the the game’s licensing terms.
 It is this author’s understanding that a game is considered a derivative
-work and thus must also be licensed under CC-BY-SA.</p>
+work and thus must also be licensed under CC-BY-SA if it were to use
+CC-BY-SA assets.</p>
+</dd>
+<dt class="label" id="ccbync"><span class="brackets"><a class="fn-backref" href="#id7">7</a></span></dt>
+<dd><p>Per the monetization section, the game is being released for free
+and is not intended to produce a revenue stream.</p>
 </dd>
 </dl>
 </div>

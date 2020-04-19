@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>2. Gameplay &#8212; FoxXO Game Design Document Rev. A draft 1</title>
+    <title>2. Gameplay &#8212; FoxXO Game Design Document Rev. A</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -12,6 +12,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="3. User Interface" href="gui.html" />
@@ -35,7 +36,7 @@
   <div class="section" id="gameplay">
 <h1><span class="section-number">2. </span>Gameplay<a class="headerlink" href="#gameplay" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="rules-of-tic-tac-toe">
-<h2><span class="section-number">2.1. </span>Rules of Tic-tac-toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h2>
+<span id="index-0"></span><h2><span class="section-number">2.1. </span>Rules of Tic-tac-toe<a class="headerlink" href="#rules-of-tic-tac-toe" title="Permalink to this headline">¶</a></h2>
 <p>Tic-tac-toe is a game of strategy where two players, X and O, take turns placing
 their mark in a 3 x 3 gird. The rules for tic-tac-toe used for each game mode
 are as follows:</p>
@@ -58,7 +59,7 @@ that contributed to the win. Notice that it is possible to get multiple
 sets of three marks in a row.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </li>
-<li><p>The game ends in a draw, known as a <span class="target" id="index-0"></span>cat’s game, if no more empty
+<li><p>The game ends in a draw, known as a <span class="target" id="index-1"></span>cat’s game, if no more empty
 squares remain and a player has failed to get three marks in a line.
 Examples of cat’s games are shown in <a class="reference internal" href="#fig-example-cats-games"><span class="std std-numref">Figure 2.2</span></a>.</p>
 <div class="figure align-default" id="id3">
@@ -67,14 +68,14 @@ to get three marks in a line.</span><a class="headerlink" href="#id3" title="Per
 </div>
 </li>
 <li><p>The steps above are repeated for a series of games. The starting player
-alternates between games, that is the second game player <em>O</em> gets to make
-the first move.</p></li>
+alternates between games. For example, the second game player <em>O</em> gets to
+make the first move.</p></li>
 </ol>
 </div>
-<div class="section" id="one-player-mode">
-<h2><span class="section-number">2.2. </span>One Player Mode<a class="headerlink" href="#one-player-mode" title="Permalink to this headline">¶</a></h2>
-<p>In one player mode the player battles a computer controlled opponent. There are
-three difficulty settings: <strong>easy</strong>, <strong>medium</strong>, and <strong>hard</strong>.</p>
+<div class="section" id="single-player-mode">
+<span id="index-2"></span><h2><span class="section-number">2.2. </span>Single-player Mode<a class="headerlink" href="#single-player-mode" title="Permalink to this headline">¶</a></h2>
+<p>In single-player mode the player battles a computer controlled opponent. There
+are three difficulty settings: <strong>easy</strong>, <strong>medium</strong>, and <strong>hard</strong>.</p>
 <p>Easy difficulty is targeted at players who are new to tic-tac-toe and/or
 computer games. The computer picks random squares allowing players to learn the
 game’s controls and rules.</p>
@@ -87,12 +88,12 @@ difficulty for experienced tic-tac-toe players.</p>
 <div class="section" id="two-player-mode">
 <span id="ref-gameplay-two-player-mode"></span><h2><span class="section-number">2.3. </span>Two Player Mode<a class="headerlink" href="#two-player-mode" title="Permalink to this headline">¶</a></h2>
 <p>In two player mode two players take turns placing their marks according to the
-rules described above.</p>
+rules of tic-tac-toe previously described.</p>
 </div>
 <div class="section" id="speedrun-mode">
-<span id="ref-gameplay-speed-run-mode"></span><h2><span class="section-number">2.4. </span>Speedrun Mode<a class="headerlink" href="#speedrun-mode" title="Permalink to this headline">¶</a></h2>
+<span id="ref-gameplay-speed-run-mode"></span><span id="index-3"></span><h2><span class="section-number">2.4. </span>Speedrun Mode<a class="headerlink" href="#speedrun-mode" title="Permalink to this headline">¶</a></h2>
 <p>A speedrun mode provides an additional challenge for experienced players.
-Players battle a flawless computer opponent through 10 environments completing
+Players battle a flawless computer opponent through ten environments completing
 the games as fast as possible. At the end of the run the total time is
 displayed along with the previous best times. <a class="footnote-reference brackets" href="#timecalculation" id="id1">1</a></p>
 <p>The player is disqualified and the run halted if the player loses a game.
@@ -136,7 +137,7 @@ slower and faster computers.</p>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">1. Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">2. Gameplay</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#rules-of-tic-tac-toe">2.1. Rules of Tic-tac-toe</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#one-player-mode">2.2. One Player Mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#single-player-mode">2.2. Single-player Mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#two-player-mode">2.3. Two Player Mode</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#speedrun-mode">2.4. Speedrun Mode</a></li>
 </ul>
