@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>FoxXO Game Design Document &#8212; FoxXO Game Design Document Rev. A</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FossXO Game Design Document &#8212; FossXO Game Design Document Rev. B</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -32,29 +33,30 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="foxxo-game-design-document">
-<h1>FoxXO Game Design Document<a class="headerlink" href="#foxxo-game-design-document" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to FoxXO game design document. FoxXO is a free and open example of
-tic-tac-toe created using the Rust programming language. This document
-describes in detail the design considerations of the game.</p>
-<p>The FoxXO game design document is also available in these other formats:</p>
+  <div class="section" id="fossxo-game-design-document">
+<h1>FossXO Game Design Document<a class="headerlink" href="#fossxo-game-design-document" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to FossXO game design document. FossXO is a free and open-source
+example of tic-tac-toe created using the Rust programming language. This
+document describes in detail the design considerations of the game.</p>
+<p>The FossXO game design document is also available in these other formats:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="foxxo_game_design_document_rev_a.pdf">Printable PDF</a></p></li>
+<li><p><a class="reference external" href="fossxo_game_design_document_rev_b.pdf">Printable PDF</a></p></li>
 <li><p><a class="reference external" href="singlepage.html">Single HTML page</a></p></li>
 </ul>
 <div class="section" id="overview-documents">
 <h2>Overview Documents<a class="headerlink" href="#overview-documents" title="Permalink to this headline">¶</a></h2>
-<p>These short overview documents introduce the FoxXO game and provide the
+<p>These short overview documents introduce the FossXO game and provide the
 scope of the project.</p>
 <ul class="simple">
-<li><p><a class="reference external" href="foxxo-overview-handout.pdf">Handout</a> - start here</p></li>
-<li><p><a class="reference external" href="foxxo-overview-slides.pdf">Slides</a> - a short presentation about the game</p></li>
+<li><p><a class="reference external" href="fossxo-overview-handout.pdf">Handout</a> - start here</p></li>
+<li><p><a class="reference external" href="fossxo-overview-slides.pdf">Slides</a> - a short presentation about the game</p></li>
 </ul>
 </div>
 <div class="section" id="useful-resources">
 <h2>Useful Resources<a class="headerlink" href="#useful-resources" title="Permalink to this headline">¶</a></h2>
 <p>Below are links to resources developers working on the game might find useful.</p>
 <ul class="simple">
+<li><p><a class="reference external" href="https://amethyst.rs/doc">Amethyst engine documentation</a></p></li>
 <li><p><a class="reference external" href="https://opengameart.org/">OpenGameArt.org</a></p></li>
 <li><p><a class="reference external" href="https://freesound.org/">Freesound</a> (requires account)</p></li>
 </ul>
@@ -100,7 +102,16 @@ scope of the project.</p>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="technical-design/index.html">6. Technical Design</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="technical-design/index.html#throwaway-prototype">6.1. Throwaway Prototype</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/engine-overview.html">6.1. Engine Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/states.html">6.2. Game States</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/systems.html">6.3. Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/components-resources-entities.html">6.4. Components, Resources, and Entities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/file-formats.html">6.5. File Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/user-manual.html">6.6. User Manual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/packaging.html">6.7. Packages and Source Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/security.html">6.8. System Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/development-tools.html">6.9. Development Tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technical-design/prototype.html">6.10. Throwaway Prototype Lessons</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="glossary.html">7. Glossary</a></li>
@@ -120,7 +131,7 @@ scope of the project.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">FoxXO Game Design Document</a></h1>
+<h1 class="logo"><a href="#">FossXO Game Design Document</a></h1>
 
 
 
@@ -145,7 +156,7 @@ scope of the project.</p>
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/foxxo-gdd">GitHub Source</a></li>
+    <li class="toctree-l1"><a href="https://github.com/j-richey/fossxo-gdd">GitHub Source</a></li>
     
 </ul>
 <div class="relations">
@@ -182,7 +193,7 @@ scope of the project.</p>
       &copy;2020, James Richey.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

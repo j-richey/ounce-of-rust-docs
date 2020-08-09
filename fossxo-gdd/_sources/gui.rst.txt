@@ -2,9 +2,11 @@
 User Interface
 ##############
 
-This chapter describes the user interface of FoxXO. This includes the main
+This chapter describes the user interface of FossXO. This includes the main
 game board, controls, and all game menus.
 
+
+..  _ref-ui-game-board:
 
 ==========
 Game Board
@@ -66,6 +68,7 @@ Items of interest are:
 When a game is competed successfully the next game starts immediately allowing
 players to go as fast as possible through the games.
 
+.. _ref-ui-controls:
 
 ========
 Controls
@@ -89,8 +92,8 @@ click and other mouse buttons are unused.
 ------------
 Key Bindings
 ------------
-The game supports being played using the keyboard. :numref:`fig-ui-keybindings`
-shows the game's keybindings for selecting squares.
+The game supports being played using the keyboard. [#keyboardaccessibility]_
+:numref:`fig-ui-keybindings` shows the game's keybindings for selecting squares.
 
 ..  _fig-ui-keybindings:
 ..  figure:: img/ui/keybindings.*
@@ -258,9 +261,12 @@ is shown in :numref:`fig-ui-credits`.
 
 The credits screen contains the following items:
 
-1.  Scrolling list of developer names, third party assets, and other information
-    about the game.
-2.  :guilabel:`Back` returns to the :ref:`ref-ui-main-menu`.
+1.  List of developers and other people directly involved in the creation
+    of the game.
+2.  The open source community is thanked and links are provided to all of the
+    third party libraries and assets used in the game. Selecting one of these
+    links opens corresponding page in the game's :ref:`ref-ui-help`.
+3.  :guilabel:`Back` returns to the :ref:`ref-ui-main-menu`.
 
 The credits screen uses a different background and soundtrack than the other
 menus. The background consists of one or more tic-tac-toe games being played
@@ -270,9 +276,6 @@ several times per game. This showcases the many environments of the game.
 
 The credits screen has its own sound track. The music and sound FX of the
 individual environments are not used.
-
-Once all of the credits have played the screen remains open with tic-tac-toe
-games being played in the background.
 
 
 .. index:: loading screen
@@ -293,7 +296,9 @@ game first loads.
 Help
 ----
 The game's help provides information on how to play tic-tac-toe, the different
-game modes, the application version, how to report bugs, and other information.
+game modes, the application version, how to report bugs, and
+:ref:`ref-distribution-license-compliance` information.
+
 To minimize the complexity of the game's menus, the help is displayed using the
 user's default web browser. All information is hosted locally; no internet
 access is required. [#localhelp]_
@@ -309,7 +314,7 @@ and menus are connected.
 
 ..  _uml-screen-flowchart:
 ..  uml::
-    :caption: Connections between FoxXO's menus and screens.
+    :caption: Connections between FossXO's menus and screens.
     :height: 8in
 
     hide empty description
@@ -349,6 +354,9 @@ and menus are connected.
 ..  [#speedrunloss] If the player loses a speedrun game, the board remains
         visible so the player can see where they made mistakes. This allows them
         to adjust their strategy for next time.
+..  [#keyboardaccessibility] Keyboard support helps improve the game's
+        accessibility by allowing custom controllers to emulate to the game's
+        key mapping.
 ..  [#resumegame] Many games a have a *resume game* button to go back to an
         progress game. However, tic-tac-toe games are very short and require
         little pre-game configuration. Therefore, having resume game

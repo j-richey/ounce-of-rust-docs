@@ -1,10 +1,11 @@
 
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
   <head>
     <meta charset="utf-8" />
-    <title>1. Introduction &#8212; FoxXO Game Design Document Rev. A</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1. Introduction &#8212; FossXO Game Design Document Rev. B</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -16,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="2. Gameplay" href="gameplay.html" />
-    <link rel="prev" title="FoxXO Game Design Document" href="index.html" />
+    <link rel="prev" title="FossXO Game Design Document" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -37,7 +38,7 @@
 <h1><span class="section-number">1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="purpose-of-this-document">
 <h2><span class="section-number">1.1. </span>Purpose of this Document<a class="headerlink" href="#purpose-of-this-document" title="Permalink to this headline">¶</a></h2>
-<p>This is the FoxXO game design document. This document describes in
+<p>This is the FossXO game design document. This document describes in
 detail the objectives, requirements, and design considerations of the game
 providing a central location for this information. This is invaluable for
 understanding the game’s scope, planning the project milestones, and creating
@@ -50,12 +51,12 @@ document and keep a copy handy.</p>
 <p>Tic-tac-toe is a game of strategy where two players, X and O, take turns placing
 their mark in a 3 x 3 gird. The first player to get three marks in a row,
 column, or diagonal wins the game.</p>
-<p>FoxXO is a unique take on the classic game of tic-tac-toe. Players of
+<p>FossXO is a unique take on the classic game of tic-tac-toe. Players of
 all ages battle the computer or each other in a variety of stunning environments.
 Each environment tells part of the story of tic-tac-toe from the past, present,
 and future. Each environment has a strong visual theme and complementary
 soundtrack.</p>
-<p>FoxXO is free, open source, and no contains no annoying advertisements. It
+<p>FossXO is free, open source, and no contains no annoying advertisements. It
 runs on Windows, Mac, and Linux. The game launches Summer 2020.</p>
 </div>
 <div class="section" id="overview-of-this-document">
@@ -72,7 +73,7 @@ game design document.</p>
 <h2><span class="section-number">1.4. </span>Project Objectives<a class="headerlink" href="#project-objectives" title="Permalink to this headline">¶</a></h2>
 <p>This section describes the project’s primary objectives.</p>
 <div class="section" id="create-tic-tac-toe-game-with-rust">
-<h3><span class="section-number">1.4.1. </span>Create Tic-tac-toe Game with Rust<a class="headerlink" href="#create-tic-tac-toe-game-with-rust" title="Permalink to this headline">¶</a></h3>
+<span id="ref-objective-create-ttt-game-with-rust"></span><h3><span class="section-number">1.4.1. </span>Create Tic-tac-toe Game with Rust<a class="headerlink" href="#create-tic-tac-toe-game-with-rust" title="Permalink to this headline">¶</a></h3>
 <p>The main deliverable of this project is a tic-tac-toe game for Windows, Mac,
 and Linux. This project is the follow-up to the Ounce of Rust project <a class="footnote-reference brackets" href="#ounceofrust" id="id2">2</a>
 that resulted in the creation of a Rust based tic-tac-toe logic library,
@@ -82,26 +83,26 @@ using Rust and is a showcase for <code class="docutils literal notranslate"><spa
 </div>
 <div class="section" id="provide-free-of-charge-and-under-an-open-source-license">
 <span id="ref-objective-free-of-charge"></span><h3><span class="section-number">1.4.2. </span>Provide Free of Charge and Under an Open Source License<a class="headerlink" href="#provide-free-of-charge-and-under-an-open-source-license" title="Permalink to this headline">¶</a></h3>
-<p>FoxXO is and will always be free, open source, and contain no advertisements or
+<p>FossXO is and will always be free, open source, and contain no advertisements or
 trackers. The game is released under a permissive open source license and its
 code is available from a public repository such as <a class="reference external" href="https://github.com/">https://github.com/</a>.</p>
 <p>Many of today’s games casual games are released for free, but include
 questionable monetization models such as microtransactions, pay-to-win schemes,
-advertisements, and personal data harvesters. FoxXO stands apart from
+advertisements, and personal data harvesters. FossXO stands apart from
 these games by respecting players who choose to spend their valuable time
 playing the game.</p>
 </div>
 <div class="section" id="release-by-rustconf-2020">
-<h3><span class="section-number">1.4.3. </span>Release by RustConf 2020<a class="headerlink" href="#release-by-rustconf-2020" title="Permalink to this headline">¶</a></h3>
-<p>FoxXO’s initial release is scheduled to coincide with RustConf 2020
+<span id="index-0"></span><h3><span class="section-number">1.4.3. </span>Release by RustConf 2020<a class="headerlink" href="#release-by-rustconf-2020" title="Permalink to this headline">¶</a></h3>
+<p>FossXO’s initial release is scheduled to coincide with RustConf 2020
 on August 21, 2020. <a class="footnote-reference brackets" href="#rustconf" id="id4">4</a> RustConf is the annual Rust developers conference; since
-FoxXO is developed in Rust this makes an excellent time to launch a Rust
+FossXO is developed in Rust this makes an excellent time to launch a Rust
 based game. <a class="footnote-reference brackets" href="#limitedscope" id="id5">5</a></p>
 </div>
 <div class="section" id="easily-expandable-and-modifiable">
-<h3><span class="section-number">1.4.4. </span>Easily Expandable and Modifiable<a class="headerlink" href="#easily-expandable-and-modifiable" title="Permalink to this headline">¶</a></h3>
+<span id="ref-objective-easily-expandable-and-modifiable"></span><h3><span class="section-number">1.4.4. </span>Easily Expandable and Modifiable<a class="headerlink" href="#easily-expandable-and-modifiable" title="Permalink to this headline">¶</a></h3>
 <p>Playing tic-tac-toe in a variety of environments is a large part of what sets
-FoxXO apart from other tic-tac-toe games. The game is designed such that
+FossXO apart from other tic-tac-toe games. The game is designed such that
 developers can easily add new environments. This allows developers to focus
 their time and effort creating stunning environments. Additionally, this
 lowers the barrier of entry for users who are interested in modifying the game.
@@ -109,8 +110,8 @@ Finally, an easily modifiable code base allows quick turnaround of future
 releases of the game.</p>
 </div>
 <div class="section" id="build-risk-reduction-prototype">
-<span id="ref-objective-build-risk-reduction-prototype"></span><h3><span class="section-number">1.4.5. </span>Build Risk Reduction Prototype<a class="headerlink" href="#build-risk-reduction-prototype" title="Permalink to this headline">¶</a></h3>
-<p>The development team creating FoxXO is new to the Rust programming language
+<span id="ref-objective-build-risk-reduction-prototype"></span><span id="index-1"></span><h3><span class="section-number">1.4.5. </span>Build Risk Reduction Prototype<a class="headerlink" href="#build-risk-reduction-prototype" title="Permalink to this headline">¶</a></h3>
+<p>The development team creating FossXO is new to the Rust programming language
 and the available Rust libraries for game development. To help mitigate this
 risk, a throwaway prototype game is created early in the project that explores
 various technical aspects.</p>
@@ -150,7 +151,7 @@ document.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="index.html">FoxXO Game Design Document</a></h1>
+<h1 class="logo"><a href="index.html">FossXO Game Design Document</a></h1>
 
 
 
@@ -181,14 +182,14 @@ document.</p>
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="https://github.com/j-richey/foxxo-gdd">GitHub Source</a></li>
+    <li class="toctree-l1"><a href="https://github.com/j-richey/fossxo-gdd">GitHub Source</a></li>
     
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">FoxXO Game Design Document</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">FossXO Game Design Document</a></li>
       <li>Next: <a href="gameplay.html" title="next chapter"><span class="section-number">2. </span>Gameplay</a></li>
   </ul></li>
 </ul>
@@ -219,7 +220,7 @@ document.</p>
       &copy;2020, James Richey.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.4.0</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 3.1.2</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
